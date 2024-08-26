@@ -13,7 +13,7 @@ class JobPostController extends Controller
      */
     public function index()
     {
-        
+        return view('job-post.index');
     }
 
     /**
@@ -21,7 +21,7 @@ class JobPostController extends Controller
      */
     public function create()
     {
-        //
+        return view('job-post.create');
     }
 
     /**
@@ -37,7 +37,9 @@ class JobPostController extends Controller
      */
     public function show(JobPost $jobPost)
     {
-        //
+        return view('job-post.show',[
+            'jobPost' => $jobPost
+        ]);
     }
 
     /**
@@ -45,7 +47,9 @@ class JobPostController extends Controller
      */
     public function edit(JobPost $jobPost)
     {
-        //
+        return view('job-post.edit',[
+            'jobPost' => $jobPost
+        ]);
     }
 
     /**
@@ -61,6 +65,7 @@ class JobPostController extends Controller
      */
     public function destroy(JobPost $jobPost)
     {
-        //
+        $jobPost->delete();
+        return view('job-post.index');
     }
 }
