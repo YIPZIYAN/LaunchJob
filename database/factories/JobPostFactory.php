@@ -13,14 +13,14 @@ class JobPostFactory extends Factory
     public function definition(): array
     {
         return [
-            'created_at' => Carbon::now(),
-            'updated_at' => Carbon::now(),
-            'name' => $this->faker->name(),
+            'name' => $this->faker->jobTitle(),
             'description' => $this->faker->text(),
-            'min_salary' => $this->faker->randomFloat(),
-            'max_salary' => $this->faker->randomFloat(),
-            'position' => $this->faker->word(),
-            'job_type' => $this->faker->word(),
+            'min_salary' => $this->faker->numberBetween(1,6000),
+            'max_salary' => $this->faker->numberBetween(6000,20000),
+            'period' => $this->faker->randomElement(['Internship','Part-time','Full-time']),
+            'mode' => $this->faker->randomElement(['Hybrid','On-site','Remote']),
+            'type' => $this->faker->randomElement(['Information Technology','Accounting','Other']),
+            'company_id' => $this->faker->randomNumber(1,10),
         ];
     }
 }

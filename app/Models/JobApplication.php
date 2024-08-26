@@ -6,23 +6,21 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class JobPost extends Model
+class JobApplication extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'name',
-        'description',
-        'min_salary',
-        'max_salary',
-        'mode',
-        'type',
-        'period',
+        'status'
     ];
 
-    public function company(): BelongsTo
+    public function jobPost(): BelongsTo
     {
-        return $this->belongsTo(Company::class);
+        return $this->belongsTo(JobPost::class);
     }
 
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
+    }
 }
