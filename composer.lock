@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "758068a455b264440b4b22aa85fd9a09",
+    "content-hash": "fe81d4fbb2cc9f17a10b16c0c236feb6",
     "packages": [
         {
             "name": "brick/math",
@@ -1886,6 +1886,82 @@
             "time": "2024-01-28T23:22:08+00:00"
         },
         {
+            "name": "livewire/livewire",
+            "version": "v3.5.6",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/livewire/livewire.git",
+                "reference": "597a2808d8d3001cc3ed5ce89a6ebab00f83b80f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/livewire/livewire/zipball/597a2808d8d3001cc3ed5ce89a6ebab00f83b80f",
+                "reference": "597a2808d8d3001cc3ed5ce89a6ebab00f83b80f",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/database": "^10.0|^11.0",
+                "illuminate/routing": "^10.0|^11.0",
+                "illuminate/support": "^10.0|^11.0",
+                "illuminate/validation": "^10.0|^11.0",
+                "laravel/prompts": "^0.1.24",
+                "league/mime-type-detection": "^1.9",
+                "php": "^8.1",
+                "symfony/console": "^6.0|^7.0",
+                "symfony/http-kernel": "^6.2|^7.0"
+            },
+            "require-dev": {
+                "calebporzio/sushi": "^2.1",
+                "laravel/framework": "^10.15.0|^11.0",
+                "mockery/mockery": "^1.3.1",
+                "orchestra/testbench": "^8.21.0|^9.0",
+                "orchestra/testbench-dusk": "^8.24|^9.1",
+                "phpunit/phpunit": "^10.4",
+                "psy/psysh": "^0.11.22|^0.12"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Livewire\\LivewireServiceProvider"
+                    ],
+                    "aliases": {
+                        "Livewire": "Livewire\\Livewire"
+                    }
+                }
+            },
+            "autoload": {
+                "files": [
+                    "src/helpers.php"
+                ],
+                "psr-4": {
+                    "Livewire\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Caleb Porzio",
+                    "email": "calebporzio@gmail.com"
+                }
+            ],
+            "description": "A front-end framework for Laravel.",
+            "support": {
+                "issues": "https://github.com/livewire/livewire/issues",
+                "source": "https://github.com/livewire/livewire/tree/v3.5.6"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/livewire",
+                    "type": "github"
+                }
+            ],
+            "time": "2024-08-19T11:52:18+00:00"
+        },
+        {
             "name": "monolog/monolog",
             "version": "3.7.0",
             "source": {
@@ -2460,6 +2536,87 @@
                 }
             ],
             "time": "2023-11-12T21:59:55+00:00"
+        },
+        {
+            "name": "power-components/livewire-powergrid",
+            "version": "v5.10.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Power-Components/livewire-powergrid.git",
+                "reference": "180ca4a1056def54b19ea626f6f0e483848ccf65"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Power-Components/livewire-powergrid/zipball/180ca4a1056def54b19ea626f6f0e483848ccf65",
+                "reference": "180ca4a1056def54b19ea626f6f0e483848ccf65",
+                "shasum": ""
+            },
+            "require": {
+                "laravel/prompts": "^0.1.15",
+                "livewire/livewire": "^3.4.6",
+                "php": "^8.1"
+            },
+            "conflict": {
+                "laravel/framework": "10.40.0"
+            },
+            "require-dev": {
+                "composer/composer": "^2.7.1",
+                "laradumps/laradumps": "^3.1",
+                "laradumps/laradumps-core": "^2.0",
+                "larastan/larastan": "^2.9.0",
+                "laravel/pint": "^1.14.0",
+                "laravel/scout": "^10.9",
+                "orchestra/testbench": "8.19|^9.0",
+                "pestphp/pest": "^2.34.0"
+            },
+            "suggest": {
+                "openspout/openspout": "Required to export XLS and CSV"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "PowerComponents\\LivewirePowerGrid\\Providers\\PowerGridServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "files": [
+                    "src/functions.php"
+                ],
+                "psr-4": {
+                    "PowerComponents\\LivewirePowerGrid\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Luan Freitas",
+                    "email": "luanfreitas10@protonmail.com",
+                    "role": "Developer"
+                },
+                {
+                    "name": "DanSysAnalyst",
+                    "email": "daniel@sysanalyst.eu",
+                    "role": "Developer"
+                }
+            ],
+            "description": "PowerGrid generates Advanced Datatables using Laravel Livewire.",
+            "homepage": "https://github.com/power-components/livewire-powergrid",
+            "support": {
+                "issues": "https://github.com/Power-Components/livewire-powergrid/issues",
+                "source": "https://github.com/Power-Components/livewire-powergrid/tree/v5.10.4"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/luanfreitasdev",
+                    "type": "github"
+                }
+            ],
+            "time": "2024-08-21T19:41:49+00:00"
         },
         {
             "name": "psr/clock",
@@ -5827,6 +5984,139 @@
                 "source": "https://github.com/webmozarts/assert/tree/1.11.0"
             },
             "time": "2022-06-03T18:03:27+00:00"
+        },
+        {
+            "name": "wireui/heroicons",
+            "version": "v2.6.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/wireui/heroicons.git",
+                "reference": "d90dc12a6759140f2dc7e94fd8da9bc355574aea"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/wireui/heroicons/zipball/d90dc12a6759140f2dc7e94fd8da9bc355574aea",
+                "reference": "d90dc12a6759140f2dc7e94fd8da9bc355574aea",
+                "shasum": ""
+            },
+            "require": {
+                "laravel/framework": "^9.16|^10.0|^11.0",
+                "php": "^8.1|^8.2|^8.3|^8.4"
+            },
+            "require-dev": {
+                "laravel/pint": "^1.6",
+                "mockery/mockery": "^1.5",
+                "nunomaduro/larastan": "^2.4",
+                "orchestra/testbench": "^7.7|^8.0|^9.0",
+                "pestphp/pest": "^2.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "WireUi\\Heroicons\\HeroiconsServiceProvider"
+                    ]
+                },
+                "aliases": []
+            },
+            "autoload": {
+                "psr-4": {
+                    "WireUi\\Heroicons\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Pedro Oliveira",
+                    "email": "pedro@wireui.dev"
+                }
+            ],
+            "description": "The Tailwind Heroicons for laravel blade by WireUI",
+            "keywords": [
+                "blade components",
+                "blade heroicons",
+                "laravel components",
+                "livewire icons",
+                "livewire icons components",
+                "wireui"
+            ],
+            "support": {
+                "issues": "https://github.com/wireui/heroicons/issues",
+                "source": "https://github.com/wireui/heroicons/tree/v2.6.1"
+            },
+            "time": "2024-05-23T15:15:30+00:00"
+        },
+        {
+            "name": "wireui/wireui",
+            "version": "v2.0.5",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/wireui/wireui.git",
+                "reference": "8a02a9bc704d3ef62e0f46cca10b5b6a97e5fe63"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/wireui/wireui/zipball/8a02a9bc704d3ef62e0f46cca10b5b6a97e5fe63",
+                "reference": "8a02a9bc704d3ef62e0f46cca10b5b6a97e5fe63",
+                "shasum": ""
+            },
+            "require": {
+                "laravel/framework": "^10.0|^11.0",
+                "php": "^8.2|^8.3",
+                "wireui/heroicons": "^2.6"
+            },
+            "require-dev": {
+                "laravel/pint": "^1.16",
+                "livewire/livewire": "^3.5",
+                "mockery/mockery": "^1.6",
+                "orchestra/testbench": "^8.14|^9.0",
+                "orchestra/testbench-dusk": "^8.14|^9.0",
+                "pestphp/pest": "^2.34",
+                "pestphp/pest-plugin-laravel": "^2.4",
+                "pestphp/pest-plugin-livewire": "^2.1",
+                "phpunit/phpunit": "^10.5",
+                "psy/psysh": "^0.12.3"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "WireUi\\ServiceProvider"
+                    ],
+                    "aliases": []
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "WireUi\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Pedro Oliveira",
+                    "email": "pedro@wireui.dev"
+                }
+            ],
+            "description": "TallStack components",
+            "keywords": [
+                "blade components",
+                "laravel components",
+                "livewire components",
+                "livewire-ui",
+                "wireui"
+            ],
+            "support": {
+                "issues": "https://github.com/wireui/wireui/issues",
+                "source": "https://github.com/wireui/wireui/tree/v2.0.5"
+            },
+            "time": "2024-07-03T05:29:41+00:00"
         }
     ],
     "packages-dev": [
@@ -8039,5 +8329,5 @@
         "php": "^8.2"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.6.0"
+    "plugin-api-version": "2.3.0"
 }
