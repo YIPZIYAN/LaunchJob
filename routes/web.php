@@ -2,10 +2,11 @@
 
 use App\Http\Controllers\JobPostController;
 use App\Http\Controllers\ProfileController;
+use App\Models\JobPost;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('welcome',['jobPost'=> JobPost::all()]);
 });
 
 Route::get('/dashboard', function () {

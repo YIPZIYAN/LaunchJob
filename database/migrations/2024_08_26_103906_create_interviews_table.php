@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\JobApplication;
 use App\Models\JobPost;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
@@ -14,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('interviews', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(JobPost::class)->constrained();
+            $table->foreignIdFor(JobApplication::class)->constrained();
             $table->dateTime('start_time');
             $table->dateTime('end_time');
             $table->longText('description');
