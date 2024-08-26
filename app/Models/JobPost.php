@@ -14,7 +14,8 @@ class JobPost extends Model
         'description',
         'min_salary',
         'max_salary',
-        'position',
-        'job_type',
+        'mode',
+        'type',
+        'period',
     ];
 }
