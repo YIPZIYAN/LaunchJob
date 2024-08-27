@@ -6,7 +6,7 @@ use App\Models\JobPost;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('welcome',['jobPost'=> JobPost::all()]);
+    return view('welcome',['jobPosts'=> JobPost::with('company')->get()]);
 });
 
 Route::get('/dashboard', function () {
