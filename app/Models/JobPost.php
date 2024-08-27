@@ -18,6 +18,7 @@ class JobPost extends Model
         'mode',
         'type',
         'period',
+        'company_id'
     ];
 
     public function company(): BelongsTo

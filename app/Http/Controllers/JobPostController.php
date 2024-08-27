@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\JobPost;
 use App\Http\Requests\StoreJobPostRequest;
 use App\Http\Requests\UpdateJobPostRequest;
+use Illuminate\Support\Facades\Redirect;
 
 class JobPostController extends Controller
 {
@@ -29,7 +30,18 @@ class JobPostController extends Controller
      */
     public function store(StoreJobPostRequest $request)
     {
-        //
+        $validatedData = $request->validated();
+        $validatedData['company_id'] = auth()->user()->company_id;
+        $jobPost = JobPost::create($validatedData);
+
+        if ($jobPost) {
+            //toastr()->success("Job Created Successfully");
+        } else {
+            //toastr()->error("Failed to create new job post");
+        }
+
+        return Redirect::route('dashboard');
+
     }
 
     /**
