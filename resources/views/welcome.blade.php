@@ -1,4 +1,4 @@
-<x-app-layout>
+<x-guest-layout>
 
     <x-searchbar/>
     <div class="flex px-12 py-8">
@@ -189,7 +189,7 @@
                 <x-job-card>
 
                     <img class="w-16 h-16 mb-3 rounded-full shadow-lg"
-                         src="{{asset($jobPost->company->avatar)}}" alt="Bonnie image"/>
+                         src="{{asset('storage/'.$jobPost->company->avatar)}}" alt="Bonnie image"/>
 
                     <div class="flex-1">
 
@@ -285,4 +285,4 @@
     </div>
 
 
-</x-app-layout>
+</x-guest-layout>
