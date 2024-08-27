@@ -41,7 +41,7 @@ final class JobPostTable extends PowerGridComponent
 
     public function datasource(): Builder
     {
-        return JobPost::query();
+        return JobPost::query()->where('company_id','=', auth()->user()->company_id);
     }
 
     public function relationSearch(): array

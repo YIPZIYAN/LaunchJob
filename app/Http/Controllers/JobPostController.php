@@ -69,7 +69,16 @@ class JobPostController extends Controller
      */
     public function update(UpdateJobPostRequest $request, JobPost $jobPost)
     {
-        //
+        $validatedData = $request->validated();
+        $jobPost->update($validatedData);
+
+        if ($jobPost->wasChanged()) {
+//            toastr()->success("Job Details Updated Successfully");
+        } else {
+//            toastr()->info("No changes were made to the job");
+        }
+        return Redirect::route('dashboard');
+
     }
 
     /**

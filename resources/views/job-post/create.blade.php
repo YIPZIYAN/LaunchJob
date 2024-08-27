@@ -1,6 +1,4 @@
 <x-app-layout>
-
-
     <div class="max-w-7xl mx-auto px-4 space-y-6">
         <div class="max-w-xl">
             <section>
@@ -51,19 +49,27 @@
 
                     <div>
                         <x-input-label for="Period" :value="__('Period')"/>
-                        <x-radio-input id="full-time" value="Full-time" name="period" label="Full-time" :checked="old('period') === 'Full-time'"/>
-                        <x-radio-input id="part-time" value="Part-time" name="period" label="Part-time" :checked="old('period') === 'Part-time'"/>
-                        <x-radio-input id="contract" value="Contract" name="period" label="Contract" :checked="old('period') === 'Contract'"/>
-                        <x-radio-input id="internship" value="Internship" name="period" label="Internship" :checked="old('period') === 'Internship'"/>
-                        <x-radio-input id="freelance" value="Freelance" name="period" label="Freelance" :checked="old('period') === 'Freelance'"/>
+                        <x-radio-input id="full-time" value="Full-time" name="period" label="Full-time"
+                                       :checked="old('period') === 'Full-time'"/>
+                        <x-radio-input id="part-time" value="Part-time" name="period" label="Part-time"
+                                       :checked="old('period') === 'Part-time'"/>
+                        <x-radio-input id="contract" value="Contract" name="period" label="Contract"
+                                       :checked="old('period') === 'Contract'"/>
+                        <x-radio-input id="internship" value="Internship" name="period" label="Internship"
+                                       :checked="old('period') === 'Internship'"/>
+                        <x-radio-input id="freelance" value="Freelance" name="period" label="Freelance"
+                                       :checked="old('period') === 'Freelance'"/>
                         <x-input-error class="mt-2" :messages="$errors->get('period')"/>
                     </div>
 
                     <div>
                         <x-input-label for="Mode" :value="__('Mode')"/>
-                        <x-radio-input id="on-site" value="On-site" name="mode" label="On-site" :checked="old('mode') === 'On-site'"/>
-                        <x-radio-input id="remote" value="Remote" name="mode" label="Remote" :checked="old('mode') === 'Remote'"/>
-                        <x-radio-input id="hybrid" value="Hybrid" name="mode" label="Hybrid" :checked="old('mode') === 'Hybrid'"/>
+                        <x-radio-input id="on-site" value="On-site" name="mode" label="On-site"
+                                       :checked="old('mode') === 'On-site'"/>
+                        <x-radio-input id="remote" value="Remote" name="mode" label="Remote"
+                                       :checked="old('mode') === 'Remote'"/>
+                        <x-radio-input id="hybrid" value="Hybrid" name="mode" label="Hybrid"
+                                       :checked="old('mode') === 'Hybrid'"/>
                         <x-input-error class="mt-2" :messages="$errors->get('mode')"/>
                     </div>
 
@@ -72,7 +78,8 @@
                         <select id="type" name="type"
                                 class="mt-2 bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                             <option disabled {{ old('type') ? '' : 'selected' }}>Choose type</option>
-                            <option value="US" {{ old('type') === 'US' ? 'selected' : '' }}>Information Technology</option>
+                            <option value="US" {{ old('type') === 'US' ? 'selected' : '' }}>Information Technology
+                            </option>
                             <option value="CA" {{ old('type') === 'CA' ? 'selected' : '' }}>Accounting</option>
                             <option value="FR" {{ old('type') === 'FR' ? 'selected' : '' }}>Others</option>
                         </select>
