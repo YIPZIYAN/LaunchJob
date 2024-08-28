@@ -6,7 +6,7 @@ use App\Models\JobPost;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('welcome',['jobPost'=> JobPost::all()]);
+    return view('welcome',['jobPosts'=> JobPost::with('company')->get()]);
 });
 
 Route::get('/dashboard', function () {
@@ -19,6 +19,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     Route::resource('/job-post', JobPostController::class);
+    Route::get('/job-post-restore/{id}', [JobPostController::class, 'restore'])->name('job-post.restore');
+    Route::get('/job-post-archived', [JobPostController::class, 'archived'])->name('job-post.archived');
+
 });
 
 require __DIR__ . '/auth.php';
