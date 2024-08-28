@@ -202,7 +202,7 @@
                         </h3>
 
                         <p class="mt-1 text-sm text-gray-700">
-                            {{$jobPost->company->address}}
+                            {{$jobPost->location}}
                         </p>
 
                         <div class="flex lg:flex-row flex-col">
