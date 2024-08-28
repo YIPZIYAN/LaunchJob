@@ -35,9 +35,9 @@ class JobPostController extends Controller
         $jobPost = JobPost::create($validatedData);
 
         if ($jobPost) {
-            //toastr()->success("Job Created Successfully");
+            toastr()->success("Job Created Successfully");
         } else {
-            //toastr()->error("Failed to create new job post");
+            toastr()->error("Failed to create new job post");
         }
 
         return Redirect::route('dashboard');
@@ -73,9 +73,9 @@ class JobPostController extends Controller
         $jobPost->update($validatedData);
 
         if ($jobPost->wasChanged()) {
-//            toastr()->success("Job Details Updated Successfully");
+            toastr()->success("Job Details Updated Successfully");
         } else {
-//            toastr()->info("No changes were made to the job");
+            toastr()->info("No changes were made to the job");
         }
         return Redirect::route('dashboard');
 

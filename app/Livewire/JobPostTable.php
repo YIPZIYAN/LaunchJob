@@ -54,6 +54,7 @@ final class JobPostTable extends PowerGridComponent
         return PowerGrid::fields()
             ->add('id')
             ->add('name')
+            ->add('location')
             ->add('period')
             ->add('type')
             ->add('mode')
@@ -66,6 +67,9 @@ final class JobPostTable extends PowerGridComponent
             Column::make('Id', 'id')
                 ->sortable(),
             Column::make('Name', 'name')
+                ->sortable()
+                ->searchable(),
+            Column::make('Location', 'location')
                 ->sortable()
                 ->searchable(),
             Column::make('Mode', 'mode')

@@ -1,4 +1,3 @@
-{{$jobPost}}
 <x-app-layout>
     <div class="max-w-7xl mx-auto px-4 space-y-6">
         <div class="max-w-xl">
@@ -79,10 +78,10 @@
                         <select id="type" name="type"
                                 class="mt-2 bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                             <option disabled {{ old('type') ? '' : 'selected' }}>Choose type</option>
-                            <option value="US" {{ old('type', $jobPost->type) === 'US' ? 'selected' : '' }}>Information Technology
+                            <option value="Information Technology" {{ old('type', $jobPost->type) === 'Information Technology' ? 'selected' : '' }}>Information Technology
                             </option>
-                            <option value="CA" {{ old('type', $jobPost->type) === 'CA' ? 'selected' : '' }}>Accounting</option>
-                            <option value="FR" {{ old('type', $jobPost->type) === 'FR' ? 'selected' : '' }}>Others</option>
+                            <option value="Accounting" {{ old('type', $jobPost->type) === 'Accounting' ? 'selected' : '' }}>Accounting</option>
+                            <option value="Other" {{ old('type', $jobPost->type) === 'Other' ? 'selected' : '' }}>Other</option>
                         </select>
                         <x-input-error class="mt-2" :messages="$errors->get('type')"/>
                     </div>
