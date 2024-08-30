@@ -187,9 +187,9 @@
         <div class="flex-1 overflow-y-auto h-[860px]">
             @foreach($jobPosts as $jobPost)
                 <x-job-card>
-
-                    <img class="w-16 h-16 mb-3 rounded-full shadow-lg"
-                         src="{{asset('storage/'.$jobPost->company->avatar)}}" alt="Bonnie image"/>
+                    <x-wireui-avatar xl
+                                     icon="building-office-2"
+                                     :src="$jobPost->company->avatar == null ? '': asset('storage/'.$jobPost->company->avatar)"/>
 
                     <div class="flex-1">
 
