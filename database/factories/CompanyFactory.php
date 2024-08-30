@@ -18,7 +18,7 @@ class CompanyFactory extends Factory
     {
         return [
             'name' => $this->faker->company(),
-            'avatar' => fake()->image('public/storage',200,200,fullPath: false),
+//            'avatar' => fake()->image('public/storage',200,200,fullPath: false),
             'description' => $this->faker->realText(200),
             'address' => $this->faker->address
         ];
