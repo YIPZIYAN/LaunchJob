@@ -46,23 +46,6 @@ class JobPostController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
-     */
-    public function update(UpdateJobPostRequest $request, JobPost $jobPost)
-    {
-        $validatedData = $request->validated();
-        $jobPost->update($validatedData);
-
-        if ($jobPost->wasChanged()) {
-            toastr()->success("Job Details Updated Successfully");
-        } else {
-            toastr()->info("No changes were made to the job");
-        }
-        return Redirect::route('dashboard');
-
-    }
-
-    /**
      * Remove the specified resource from storage.
      */
     public function destroy(JobPost $jobPost)
