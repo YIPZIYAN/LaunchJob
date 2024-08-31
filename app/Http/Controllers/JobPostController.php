@@ -26,25 +26,6 @@ class JobPostController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
-     */
-    public function store(StoreJobPostRequest $request)
-    {
-        $validatedData = $request->validated();
-        $validatedData['company_id'] = auth()->user()->company_id;
-        $jobPost = JobPost::create($validatedData);
-
-        if ($jobPost) {
-            toastr()->success("Job Created Successfully");
-        } else {
-            toastr()->error("Failed to create new job post");
-        }
-
-        return Redirect::route('dashboard');
-
-    }
-
-    /**
      * Display the specified resource.
      */
     public function show(JobPost $jobPost)
