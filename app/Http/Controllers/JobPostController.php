@@ -30,7 +30,7 @@ class JobPostController extends Controller
      */
     public function show(JobPost $jobPost)
     {
-        return view('job-post.show',[
+        return view('job-post.show', [
             'jobPost' => $jobPost
         ]);
     }
@@ -40,7 +40,7 @@ class JobPostController extends Controller
      */
     public function edit(JobPost $jobPost)
     {
-        return view('job-post.edit',[
+        return view('job-post.edit', [
             'jobPost' => $jobPost
         ]);
     }
@@ -50,13 +50,6 @@ class JobPostController extends Controller
      */
     public function destroy(JobPost $jobPost)
     {
-        if ($jobPost->delete()) {
-            toastr()->success("Job Post Archived Successfully");
-        } else {
-            toastr()->error("Failed to archive the job");
-        }
-
-        return Redirect::route('dashboard');
     }
 
     public function restore($id)
@@ -79,7 +72,7 @@ class JobPostController extends Controller
      */
     public function archived()
     {
-        return view('job-post.archived',[
+        return view('job-post.archived', [
             'jobPosts' => JobPost::onlyTrashed()->get()
         ]);
     }
