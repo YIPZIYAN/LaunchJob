@@ -2,6 +2,7 @@
 
 namespace App\Livewire;
 
+use App\Models\Employee;
 use App\Models\User;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Support\Facades\Auth;
@@ -48,9 +49,10 @@ class EmployeeRegistrationForm extends Component
     {
         return [
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
+            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:' . User::class],
             'password' => ['required', 'confirmed', Password::defaults()],
-            'profession' => ['required', 'string', 'in:'],
+            'profession' => ['required', 'string', 'in:' . implode(',', $this->profession_list)],
+            'about' => ['nullable', 'string', 'max:255'],
         ];
     }
 
@@ -60,6 +62,8 @@ class EmployeeRegistrationForm extends Component
 
         $user = User::create($validatedData);
 
+        $user->employee()->create($validatedData);
+        $user->assignRole('employee');
         event(new Registered($user));
 
         Auth::login($user);
