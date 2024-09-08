@@ -17,11 +17,11 @@ Route::middleware('guest')->group(function () {
 //
 //    Route::post('register', [RegisteredUserController::class, 'store']);
 
-    Route::get('register-company', function () {
+    Route::get('company-register', function () {
         return view('auth.company-register');
     });
 
-    Route::get('register-employee', function () {
+    Route::get('employee-register', function () {
         return view('auth.employee-register');
     });
 
