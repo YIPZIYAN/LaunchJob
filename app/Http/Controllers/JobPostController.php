@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\JobPost;
 use App\Http\Requests\StoreJobPostRequest;
 use App\Http\Requests\UpdateJobPostRequest;
+use Illuminate\Support\Facades\Redirect;
 
 class JobPostController extends Controller
 {
@@ -29,7 +30,18 @@ class JobPostController extends Controller
      */
     public function store(StoreJobPostRequest $request)
     {
-        //
+        $validatedData = $request->validated();
+        $validatedData['company_id'] = auth()->user()->company_id;
+        $jobPost = JobPost::create($validatedData);
+
+        if ($jobPost) {
+            toastr()->success("Job Created Successfully");
+        } else {
+            toastr()->error("Failed to create new job post");
+        }
+
+        return Redirect::route('dashboard');
+
     }
 
     /**
@@ -57,7 +69,16 @@ class JobPostController extends Controller
      */
     public function update(UpdateJobPostRequest $request, JobPost $jobPost)
     {
-        //
+        $validatedData = $request->validated();
+        $jobPost->update($validatedData);
+
+        if ($jobPost->wasChanged()) {
+            toastr()->success("Job Details Updated Successfully");
+        } else {
+            toastr()->info("No changes were made to the job");
+        }
+        return Redirect::route('dashboard');
+
     }
 
     /**
@@ -65,7 +86,37 @@ class JobPostController extends Controller
      */
     public function destroy(JobPost $jobPost)
     {
-        $jobPost->delete();
-        return view('job-post.index');
+        if ($jobPost->delete()) {
+            toastr()->success("Job Post Archived Successfully");
+        } else {
+            toastr()->error("Failed to archive the job");
+        }
+
+        return Redirect::route('dashboard');
+    }
+
+    public function restore($id)
+    {
+
+        $jobPost = JobPost::withTrashed()->findOrFail($id);
+
+        if ($jobPost->restore()) {
+            toastr()->success("Job Post Unarchived Successfully");
+        } else {
+            toastr()->error("Failed to unarchive the job post");
+        }
+
+        return Redirect::route('job-post.archived');
+
+    }
+
+    /**
+     * Archived Job List
+     */
+    public function archived()
+    {
+        return view('job-post.archived',[
+            'jobPosts' => JobPost::onlyTrashed()->get()
+        ]);
     }
 }

@@ -12,6 +12,7 @@ return new class extends Migration {
             $table->id();
             $table->string('name');
             $table->string('description');
+            $table->string('location');
             $table->integer('min_salary');
             $table->integer('max_salary');
             $table->string('period');
