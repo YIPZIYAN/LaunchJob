@@ -4,7 +4,7 @@
             <x-application-logo/>
             <div class="flex items-center space-x-2 lg:order-2">
                 <x-wireui-button href="{{route('login')}}" outline label="Log In"/>
-                <x-wireui-button href="" label="Get Started"/>
+                <x-wireui-button href="{{route('register')}}" label="Get Started"/>
 
                 <button data-collapse-toggle="mobile-menu-2" type="button"
                         class="inline-flex items-center p-2 ml-1 text-sm text-gray-500 rounded-lg lg:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
