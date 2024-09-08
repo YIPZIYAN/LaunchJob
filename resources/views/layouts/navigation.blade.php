@@ -3,10 +3,48 @@
         <div class="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl">
             <x-application-logo/>
             <div class="flex items-center space-x-2 lg:order-2">
-                <x-wireui-button href="{{route('login')}}" outline label="Log In"/>
-                <x-wireui-button href="{{route('register')}}" label="Get Started"/>
-
+                @guest
+                    <x-wireui-button href="{{route('login')}}" outline label="Log In"/>
+                    <x-wireui-button href="{{route('register')}}" label="Get Started"/>
+                @endguest
                 @auth
+                    <div class="hidden sm:flex sm:items-center sm:ms-6">
+                        <x-dropdown align="right" width="48">
+                            <x-slot name="trigger">
+                                <button
+                                    class="inline-flex items-center border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150">
+                                    <x-wireui-avatar sm
+                                                     icon="user"
+                                                     :src="Auth::user()->avatar == null ? '': asset('storage/'.Auth::user()->avatar)"/>
+                                </button>
+                            </x-slot>
+
+                            <x-slot name="content">
+                                <div class="py-3 px-4">
+                                    <span class="block text-sm font-semibold text-gray-900 dark:text-white">
+                                          {{Auth::user()->name}}
+                                    </span>
+                                                <span class="block text-sm text-gray-900 truncate dark:text-white">
+                                        {{Auth::user()->email}}
+                                    </span>
+                                </div>
+                                <x-dropdown-link :href="route('profile.edit')">
+                                    {{ __('Profile') }}
+                                </x-dropdown-link>
+
+                                <!-- Authentication -->
+                                <form method="POST" action="{{ route('logout') }}">
+                                    @csrf
+
+                                    <x-dropdown-link :href="route('logout')"
+                                                     onclick="event.preventDefault();
+                                                this.closest('form').submit();">
+                                        {{ __('Log Out') }}
+                                    </x-dropdown-link>
+                                </form>
+                            </x-slot>
+                        </x-dropdown>
+                    </div>
                     <button data-collapse-toggle="mobile-menu-2" type="button"
                             class="inline-flex items-center p-2 ml-1 text-sm text-gray-500 rounded-lg lg:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
                             aria-controls="mobile-menu-2" aria-expanded="false">
