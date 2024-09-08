@@ -17,13 +17,17 @@ Route::middleware('guest')->group(function () {
 //
 //    Route::post('register', [RegisteredUserController::class, 'store']);
 
-    Route::get('register-company', function () {
-        return view('auth.company-register');
-    });
+    Route::get('register', function () {
+        return view('register');
+    })->name('register');
 
-    Route::get('register-employee', function () {
+    Route::get('company-register', function () {
+        return view('auth.company-register');
+    })->name('company-register');
+
+    Route::get('employee-register', function () {
         return view('auth.employee-register');
-    });
+    })->name('employee-register');
 
     Route::get('login', [AuthenticatedSessionController::class, 'create'])
         ->name('login');
