@@ -52,21 +52,6 @@ class JobPostController extends Controller
     {
     }
 
-    public function restore($id)
-    {
-
-        $jobPost = JobPost::withTrashed()->findOrFail($id);
-
-        if ($jobPost->restore()) {
-            toastr()->success("Job Post Unarchived Successfully");
-        } else {
-            toastr()->error("Failed to unarchive the job post");
-        }
-
-        return Redirect::route('job-post.archived');
-
-    }
-
     /**
      * Archived Job List
      */

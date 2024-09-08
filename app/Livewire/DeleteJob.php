@@ -2,7 +2,6 @@
 
 namespace App\Livewire;
 
-use App\Models\JobPost;
 use Livewire\Component;
 
 class DeleteJob extends Component

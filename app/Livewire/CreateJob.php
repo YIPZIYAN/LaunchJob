@@ -2,7 +2,9 @@
 
 namespace App\Livewire;
 
+use App\Models\Company;
 use App\Models\JobPost;
+use App\Models\User;
 use Livewire\Component;
 use PHPUnit\Util\PHP\Job;
 
@@ -34,10 +36,9 @@ class CreateJob extends Component
     public function submit()
     {
         $validatedData = $this->validate();
-        $validatedData['company_id'] = auth()->user()->company_id;
-        $jobPost = JobPost::create($validatedData);
+        $company = Company::find(auth()->user()->company_id);
 
-        if ($jobPost) {
+        if ($company->jobPosts()->create($validatedData)) {
             toastr()->success("Job Created Successfully");
         } else {
             toastr()->error("Failed to create new job post");
