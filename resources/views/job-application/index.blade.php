@@ -29,6 +29,14 @@
                                             </span>
                                     </div>
                                 </th>
+                                <th scope="col" class="px-6 py-3 text-start">
+                                    <div class="flex items-center gap-x-2">
+                                            <span
+                                                class="text-xs font-semibold uppercase tracking-wide text-gray-800 dark:text-gray-200">
+                                                Company
+                                            </span>
+                                    </div>
+                                </th>
 
                                 <th scope="col" class="px-6 py-3 text-start">
                                     <div class="flex items-center gap-x-2">
@@ -59,29 +67,52 @@
 
                             <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
                             @foreach($jobApplications as $key => $jobApplication)
-                                <tr class="bg-white hover:bg-gray-50 dark:bg-slate-900 dark:hover:bg-slate-800">
-                                    <td class="size-px whitespace-nowrap align-top">
-                                            <span class="block p-6 text-l text-gray-600 dark:text-gray-400">
+                                <tr class="bg-white hover:bg-gray-50 dark:bg-slate-900 dark:hover:bg-slate-800 cursor-pointer">
+                                    <td class="size-px whitespace-nowrap">
+                                            <span class="block p-4 text-l text-gray-600 dark:text-gray-400">
                                                 {{ $key+1 }}
                                             </span>
                                     </td>
-                                    <td class="size-px whitespace-nowrap align-top">
-                                            <span class="block p-6 text-l text-gray-600 dark:text-gray-400">
+                                    <td class="size-px whitespace-nowrap">
+                                            <span class="block p-4 text-l text-gray-600 dark:text-gray-400">
                                                 {{ $jobApplication->jobPost->name }}
                                             </span>
                                     </td>
-                                    <td class="size-px whitespace-nowrap align-top">
-                                            <span class="block p-6 text-l text-gray-600 dark:text-gray-400">
-                                                {{ $jobApplication->status }}
+                                    <td class="size-px whitespace-nowrap">
+                                        <div class="flex justify-start items-center p-4">
+                                            <x-wireui-avatar lg icon="building-office-2"
+                                                             :src="$jobApplication->jobPost->company->avatar == null ? '' :
+                                                               asset('storage/'.$jobApplication->jobPost->company->avatar)"/>
+
+                                            <span class="block ml-4 text-l text-gray-600 dark:text-gray-400">
+                                                {{ $jobApplication->jobPost->company->name }}
+                                            </span>
+                                        </div>
+                                    </td>
+                                    <td class="size-px whitespace-nowrap">
+                                            <span class="block p-4 text-l text-gray-600 dark:text-gray-400">
+                                                @switch($jobApplication->status)
+                                                    @case("accepted")
+                                                        <x-wireui-badge positive flat
+                                                                        label="{{ $jobApplication->status }}"/>
+                                                        @break
+                                                    @case("rejected")
+                                                        <x-wireui-badge negative flat
+                                                                        label="{{ $jobApplication->status }}"/>
+                                                        @break
+                                                    @default
+                                                        <x-wireui-badge flat label="{{ $jobApplication->status }}"/>
+                                                @endswitch
+
                                             </span>
                                     </td>
-                                    <td class="size-px whitespace-nowrap align-top">
-                                            <span class="block p-6 text-l text-gray-600 dark:text-gray-400">
+                                    <td class="size-px whitespace-nowrap">
+                                            <span class="block p-4 text-l text-gray-600 dark:text-gray-400">
                                                 {{ $jobApplication->updated_at }}
                                             </span>
                                     </td>
-                                    <td class="size-px whitespace-nowrap align-top">
-                                            <span class="block p-6 text-l text-gray-600 dark:text-gray-400">
+                                    <td class="size-px whitespace-nowrap">
+                                            <span class="block p-4 text-l text-gray-600 dark:text-gray-400">
                                                 {{ $jobApplication->created_at }}
                                             </span>
                                     </td>

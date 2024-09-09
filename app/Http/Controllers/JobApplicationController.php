@@ -20,7 +20,7 @@ class JobApplicationController extends Controller
 //        ]);
 
         return view('job-application.index', [
-            'jobApplications' => JobApplication::with('jobPost')
+            'jobApplications' => JobApplication::with('jobPost.company')
                 ->where('user_id', Auth::id())
                 ->get()
                 ->sortByDesc('updated_at')
