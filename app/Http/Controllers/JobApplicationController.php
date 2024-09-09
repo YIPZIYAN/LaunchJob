@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\JobApplication;
 use App\Http\Requests\StoreJobApplicationRequest;
 use App\Http\Requests\UpdateJobApplicationRequest;
+use Illuminate\Support\Facades\Auth;
 
 class JobApplicationController extends Controller
 {
@@ -13,7 +14,18 @@ class JobApplicationController extends Controller
      */
     public function index()
     {
-        //
+//show for company
+//        return view('job-application.index', [
+//          'jobApplications' =>  Auth::user()->jobPosts
+//        ]);
+
+        return view('job-application.index', [
+            'jobApplications' => JobApplication::with('jobPost')
+                ->where('user_id', Auth::id())
+                ->get()
+                ->sortByDesc('updated_at')
+                ->values()
+        ]);
     }
 
     /**

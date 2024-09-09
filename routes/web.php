@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\InterviewController;
+use App\Http\Controllers\JobApplicationController;
 use App\Http\Controllers\JobPostController;
 use App\Http\Controllers\ProfileController;
 use App\Models\JobPost;
@@ -21,8 +23,15 @@ Route::middleware(['auth', 'verified'])->group(function () {
             return view('dashboard');
         })->name('dashboard');
         Route::resource('/job-post', JobPostController::class);
-        Route::get('/job-post-restore/{id}', [JobPostController::class, 'restore'])->name('job-post.restore');
-        Route::get('/job-post-archived', [JobPostController::class, 'archived'])->name('job-post.archived');
+        Route::get('/job-post-restore/{id}', [JobPostController::class, 'restore'])
+            ->name('job-post.restore');
+        Route::get('/job-post-archived', [JobPostController::class, 'archived'])
+            ->name('job-post.archived');
+    });
+
+    Route::middleware(['role:employee'])->group(function () {
+        Route::resource('/job-application', JobApplicationController::class);
+        Route::resource('/interview', InterviewController::class);
     });
 });
 
