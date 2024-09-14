@@ -8,6 +8,6 @@ class CompanyRegistratonForm extends Component
 {
     public function render()
     {
-        return view('livewire.company-registraton-form');
+        return view('livewire.auth.company-registration-form');
     }
 }
