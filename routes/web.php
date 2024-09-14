@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\InterviewController;
 use App\Http\Controllers\JobApplicationController;
 use App\Http\Controllers\JobPostController;
@@ -11,7 +12,7 @@ Route::get('/', function () {
     return view('welcome', ['jobPosts' => JobPost::with('company')->get()]);
 })->name('home');
 
-
+Route::get('/api/company', CompanyController::class)->name('api.company');
 
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
