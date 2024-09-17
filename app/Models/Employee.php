@@ -13,6 +13,7 @@ class Employee extends Model
     protected $fillable = [
         'about',
         'resume',
+        'profession'
     ];
 
     public function user(): BelongsTo
