@@ -205,9 +205,9 @@
                         </p>
 
                         <div class="mt-2 flex lg:flex-row space-x-2 flex-col">
-                            <x-wireui-badge icon="clock" sm label="{{$jobPost->period}}"/>
-                            <x-wireui-badge icon="computer-desktop" sm label="{{$jobPost->mode}}"/>
-                            <x-wireui-badge icon="tag" sm label="{{$jobPost->type}}"/>
+                            <x-wireui-badge flat icon="clock" sm label="{{$jobPost->period}}"/>
+                            <x-wireui-badge flat icon="computer-desktop" sm label="{{$jobPost->mode}}"/>
+                            <x-wireui-badge flat icon="tag" sm label="{{$jobPost->type}}"/>
                         </div>
 
                         <h3 class="mt-4 text-m font-semibold">
