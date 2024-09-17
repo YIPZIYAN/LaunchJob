@@ -18,7 +18,7 @@ class CompanyController extends Controller
             ->when(
                 $request->search,
                 fn (Builder $query) => $query
-                    ->where('name', 'like', "{$request->search}%")
+                    ->where('name', 'like', "%{$request->search}%")
             )
             ->orderBy('name')
             ->get();
