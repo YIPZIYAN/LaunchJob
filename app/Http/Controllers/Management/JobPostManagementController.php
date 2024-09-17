@@ -1,18 +1,19 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Management;
 
+use App\Http\Controllers\Controller;
 use App\Models\JobPost;
 use Illuminate\Http\Request;
 
-class JobPostController extends Controller
+class JobPostManagementController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
+        return view('management.job-post.index');
     }
 
     /**
@@ -20,7 +21,7 @@ class JobPostController extends Controller
      */
     public function create()
     {
-        //
+        return view('management.job-post.create');
     }
 
     /**
@@ -34,19 +35,19 @@ class JobPostController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(JobPost $jobPost)
+    public function show(string $id)
     {
-        return view('job-post.show', [
-            'jobPost' => $jobPost
-        ]);
+        //
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(JobPost $jobPost)
     {
-        //
+        return view('management.job-post.edit', [
+            'jobPost' => $jobPost
+        ]);
     }
 
     /**
@@ -63,5 +64,15 @@ class JobPostController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+
+    /**
+     * Archived Job List
+     */
+    public function archived()
+    {
+        return view('management.job-post.archived', [
+            'jobPosts' => JobPost::onlyTrashed()->get()
+        ]);
     }
 }
