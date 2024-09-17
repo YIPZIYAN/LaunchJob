@@ -40,7 +40,7 @@
                             label="Description" placeholder="Write about your company"/>
                 @else
                     <x-wireui-select
-                            wire:model="company"
+                            wire:model="company_id"
                             class="col-span-2"
                             label="Select your company"
                             placeholder="Select your company"

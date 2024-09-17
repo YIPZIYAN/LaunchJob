@@ -6,25 +6,30 @@ use App\Models\Company;
 use App\Models\User;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\Rule;
 use Illuminate\Validation\Rules\Password;
-use Livewire\Attributes\Locked;
 use Livewire\Component;
 
 class CompanyRegistrationForm extends Component
 {
 
+    //Personal Info
     public $name;
     public $email;
     public $password;
     public $password_confirmation;
+
+    //Selected Company
+    private $company;
+
+    public $company_id;
+
+    //New company details
+    public $company_name;
+    public $address;
     public $description;
 
-    public $company;
     public $is_new = false;
-
-    public function mount()
-    {
-    }
 
     public function render()
     {
@@ -37,23 +42,35 @@ class CompanyRegistrationForm extends Component
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:' . User::class],
             'password' => ['required', 'confirmed', Password::defaults()],
-            'description' => ['nullable', 'string', 'max:255'],
+
+            'company_id' => [Rule::requiredIf(!$this->is_new), 'nullable', 'exists:App\Models\Company,id', 'max:255'],
+
+            'company_name' => [Rule::requiredIf($this->is_new), 'nullable', 'string', 'max:255'],
+            'address' => [Rule::requiredIf($this->is_new), 'nullable', 'string', 'max:255'],
+            'description' => [Rule::requiredIf($this->is_new),'nullable', 'max:255'],
         ];
     }
 
     public function submit()
     {
-        dd($this->is_new);
+        $validatedData = $this->validate();
 
-//        $validatedData = $this->validate();
-//
-//        $user = User::create($validatedData);
-//
-//        $user->assignRole('company');
-//        event(new Registered($user));
-//
-//        Auth::login($user);
-//
-//        return redirect(route('home', absolute: false));
+        if ($this->is_new) {
+            $this->company = Company::create([
+                'name' => $this->company_name,
+                'address' => $this->address,
+                'description' => $this->description,
+            ]);
+        } else {
+            $this->company = Company::findOrFail($this->company_id);
+        }
+
+        $user = $this->company->users()->create($validatedData);
+        $user->assignRole('company');
+        event(new Registered($user));
+
+        Auth::login($user);
+
+        return redirect(route('home', absolute: false));
     }
 }
