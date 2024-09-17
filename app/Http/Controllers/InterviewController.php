@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Interview;
 use App\Http\Requests\StoreInterviewRequest;
 use App\Http\Requests\UpdateInterviewRequest;
+use App\Models\JobApplication;
+use Illuminate\Support\Facades\Auth;
 
 class InterviewController extends Controller
 {
@@ -13,7 +15,12 @@ class InterviewController extends Controller
      */
     public function index()
     {
-        //
+        $jobApplication = JobApplication::where('user_id', Auth::id())->pluck('id');
+        return view('interview.index', [
+            'interviews' => Interview::with('jobApplication.jobPost.company')
+                ->whereIn('job_application_id', $jobApplication)
+            ->get()
+        ]);
     }
 
     /**

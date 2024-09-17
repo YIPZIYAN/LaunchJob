@@ -12,9 +12,9 @@
             @break
         @case(JobApplicationState::REJECTED)
         @case(JobApplicationState::OFFER_REJECTED)
-            <x-wireui-badge :label="$status" negative/>
+            <x-wireui-badge :label="$status" flat negative/>
             @break
         @default
-            <x-wireui-badge :label="$status" light/>
+            <x-wireui-badge :label="$status" flat/>
     @endswitch
 </div>
