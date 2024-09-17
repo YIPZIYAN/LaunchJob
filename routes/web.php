@@ -23,11 +23,13 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::get('/dashboard', function () {
             return view('dashboard');
         })->name('dashboard');
-        Route::resource('/job-post', JobPostController::class);
-        Route::get('/job-post-restore/{id}', [JobPostController::class, 'restore'])
-            ->name('job-post.restore');
-        Route::get('/job-post-archived', [JobPostController::class, 'archived'])
-            ->name('job-post.archived');
+        Route::get('/job-post', JobPostController::class);
+
+        Route::resource('management/job-post', JobPostController::class);
+        Route::get('management/job-post-restore/{id}', [JobPostController::class, 'restore'])
+            ->name('management.job-post.restore');
+        Route::get('management/job-post-archived', [JobPostController::class, 'archived'])
+            ->name('management.job-post.archived');
     });
 
     Route::middleware(['role:employee'])->group(function () {

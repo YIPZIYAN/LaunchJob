@@ -20,7 +20,7 @@ class UnarchiveJob extends Component
             toastr()->error("Failed to unarchive the job post");
         }
 
-        return redirect(route('job-post.archived', absolute: false));
+        return redirect(route('management.job-post.archived', absolute: false));
     }
 
     public function render()

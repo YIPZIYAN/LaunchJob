@@ -14,7 +14,7 @@ class JobPostController extends Controller
      */
     public function index()
     {
-        return view('job-post.index');
+        return view('management.job-post.index');
     }
 
     /**
@@ -22,7 +22,7 @@ class JobPostController extends Controller
      */
     public function create()
     {
-        return view('job-post.create');
+        return view('management.job-post.create');
     }
 
     /**
@@ -30,7 +30,7 @@ class JobPostController extends Controller
      */
     public function show(JobPost $jobPost)
     {
-        return view('job-post.show', [
+        return view('management.job-post.show', [
             'jobPost' => $jobPost
         ]);
     }
@@ -40,7 +40,7 @@ class JobPostController extends Controller
      */
     public function edit(JobPost $jobPost)
     {
-        return view('job-post.edit', [
+        return view('management.job-post.edit', [
             'jobPost' => $jobPost
         ]);
     }
@@ -57,7 +57,7 @@ class JobPostController extends Controller
      */
     public function archived()
     {
-        return view('job-post.archived', [
+        return view('management.job-post.archived', [
             'jobPosts' => JobPost::onlyTrashed()->get()
         ]);
     }
