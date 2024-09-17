@@ -1,7 +1,7 @@
 <x-guest-layout>
     <x-tables.base-table
         header="My Job Application List ({{$jobApplications->count()}})"
-        :thead="['No.', 'Job Name', 'Company', 'Status', 'Updated At', 'Applied At']">
+        :thead="['No.', 'Job Name', 'Company', 'Status', 'Updated At', 'Applied At','Action']">
         @forelse($jobApplications as $key => $jobApplication)
             <tr class="bg-white hover:bg-gray-50 dark:bg-slate-900 dark:hover:bg-slate-800 cursor-pointer">
                 <x-tables.table-data>
@@ -24,18 +24,7 @@
                 </x-tables.table-data>
 
                 <x-tables.table-data>
-                    @switch($jobApplication->status)
-                        @case("accepted")
-                            <x-wireui-badge positive flat
-                                            label="{{ $jobApplication->status }}"/>
-                            @break
-                        @case("rejected")
-                            <x-wireui-badge negative flat
-                                            label="{{ $jobApplication->status }}"/>
-                            @break
-                        @default
-                            <x-wireui-badge flat label="{{ $jobApplication->status }}"/>
-                    @endswitch
+                    <x-state-badge status="{{$jobApplication->status}}" />
                 </x-tables.table-data>
 
                 <x-tables.table-data>
@@ -44,6 +33,10 @@
 
                 <x-tables.table-data>
                     {{ $jobApplication->created_at }}
+                </x-tables.table-data>
+
+                <x-tables.table-data>
+                    <x-wireui-button outline label="View"/>
                 </x-tables.table-data>
             </tr>
         @empty
