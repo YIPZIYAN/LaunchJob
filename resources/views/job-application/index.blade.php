@@ -4,6 +4,9 @@
         <!-- Card -->
         <div class="flex flex-col">
             <div class="-m-1.5 overflow-x-auto">
+                <h1 class="text-xl m-4 font-semibold">
+                    My Job Application List ({{$jobApplications->count()}})
+                </h1>
                 <div class="p-1.5 min-w-full inline-block align-middle">
                     <div
                         class="bg-white border border-gray-200 rounded-xl shadow-sm overflow-hidden dark:bg-slate-900 dark:border-gray-700">
@@ -13,70 +16,59 @@
                             <thead class="bg-gray-50 dark:bg-slate-800">
                             <tr>
                                 <th scope="col" class="px-6 py-3 text-start">
-                                    <div class="flex items-center gap-x-2">
-                                            <span
-                                                class="text-xs font-semibold uppercase tracking-wide text-gray-800 dark:text-gray-200">
-                                                No.
-                                            </span>
-                                    </div>
+                                    <span
+                                        class="text-xs font-semibold uppercase tracking-wide text-gray-800 dark:text-gray-200">
+                                        No.
+                                    </span>
                                 </th>
 
                                 <th scope="col" class="px-6 py-3 text-start">
-                                    <div class="flex items-center gap-x-2">
-                                            <span
-                                                class="text-xs font-semibold uppercase tracking-wide text-gray-800 dark:text-gray-200">
-                                                Job Name
-                                            </span>
-                                    </div>
+                                    <span
+                                        class="text-xs font-semibold uppercase tracking-wide text-gray-800 dark:text-gray-200">
+                                        Job Name
+                                    </span>
                                 </th>
                                 <th scope="col" class="px-6 py-3 text-start">
-                                    <div class="flex items-center gap-x-2">
-                                            <span
-                                                class="text-xs font-semibold uppercase tracking-wide text-gray-800 dark:text-gray-200">
-                                                Company
-                                            </span>
-                                    </div>
+                                    <span
+                                        class="text-xs font-semibold uppercase tracking-wide text-gray-800 dark:text-gray-200">
+                                        Company
+                                    </span>
                                 </th>
 
                                 <th scope="col" class="px-6 py-3 text-start">
-                                    <div class="flex items-center gap-x-2">
-                                            <span
-                                                class="text-xs font-semibold uppercase tracking-wide text-gray-800 dark:text-gray-200">
-                                                Status
-                                            </span>
-                                    </div>
+                                    <span
+                                        class="text-xs font-semibold uppercase tracking-wide text-gray-800 dark:text-gray-200">
+                                        Status
+                                    </span>
                                 </th>
                                 <th scope="col" class="px-6 py-3 text-start">
-                                    <div class="flex items-center gap-x-2">
-                                            <span
-                                                class="text-xs font-semibold uppercase tracking-wide text-gray-800 dark:text-gray-200">
-                                                Updated At
-                                            </span>
-                                    </div>
+                                    <span
+                                        class="text-xs font-semibold uppercase tracking-wide text-gray-800 dark:text-gray-200">
+                                        Updated At
+                                    </span>
                                 </th>
                                 <th scope="col" class="px-6 py-3 text-start">
-                                    <div class="flex items-center gap-x-2">
-                                            <span
-                                                class="text-xs font-semibold uppercase tracking-wide text-gray-800 dark:text-gray-200">
-                                                Applied At
-                                            </span>
-                                    </div>
+                                    <span
+                                        class="text-xs font-semibold uppercase tracking-wide text-gray-800 dark:text-gray-200">
+                                        Applied At
+                                    </span>
                                 </th>
                             </tr>
                             </thead>
 
                             <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
-                            @foreach($jobApplications as $key => $jobApplication)
+
+                            @forelse($jobApplications as $key => $jobApplication)
                                 <tr class="bg-white hover:bg-gray-50 dark:bg-slate-900 dark:hover:bg-slate-800 cursor-pointer">
-                                    <td class="size-px whitespace-nowrap">
-                                            <span class="block p-4 text-l text-gray-600 dark:text-gray-400">
-                                                {{ $key+1 }}
-                                            </span>
+                                    <td class="size-px whitespace-nowrap px-6 py-3 text-start">
+                                        <span class=" block text-l text-gray-600 dark:text-gray-400">
+                                            {{ $key+1 }}
+                                        </span>
                                     </td>
-                                    <td class="size-px whitespace-nowrap">
-                                            <span class="block p-4 text-l text-gray-600 dark:text-gray-400">
-                                                {{ $jobApplication->jobPost->name }}
-                                            </span>
+                                    <td class="size-px whitespace-nowrap px-6 py-3 text-start">
+                                        <span class=" block text-l text-gray-600 dark:text-gray-400">
+                                            {{ $jobApplication->jobPost->name }}
+                                        </span>
                                     </td>
                                     <td class="size-px whitespace-nowrap">
                                         <div class="flex justify-start items-center p-4">
@@ -89,8 +81,8 @@
                                             </span>
                                         </div>
                                     </td>
-                                    <td class="size-px whitespace-nowrap">
-                                            <span class="block p-4 text-l text-gray-600 dark:text-gray-400">
+                                    <td class="size-px whitespace-nowrap  px-6 py-3 ">
+                                            <span class="block text-l text-gray-600 dark:text-gray-400">
                                                 @switch($jobApplication->status)
                                                     @case("accepted")
                                                         <x-wireui-badge positive flat
@@ -106,18 +98,26 @@
 
                                             </span>
                                     </td>
-                                    <td class="size-px whitespace-nowrap">
-                                            <span class="block p-4 text-l text-gray-600 dark:text-gray-400">
+                                    <td class="size-px whitespace-nowrap px-6 py-3 ">
+                                            <span class="block text-l text-gray-600 dark:text-gray-400">
                                                 {{ $jobApplication->updated_at }}
                                             </span>
                                     </td>
-                                    <td class="size-px whitespace-nowrap">
-                                            <span class="block p-4 text-l text-gray-600 dark:text-gray-400">
+                                    <td class="size-px whitespace-nowrap  px-6 py-3 ">
+                                            <span class="block text-l text-gray-600 dark:text-gray-400">
                                                 {{ $jobApplication->created_at }}
                                             </span>
                                     </td>
                                 </tr>
-                            @endforeach
+                            @empty
+                                <tr>
+                                    <td colspan="100%" class="size-px whitespace-nowrap">
+                                            <span class="block p-4 text-l text-center text-gray-600 dark:text-gray-400">
+                                                No Record Found.
+                                            </span>
+                                    </td>
+                                </tr>
+                            @endforelse
                             </tbody>
                         </table>
                         <!-- End Table -->
