@@ -6,6 +6,7 @@ namespace App\Models;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -57,5 +58,12 @@ class User extends Authenticatable implements MustVerifyEmail
     public function employee(): HasOne
     {
         return $this->hasOne(Employee::class);
+    }
+
+    public function jobPosts(): BelongsToMany
+    {
+        return $this->belongsToMany(JobPost::class,'job_applications')
+            ->withPivot('status')
+            ->withTimestamps();
     }
 }

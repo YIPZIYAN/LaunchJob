@@ -5,15 +5,31 @@ namespace App\Http\Controllers;
 use App\Models\Company;
 use App\Http\Requests\StoreCompanyRequest;
 use App\Http\Requests\UpdateCompanyRequest;
+use Illuminate\Contracts\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Http\Request;
 
 class CompanyController extends Controller
 {
+    public function __invoke(Request $request): Collection
+    {
+        return Company::query()
+            ->select('id', 'name')
+            ->when(
+                $request->search,
+                fn (Builder $query) => $query
+                    ->where('name', 'like', "{$request->search}%")
+            )
+            ->orderBy('name')
+            ->get();
+    }
+
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
+        return Company::all('id','name');
     }
 
     /**

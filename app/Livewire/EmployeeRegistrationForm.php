@@ -73,6 +73,6 @@ class EmployeeRegistrationForm extends Component
 
     public function render()
     {
-        return view('livewire.employee-registration-form');
+        return view('livewire.auth.employee-registration-form');
     }
 }
