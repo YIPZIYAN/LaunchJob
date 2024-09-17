@@ -77,7 +77,7 @@
                href="#">
                 <div class="flex-auto p-4 md:p-6">
                     <h3 class="text-xl text-white/90 group-hover:text-white"><span class="font-bold">Need Assistance? We’re Here to Help</span>
-                         Contact us for guidance, technical support, or any
+                        Contact us for guidance, technical support, or any
                         questions you may have.
                     </h3>
                 </div>
