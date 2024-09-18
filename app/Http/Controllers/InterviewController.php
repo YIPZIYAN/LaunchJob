@@ -6,6 +6,7 @@ use App\Models\Interview;
 use App\Http\Requests\StoreInterviewRequest;
 use App\Http\Requests\UpdateInterviewRequest;
 use App\Models\JobApplication;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 
 class InterviewController extends Controller
@@ -16,10 +17,27 @@ class InterviewController extends Controller
     public function index()
     {
         $jobApplication = JobApplication::where('user_id', Auth::id())->pluck('id');
-        return view('interview.index', [
-            'interviews' => Interview::with('jobApplication.jobPost.company')
-                ->whereIn('job_application_id', $jobApplication)
+        $groupedInterviews = Interview::with('jobApplication.jobPost.company')
+            ->whereIn('job_application_id', $jobApplication)
+            ->where('date', '>=', now())
+            ->orderBy('date')
             ->get()
+            ->groupBy(function ($item) {
+                return Carbon::parse($item->date)->format('Y-m-d');
+            });
+
+        $groupedInterviewsHistory = Interview::with('jobApplication.jobPost.company')
+            ->whereIn('job_application_id', $jobApplication)
+            ->where('date', '<', now())
+            ->orderByDesc('date')
+            ->get()
+            ->groupBy(function ($item) {
+                return Carbon::parse($item->date)->format('Y-m-d');
+            });
+
+        return view('interview.index', [
+            'groupedInterviews' => $groupedInterviews,
+            'groupedInterviewsHistory' => $groupedInterviewsHistory,
         ]);
     }
 
