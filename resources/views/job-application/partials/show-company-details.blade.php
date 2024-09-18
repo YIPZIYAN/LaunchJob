@@ -1,4 +1,4 @@
-<x-wireui-card class="max-w-[85rem] m-8 p-4 mx-auto">
+<x-wireui-card class="max-w-[85rem] p-4 mx-auto">
     <x-slot name="title" class="text-xl font-semibold">
         <span class="mr-2">{{__('Company Details')}}</span>
     </x-slot>

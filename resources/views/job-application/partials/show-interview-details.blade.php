@@ -1,9 +1,6 @@
 <x-wireui-card class="max-w-[85rem] p-4 mx-auto">
     <x-slot name="title" class="text-xl font-semibold">
-        <span class="mr-2">{{__('Job Details')}}</span>
-        <x-wireui-badge flat icon="clock" sm label="{{$jobApplication->jobPost->period}}"/>
-        <x-wireui-badge flat icon="computer-desktop" sm label="{{$jobApplication->jobPost->mode}}"/>
-        <x-wireui-badge flat icon="tag" sm label="{{$jobApplication->jobPost->type}}"/>
+        <span class="mr-2">{{__('Interview Details')}}</span>
     </x-slot>
     <!-- List -->
     <div class="space-y-3">
