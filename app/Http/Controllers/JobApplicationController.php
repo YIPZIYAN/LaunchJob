@@ -52,7 +52,9 @@ class JobApplicationController extends Controller
      */
     public function show(JobApplication $jobApplication)
     {
-        return view('job-application.show', compact('jobApplication'));
+        return view('job-application.show', [
+            'jobApplication' => $jobApplication->with('jobPost.company')->first()
+        ]);
     }
 
     /**
