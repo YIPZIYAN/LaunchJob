@@ -7,6 +7,7 @@
 
             <article class="w-full flex flex-col shadow my-4">
                 <!-- Article Image -->
+
                 <div class="bg-white flex flex-col justify-start pt-6 px-6 pb-2">
                     <p class="text-3xl font-bold hover:text-gray-700 pb-3">{{$jobPost->name}}</p>
                     <p class="text-sm pb-6">Posted {{$jobPost->created_at->diffForHumans()}}</p>
@@ -42,6 +43,7 @@
 
             <div class="w-full bg-white shadow justify-center flex flex-col my-4 p-6">
 
+
                 <x-wireui-avatar
                     xl
                     icon="building-office-2"
@@ -51,10 +53,10 @@
                 <p class="text-xl font-semibold mt-4">{{$jobPost->company->name}}</p>
                 <p class="text-sm pb-4 text-justify">{{$jobPost->company->address}}</p>
                 <p class="text-justify ">{{$jobPost->company->description}}</p>
-                <x-wireui-button
-                    class="w-full bg-blue-800 text-white font-bold text-sm uppercase rounded hover:bg-blue-700 flex items-center justify-center px-2 py-3 mt-4"
-                    label="Apply Now"
-                />
+
+
+                <livewire:job-state.apply-button  :job-post="$jobPost" />
+
             </div>
         </aside>
     </div>
