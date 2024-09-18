@@ -2,7 +2,7 @@
     <x-tables.base-table
         header="Scheduled Interview ({{$jobApplication->interviews->count()}})"
         :thead="['No.', 'Mode','Location / Link','Description','Date', 'Start At', 'End At']">
-        @forelse($jobApplication->interviews as $key => $interview)
+        @forelse($jobApplication->interviews->sortByDesc('date') as $key => $interview)
             <tr class="bg-white hover:bg-gray-50 dark:bg-slate-900 dark:hover:bg-slate-800 cursor-pointer">
                 <x-tables.table-data>
                     {{ $key+1 }}
