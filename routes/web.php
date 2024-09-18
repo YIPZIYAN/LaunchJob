@@ -20,7 +20,6 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
-    //best practice ?
     Route::get('/job-post/{jobPost}', [JobPostController::class, 'show'])->name('job-post.show');
 
     Route::middleware(['role:company'])->group(function () {
@@ -34,6 +33,10 @@ Route::middleware(['auth', 'verified'])->group(function () {
     });
 
     Route::middleware(['role:employee'])->group(function () {
+
+        Route::post('/job-application/{jobPost}/apply', [JobApplicationController::class, 'apply'])
+            ->name('job-application.apply');
+
         Route::resource('/job-application', JobApplicationController::class);
         Route::resource('/interview', InterviewController::class);
     });

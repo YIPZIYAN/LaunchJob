@@ -36,9 +36,7 @@ class JobPostController extends Controller
      */
     public function show(JobPost $jobPost)
     {
-        return view('job-post.show', [
-            'jobPost' => $jobPost
-        ]);
+        return view('job-post.show', compact('jobPost'));
     }
 
     /**

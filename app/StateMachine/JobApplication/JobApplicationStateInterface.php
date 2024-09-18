@@ -4,8 +4,6 @@ namespace App\StateMachine\JobApplication;
 
 interface JobApplicationStateInterface
 {
-    function apply();
-
     function shortlist();
 
     function scheduleInterview();

@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\JobApplication;
 use App\Http\Requests\StoreJobApplicationRequest;
 use App\Http\Requests\UpdateJobApplicationRequest;
+use App\Models\JobPost;
+use App\StateMachine\JobApplication\JobApplicationState;
 use Illuminate\Support\Facades\Auth;
 
 class JobApplicationController extends Controller
@@ -41,7 +43,7 @@ class JobApplicationController extends Controller
      */
     public function store(StoreJobApplicationRequest $request)
     {
-        //
+
     }
 
     /**
@@ -74,5 +76,11 @@ class JobApplicationController extends Controller
     public function destroy(JobApplication $jobApplication)
     {
         //
+    }
+
+    public function apply(JobPost $jobPost)
+    {
+        Auth::user()->jobPosts()->attach($jobPost->id, ['status' => JobApplicationState::NEW]);
+        return redirect()->route('job-application.index');
     }
 }

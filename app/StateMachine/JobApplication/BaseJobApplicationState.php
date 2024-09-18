@@ -12,11 +12,6 @@ class BaseJobApplicationState implements JobApplicationStateInterface
     {
     }
 
-    public function apply()
-    {
-        throw new Exception();
-    }
-
     public function shortlist()
     {
         throw new Exception();

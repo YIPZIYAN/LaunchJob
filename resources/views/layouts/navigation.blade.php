@@ -73,7 +73,7 @@
                         <li>
                             <x-responsive-nav-link
                                 :href="route('home')"
-                                :active="request()->routeIs('home')"
+                                :active="request()->routeIs(['home','job-post.show'])"
                                 wire:navigate>
                                 Home
                             </x-responsive-nav-link>

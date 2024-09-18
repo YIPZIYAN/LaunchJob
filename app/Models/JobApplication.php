@@ -20,7 +20,7 @@ class JobApplication extends Model
     use HasFactory;
 
     protected $fillable = [
-        'status' => 'new'
+        'status'
     ];
 
     public function state()
