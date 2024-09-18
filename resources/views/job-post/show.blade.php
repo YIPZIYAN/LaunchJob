@@ -33,11 +33,7 @@
                 <p class="pb-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas mattis est eu odio
                     sagittis tristique. Vestibulum ut finibus leo. In hac habitasse platea dictumst.</p>
 
-                <form action="{{route('job-application.apply',$jobPost)}}" method="post">
-                    @method('POST')
-                    @csrf
-                    <x-wireui-button type="submit" lg full class="uppercase mt-4" label="Apply Now"/>
-                </form>
+                <livewire:job-state.apply-button  :job-post="$jobPost" />
             </div>
         </aside>
     </div>

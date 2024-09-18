@@ -8,6 +8,7 @@ use App\Http\Requests\UpdateJobApplicationRequest;
 use App\Models\JobPost;
 use App\StateMachine\JobApplication\JobApplicationState;
 use Illuminate\Support\Facades\Auth;
+use WireUi\Traits\WireUiActions;
 
 class JobApplicationController extends Controller
 {
@@ -76,11 +77,5 @@ class JobApplicationController extends Controller
     public function destroy(JobApplication $jobApplication)
     {
         //
-    }
-
-    public function apply(JobPost $jobPost)
-    {
-        Auth::user()->jobPosts()->attach($jobPost->id, ['status' => JobApplicationState::NEW]);
-        return redirect()->route('job-application.index');
     }
 }

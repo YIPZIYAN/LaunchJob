@@ -33,10 +33,6 @@ Route::middleware(['auth', 'verified'])->group(function () {
     });
 
     Route::middleware(['role:employee'])->group(function () {
-
-        Route::post('/job-application/{jobPost}/apply', [JobApplicationController::class, 'apply'])
-            ->name('job-application.apply');
-
         Route::resource('/job-application', JobApplicationController::class);
         Route::resource('/interview', InterviewController::class);
     });
