@@ -22,4 +22,5 @@ class Interview extends Model
     {
         return $this->belongsTo(JobApplication::class);
     }
+
 }

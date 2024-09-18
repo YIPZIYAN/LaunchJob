@@ -32,7 +32,6 @@
 
                 <x-wireui-textarea
                     class="col-span-2"
-                    corner="Optional"
                     wire:model="about"
                     label="About Me" placeholder="Write about yourself" />
 

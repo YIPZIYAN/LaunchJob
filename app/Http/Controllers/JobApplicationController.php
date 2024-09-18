@@ -5,7 +5,10 @@ namespace App\Http\Controllers;
 use App\Models\JobApplication;
 use App\Http\Requests\StoreJobApplicationRequest;
 use App\Http\Requests\UpdateJobApplicationRequest;
+use App\Models\JobPost;
+use App\StateMachine\JobApplication\JobApplicationState;
 use Illuminate\Support\Facades\Auth;
+use WireUi\Traits\WireUiActions;
 
 class JobApplicationController extends Controller
 {
@@ -41,7 +44,7 @@ class JobApplicationController extends Controller
      */
     public function store(StoreJobApplicationRequest $request)
     {
-        //
+
     }
 
     /**
@@ -49,7 +52,9 @@ class JobApplicationController extends Controller
      */
     public function show(JobApplication $jobApplication)
     {
-        //
+        return view('job-application.show', [
+            'jobApplication' => $jobApplication->with('jobPost.company')->first()
+        ]);
     }
 
     /**

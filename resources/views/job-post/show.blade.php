@@ -18,7 +18,7 @@
                         dui. Ut eu iaculis massa. Sed ornare ligula lacus, quis iaculis dui porta volutpat. In sit amet
                         posuere magna..</a>
                     <a href="#" class="uppercase text-gray-800 hover:text-black">Continue Reading <i
-                            class="fas fa-arrow-right"></i></a>
+                                class="fas fa-arrow-right"></i></a>
                 </div>
             </article>
         </section>
@@ -32,10 +32,8 @@
                 <p class="text-xl font-semibold pb-5">{{$jobPost->company->name}}</p>
                 <p class="pb-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas mattis est eu odio
                     sagittis tristique. Vestibulum ut finibus leo. In hac habitasse platea dictumst.</p>
-                <x-wireui-button
-                    class="w-full bg-blue-800 text-white font-bold text-sm uppercase rounded hover:bg-blue-700 flex items-center justify-center px-2 py-3 mt-4"
-                    label="Apply Now"
-                    />
+
+                <livewire:job-state.apply-button  :job-post="$jobPost" />
             </div>
         </aside>
     </div>
