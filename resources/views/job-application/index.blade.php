@@ -37,7 +37,9 @@
                     </x-tables.table-data>
 
                     <x-tables.table-data>
-                        <x-wireui-button outline label="View"/>
+                        <x-wireui-button
+                            href="{{route('job-application.show',$jobApplication)}}"
+                            outline label="View"/>
                     </x-tables.table-data>
                 </tr>
             @empty

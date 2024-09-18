@@ -27,9 +27,11 @@ Route::middleware(['auth', 'verified'])->group(function () {
             return view('dashboard');
         })->name('dashboard');
 
-        Route::resource('management/job-post', JobPostManagementController::class)->except('show');
-        Route::get('management/job-post-archived', [JobPostManagementController::class, 'archived'])
-            ->name('management.job-post.archived');
+        Route::name('management.')->group(function () {
+            Route::resource('management/job-post', JobPostManagementController::class);
+            Route::get('management/job-post-archived', [JobPostManagementController::class, 'archived'])
+                ->name('management.job-post.archived');
+        });
     });
 
     Route::middleware(['role:employee'])->group(function () {

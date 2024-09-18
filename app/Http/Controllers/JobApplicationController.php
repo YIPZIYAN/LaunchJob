@@ -52,7 +52,7 @@ class JobApplicationController extends Controller
      */
     public function show(JobApplication $jobApplication)
     {
-        //
+        return view('job-application.show', compact('jobApplication'));
     }
 
     /**
