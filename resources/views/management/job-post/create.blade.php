@@ -1,3 +1,3 @@
 <x-app-layout>
-    <livewire:create-job/>
+    <livewire:job-post.create-job/>
 </x-app-layout>

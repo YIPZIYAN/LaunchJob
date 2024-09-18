@@ -43,6 +43,7 @@
                 <x-wireui-select
                     wire:model="period"
                     label="Period"
+                    placeholder="Select a period"
                     :options="['Full-time', 'Part-time', 'Contract', 'Internship',
                     'Freelance']"
                 />
@@ -50,12 +51,14 @@
                 <x-wireui-select
                     wire:model="mode"
                     label="Mode"
+                    placeholder="Select a mode"
                     :options="['On-site', 'Remote', 'Hybrid']"
                 />
 
                 <x-wireui-select
                     wire:model="type"
                     label="Type"
+                    placeholder="Select a type"
                     :options="['Information Technology', 'Accounting', 'Other']"
                 />
 
