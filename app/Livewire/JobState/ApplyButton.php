@@ -27,7 +27,7 @@ class ApplyButton extends Component
         return view('livewire.job-state.apply-button');
     }
 
-    public function apply(): RedirectResponse
+    public function apply()
     {
         Auth::user()->jobPosts()->attach($this->jobPost->id, ['status' => JobApplicationState::NEW]);
 
