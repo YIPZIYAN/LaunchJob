@@ -81,7 +81,7 @@
                         <li>
                             <x-responsive-nav-link
                                 :href="route('job-application.index')"
-                                :active="request()->routeIs('job-application.index')">
+                                :active="request()->routeIs(['job-application.index','job-application.show'])">
                                 Application
                             </x-responsive-nav-link>
                         </li>
