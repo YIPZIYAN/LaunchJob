@@ -82,7 +82,7 @@
                                     </td>
                                     <td class="size-px whitespace-nowrap align-top">
                                             <span class="block p-4 text-l text-gray-600 dark:text-gray-400">
-                                                <livewire:unarchive-job :jobPost="$jobPost"/>
+                                                <livewire:job-post.unarchive-job :jobPost="$jobPost"/>
                                             </span>
                                     </td>
                                 </tr>

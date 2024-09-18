@@ -1,4 +1,4 @@
 <x-app-layout>
-    <livewire:update-job :jobPost="$jobPost"/>
+    <livewire:job-post.edit-job :jobPost="$jobPost"/>
 </x-app-layout>
 

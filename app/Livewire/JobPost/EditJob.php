@@ -1,15 +1,12 @@
 <?php
 
-namespace App\Livewire;
+namespace App\Livewire\JobPost;
 
-use App\Models\Company;
-use App\Models\JobPost;
-use App\Models\User;
 use Livewire\Component;
-use PHPUnit\Util\PHP\Job;
 
-class CreateJob extends Component
+class EditJob extends Component
 {
+    public $jobPost;
     public $name;
     public $description;
     public $location;
@@ -19,8 +16,12 @@ class CreateJob extends Component
     public $type;
     public $mode;
 
-    protected function rules()
+    public function mount()
     {
+        $this->fill($this->jobPost->toArray());
+    }
+
+    protected function rules() {
         return [
             'name' => 'required|string|max:255',
             'description' => 'required|string',
@@ -36,19 +37,19 @@ class CreateJob extends Component
     public function submit()
     {
         $validatedData = $this->validate();
-        $company = Company::find(auth()->user()->company_id);
 
-        if ($company->jobPosts()->create($validatedData)) {
-            toastr()->success("Job Created Successfully");
-        } else {
-            toastr()->error("Failed to create new job post");
-        }
+        $this->jobPost->update($validatedData);
 
-        return redirect(route('dashboard', absolute: false));
+        $message = $this->jobPost->wasChanged()
+            ? ['success' => 'Job details updated successfully.']
+            : ['info' => 'No changes were made to the job.'];
+
+        return redirect()->route('dashboard')->with($message);
+
     }
 
     public function render()
     {
-        return view('livewire.create-job');
+        return view('livewire.job-post.edit-job');
     }
 }
