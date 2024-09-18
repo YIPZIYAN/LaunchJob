@@ -405,7 +405,7 @@
             <ul class="space-y-2">
                 <li>
                     <a
-                        href={{ route('dashboard') }}
+                        href="{{ route('dashboard') }}"
                         class="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg dark:text-white
                         hover:bg-gray-100 dark:hover:bg-gray-700 group">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
