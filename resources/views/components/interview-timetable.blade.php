@@ -30,8 +30,10 @@
                                             </span>
                                 </h3>
 
-                                <h3 class="text-sm text-gray-800 dark:text-neutral-300">
-                                    {{$interview->jobApplication->jobPost->name}}
+                                <h3 class="text-md text-gray-800 dark:text-neutral-300">
+                                    <x-wireui-link underline="hover" href="{{route('job-application.show',$interview->jobApplication)}}">
+                                        {{$interview->jobApplication->jobPost->name}}
+                                    </x-wireui-link>
                                 </h3>
 
                                 <h3 class="text-sm text-gray-800 dark:text-neutral-300">
@@ -41,7 +43,7 @@
                                             <span class="uppercase">{{$interview->location}}</span>
                                         @else
                                             <x-heroicons::outline.link/>
-                                            <x-wireui-link target="_blank" href="{{$interview->link}}">
+                                            <x-wireui-link sm secondary underline="always" target="_blank" href="{{$interview->link}}">
                                                 <span>{{$interview->link}}</span>
                                             </x-wireui-link>
                                         @endif
