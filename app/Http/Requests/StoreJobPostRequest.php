@@ -21,15 +21,6 @@ class StoreJobPostRequest extends FormRequest
      */
     public function rules(): array
     {
-        return [
-            'name' => 'required|string|max:255',
-            'description' => 'required|string',
-            'location' => 'required|string|max:255',
-            'min_salary' => 'required|integer|min:1|max:300000',
-            'max_salary' => 'required|integer|min:1|max:300000|gte:min_salary',
-            'period' => 'required|string',
-            'type' => 'required|string',
-            'mode' => 'required|string'
-        ];
+        return [];
     }
 }

@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class Company extends Model
 {
     use HasFactory;
+
     protected $fillable = [
         'name',
         'address',
@@ -19,4 +20,10 @@ class Company extends Model
     {
         return $this->hasMany(User::class, 'company_id');
     }
+
+    public function jobPosts(): HasMany
+    {
+        return $this->hasMany(JobPost::class, 'company_id');
+    }
+
 }
