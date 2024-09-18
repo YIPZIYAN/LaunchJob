@@ -17,10 +17,15 @@
 </head>
 <body class="font-sans antialiased">
 
+    @session('success')
+    <x-wireui-alert class="z-50" title="Success Message!" positive/>
+    @endsession
+
+
 
 <div class="antialiased bg-gray-50 dark:bg-gray-900">
     <nav
-        class="bg-white border-b border-gray-200 px-4 py-2.5 dark:bg-gray-800 dark:border-gray-700 fixed left-0 right-0 top-0 z-50">
+        class="bg-white border-b border-gray-200 px-4 py-2.5 dark:bg-gray-800 dark:border-gray-700 fixed left-0 right-0 top-0 z-10">
         <div class="flex flex-wrap justify-between items-center">
             <div class="flex justify-start items-center">
                 <button
@@ -82,7 +87,7 @@
                 </button>
                 <!-- Dropdown menu -->
                 <div
-                    class="hidden overflow-hidden z-50 my-4 max-w-sm text-base list-none bg-white rounded divide-y divide-gray-100 shadow-lg dark:divide-gray-600 dark:bg-gray-700 rounded-xl"
+                    class="hidden overflow-hidden z-10 my-4 max-w-sm text-base list-none bg-white rounded divide-y divide-gray-100 shadow-lg dark:divide-gray-600 dark:bg-gray-700 rounded-xl"
                     id="notification-dropdown"
                 >
                     <div
@@ -360,7 +365,7 @@
                 </button>
                 <!-- Dropdown menu -->
                 <div
-                    class="hidden z-50 my-4 w-56 text-base list-none bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600 rounded-xl"
+                    class="hidden z-40 my-4 w-56 text-base list-none bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600 rounded-xl"
                     id="dropdown">
                     <div class="py-3 px-4">
                         <span class="block text-sm font-semibold text-gray-900 dark:text-white">
@@ -397,7 +402,7 @@
     <!-- Sidebar -->
 
     <aside
-        class="fixed top-0 left-0 z-40 w-64 h-screen pt-14 transition-transform -translate-x-full bg-white border-r border-gray-200 md:translate-x-0 dark:bg-gray-800 dark:border-gray-700"
+        class="fixed top-0 left-0 z-0 w-64 h-screen pt-14 transition-transform -translate-x-full bg-white border-r border-gray-200 md:translate-x-0 dark:bg-gray-800 dark:border-gray-700"
         aria-label="Sidenav"
         id="drawer-navigation"
     >

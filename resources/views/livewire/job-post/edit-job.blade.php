@@ -64,7 +64,7 @@
 
             </form>
 
-            <livewire:delete-job :jobPost="$jobPost"/>
+            <livewire:job-post.archive-job :jobPost="$jobPost"/>
 
         </section>
     </div>
