@@ -45,4 +45,9 @@ class JobApplication extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function interviews(): HasMany
+    {
+        return $this->hasMany(Interview::class, 'job_application_id');
+    }
 }
