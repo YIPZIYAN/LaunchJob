@@ -16,8 +16,9 @@ return new class extends Migration
         Schema::create('interviews', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(JobApplication::class)->constrained();
-            $table->dateTime('start_time');
-            $table->dateTime('end_time');
+            $table->time('start_time');
+            $table->time('end_time');
+            $table->date('date');
             $table->longText('description');
             $table->string('mode');
             $table->longText('location')->nullable();

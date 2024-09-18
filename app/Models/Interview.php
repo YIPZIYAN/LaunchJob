@@ -11,6 +11,7 @@ class Interview extends Model
     use HasFactory;
     protected $fillable = [
         'start_time',
+        'date',
         'description',
         'end_time',
         'link',
