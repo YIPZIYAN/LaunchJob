@@ -50,6 +50,7 @@
                                 wire:model="email"
                                 label="Email"
                                 placeholder="Enter email"
+                                readonly
                             />
 
                         </div>

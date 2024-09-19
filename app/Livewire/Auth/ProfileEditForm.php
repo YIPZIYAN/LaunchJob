@@ -42,16 +42,12 @@ class ProfileEditForm extends Component
         $validatedData = $this->validate();
 
         if ($this->avatar) {
-
             if ($this->user->avatar) {
                 Storage::disk('public')->delete($this->user->avatar);
             }
-
             $validatedData['avatar'] = $this->avatar->store('avatars', 'public');;
-
-//            $file = $this->avatar->store('avatars', 'public');
-//            $this->user->update(['avatar' => $file]);
-
+        } else {
+            $validatedData['avatar'] = $this->user->avatar;
         }
 
         $this->user->update($validatedData);
