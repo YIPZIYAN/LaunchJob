@@ -8,9 +8,11 @@ use App\StateMachine\JobApplication\JobApplicationState;
 
 class ShortlistedState extends BaseJobApplicationState
 {
-    public function scheduleInterview(Interview $interview)
+    public function scheduleInterview()
     {
-        $this->jobApplication->interviews->create($interview);
-        $this->jobApplication->update(['state' => JobApplicationState::INTERVIEWING]);
+        $message = $this->jobApplication->update(['status' => JobApplicationState::INTERVIEWING])
+            ? ['success' => 'Schedule interview successfully.']
+            : ['error' => 'Failed to schedule an interview.'];
+        return redirect(route('management.job-post.show',$this->jobApplication->jobPost))->with($message);
     }
 }

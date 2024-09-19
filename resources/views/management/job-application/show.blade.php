@@ -33,11 +33,8 @@
             </div>
             <!-- End About -->
         </x-wireui-card>
-        <div class="flex justify-end">
-            <x-wireui-button
-                href="{{route('management.job-application.interview.create', $jobApplication)}}"
-                label="Schedule Interview" right-icon="plus"/>
-        </div>
+        <livewire:job-state.state-button :job-application="$jobApplication"/>
+
         @if($jobApplication->interviews->isNotEmpty())
             <div class="max-w-[85rem] mx-auto">
                 <x-tables.base-table

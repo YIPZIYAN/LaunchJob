@@ -9,11 +9,17 @@ class InterviewingState extends BaseJobApplicationState
 {
     public function offer()
     {
-        $this->jobApplication->update(['state' => JobApplicationState::OFFERING]);
+        $message = $this->jobApplication->update(['status' => JobApplicationState::OFFERING])
+            ? ['success' => 'Offer letter sent successfully.']
+            : ['error' => 'Failed to send offer letter.'];
+        return redirect(route('management.job-post.show',$this->jobApplication->jobPost))->with($message);
     }
 
     public function reject()
     {
-        $this->jobApplication->update(['state' => JobApplicationState::REJECTED]);
+        $message = $this->jobApplication->update(['status' => JobApplicationState::REJECTED])
+            ? ['success' => 'Reject applicant successfully.']
+            : ['error' => 'Failed to reject this applicant.'];
+        return redirect(route('management.job-post.show',$this->jobApplication->jobPost))->with($message);
     }
 }

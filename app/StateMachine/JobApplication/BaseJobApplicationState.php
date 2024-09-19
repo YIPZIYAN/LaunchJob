@@ -18,7 +18,7 @@ class BaseJobApplicationState implements JobApplicationStateInterface
         throw new Exception();
     }
 
-    public function scheduleInterview(Interview $interview)
+    public function scheduleInterview()
     {
         throw new Exception();
     }

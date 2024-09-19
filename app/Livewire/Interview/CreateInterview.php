@@ -3,12 +3,13 @@
 namespace App\Livewire\Interview;
 
 use App\Models\Interview;
+use App\Models\JobApplication;
 use Illuminate\Validation\Rule;
 use Livewire\Component;
 
 class CreateInterview extends Component
 {
-    public $jobApplication;
+    public JobApplication $jobApplication;
     public $date;
     public $start_time;
     public $end_time;
@@ -51,11 +52,10 @@ class CreateInterview extends Component
         $validatedData = $this->validate();
         $validatedData['mode'] = $this->mode;
 
-        $message = $this->jobApplication->interviews()->create($validatedData)
-            ? ['success' => 'Interview scheduled successfully.']
-            : ['error' => 'Failed to schedule an interview.'];
+        $this->jobApplication->interviews()->create($validatedData);
+        $this->jobApplication->state()->scheduleInterview();
 
-        return redirect()->route('dashboard')->with($message);
+
 
     }
 

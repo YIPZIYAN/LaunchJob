@@ -8,7 +8,7 @@ interface JobApplicationStateInterface
 {
     function shortlist();
 
-    function scheduleInterview(Interview $interview);
+    function scheduleInterview();
 
     function reject();
 
