@@ -33,7 +33,6 @@ class OfferLetterSent extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            from: new Address(Auth::user()->email, Auth::user()->company->name),
             subject: 'Hi! You received a new offer!',
         );
     }
@@ -56,8 +55,8 @@ class OfferLetterSent extends Mailable
     public function attachments(): array
     {
         return [
-            Attachment::fromPath(asset('storage/offer-letters/test.pdf'))
-                ->as('test.pdf')
+            Attachment::fromPath(storage_path('app/public/'.$this->jobApplication->offer_letter))
+                ->as('OfferLetter.pdf')
                 ->withMime('application/pdf'),
         ];
     }
