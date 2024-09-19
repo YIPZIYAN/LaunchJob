@@ -23,14 +23,19 @@ class JobPost extends Model
         'min_salary',
         'max_salary',
         'mode',
-        'type',
         'period',
+        'job_type_id',
         'company_id'
     ];
 
     public function company(): BelongsTo
     {
         return $this->belongsTo(Company::class);
+    }
+
+    public function jobType(): BelongsTo
+    {
+        return $this->belongsTo(JobType::class);
     }
 
     public function jobApplications(): HasMany

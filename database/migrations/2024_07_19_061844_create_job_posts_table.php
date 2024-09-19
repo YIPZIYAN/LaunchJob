@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Company;
+use App\Models\JobType;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -16,8 +17,8 @@ return new class extends Migration {
             $table->integer('min_salary');
             $table->integer('max_salary');
             $table->string('period');
-            $table->string('type');
             $table->string('mode');
+            $table->foreignIdFor(JobType::class)->constrained();
             $table->foreignIdFor(Company::class)->constrained();
             $table->softDeletes();
             $table->timestamps();
