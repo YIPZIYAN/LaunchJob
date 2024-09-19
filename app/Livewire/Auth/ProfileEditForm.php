@@ -3,17 +3,27 @@
 namespace App\Livewire\Auth;
 
 use App\Models\User;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\Rule;
+use Livewire\Attributes\Validate;
 use Livewire\Component;
+use Livewire\WithFileUploads;
 
 class ProfileEditForm extends Component
 {
 
+    use WithFileUploads;
+
     public $user;
+
+    #[Validate('nullable|image|max:1024')] // 1MB Max
+    public $avatar;
+
     public $name;
     public $email;
 
-    public function mount() {
+    public function mount()
+    {
         $this->user = auth()->user();
         $this->name = $this->user->name;
         $this->email = $this->user->email;
@@ -31,9 +41,20 @@ class ProfileEditForm extends Component
     {
         $validatedData = $this->validate();
 
-        $this->user->fill($validatedData);
+        if ($this->avatar) {
 
-        $this->user->save();
+            if ($this->user->avatar) {
+                Storage::disk('public')->delete($this->user->avatar);
+            }
+
+            $validatedData['avatar'] = $this->avatar->store('avatars', 'public');;
+
+//            $file = $this->avatar->store('avatars', 'public');
+//            $this->user->update(['avatar' => $file]);
+
+        }
+
+        $this->user->update($validatedData);
 
         $message = $this->user->wasChanged()
             ? ['success' => 'Profile information updated successfully.']
