@@ -38,6 +38,11 @@ Breadcrumbs::for('management.job-application.interview.create', function (Breadc
     $trail->push('Schedule an interview', route('management.job-application.interview.create',$jobApplication));
 });
 
+Breadcrumbs::for('management.job-application.offer-letter.create', function (BreadcrumbTrail $trail,$jobApplication) {
+    $trail->parent('dashboard');
+    $trail->push('Send Offer Letter', route('management.job-application.offer-letter.create',$jobApplication));
+});
+
 Breadcrumbs::for('management.interview.index', function (BreadcrumbTrail $trail) {
     $trail->push('Interview', route('management.interview.index'));
 });

@@ -27,8 +27,9 @@
                 href="{{route('management.job-application.interview.create', $jobApplication)}}"
                 label="Schedule Interview" right-icon="plus"/>
             <x-wireui-button
+                target="_blank"
                 label="Send Offer Letter"
-                wire:click="offer"
+                href="{{route('management.job-application.offer-letter.create',$jobApplication)}}"
                 wire:confirm="Are you sure you want to offer this applicant?"
                 right-icon="document"/>
             <x-wireui-button

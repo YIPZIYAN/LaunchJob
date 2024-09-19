@@ -7,6 +7,7 @@ use App\Http\Controllers\JobPostController;
 use App\Http\Controllers\Management\CreateInterviewController;
 use App\Http\Controllers\Management\InterviewManagementController;
 use App\Http\Controllers\Management\JobPostManagementController;
+use App\Http\Controllers\Management\SendOfferLetterController;
 use App\Livewire\Auth\CompanyProfileEditForm;
 use App\Livewire\Auth\ProfileEditForm;
 use App\Livewire\Interview\CreateInterview;
@@ -39,6 +40,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
             Route::get('job-application/{jobApplication}/interview/create', CreateInterviewController::class)
                 ->name('job-application.interview.create');
+            Route::get('job-application/{jobApplication}/offer-letter/create',SendOfferLetterController::class)
+                ->name('job-application.offer-letter.create');
+
             Route::resource('interview', InterviewManagementController::class);
 
             Route::get('profile', [CompanyProfileEditForm::class,'render'])->name('profile');
