@@ -44,20 +44,24 @@
                 <x-wireui-select
                     wire:model="period"
                     label="Period"
-                    :options="['Full-time', 'Part-time', 'Contract', 'Internship',
-                    'Freelance']"
+                    placeholder="Select a period"
+                    :options="$period_list"
                 />
 
                 <x-wireui-select
                     wire:model="mode"
                     label="Mode"
-                    :options="['On-site', 'Remote', 'Hybrid']"
+                    placeholder="Select a mode"
+                    :options="$mode_list"
                 />
 
                 <x-wireui-select
-                    wire:model="type"
+                    wire:model="job_type_id"
                     label="Type"
-                    :options="['Information Technology', 'Accounting', 'Other']"
+                    placeholder="Select a type"
+                    :options="$type_list"
+                    option-value="value"
+                    option-label="label"
                 />
 
                 <x-wireui-button type="submit" label="Update"/>

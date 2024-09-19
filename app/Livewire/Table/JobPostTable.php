@@ -38,7 +38,18 @@ final class JobPostTable extends PowerGridComponent
 
     public function datasource(): Builder
     {
-        return JobPost::query()->where('company_id','=', auth()->user()->company_id);
+        return JobPost::query()
+            ->where('company_id', '=', auth()->user()->company_id)
+            ->join('job_types', 'job_posts.job_type_id', '=', 'job_types.id')
+            ->select([
+                'job_posts.id',
+                'job_posts.name',
+                'job_posts.location',
+                'job_posts.period',
+                'job_posts.mode',
+                'job_posts.created_at',
+                'job_types.name as job_type_name',
+            ]);
     }
 
     public function relationSearch(): array
@@ -71,7 +82,7 @@ final class JobPostTable extends PowerGridComponent
                 ->searchable(),
             Column::make('Mode', 'mode')
                 ->sortable(),
-            Column::make('Type', 'type')
+            Column::make('Type', 'job_type_name')
                 ->sortable(),
             Column::make('Period', 'period')
                 ->sortable(),

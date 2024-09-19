@@ -18,7 +18,7 @@ class JobPostObserver implements ShouldHandleEventsAfterCommit
     {
         $users = User::find(3);
 
-        Notification::send($users, new JobPostCreated($jobPost));
+        //Notification::send($users, new JobPostCreated($jobPost));
     }
 
     /**

@@ -2,6 +2,7 @@
 
 namespace App\Livewire\JobPost;
 
+use App\Models\JobType;
 use Livewire\Component;
 
 class EditJob extends Component
@@ -13,11 +14,37 @@ class EditJob extends Component
     public $min_salary;
     public $max_salary;
     public $period;
-    public $type;
     public $mode;
+    public $job_type_id;
+
+    public $period_list = [
+        'Full-time',
+        'Part-time',
+        'Contract',
+        'Internship',
+        'Freelance',
+    ];
+
+    public $mode_list = [
+        'On-site',
+        'Remote',
+        'Hybrid'
+    ];
+
+    public $type_list;
 
     public function mount()
     {
+        $this->type_list = JobType::select('id','name')
+            ->get()
+            ->map(function ($jobType) {
+                return [
+                    'value' => $jobType->id,
+                    'label' => $jobType->name,
+                ];
+            })
+            ->toArray();
+
         $this->fill($this->jobPost->toArray());
     }
 
@@ -29,8 +56,8 @@ class EditJob extends Component
             'min_salary' => 'required|integer|min:1|max:300000',
             'max_salary' => 'required|integer|min:1|max:300000|gte:min_salary',
             'period' => 'required|string',
-            'type' => 'required|string',
-            'mode' => 'required|string'
+            'mode' => 'required|string',
+            'job_type_id' => 'required|exists:job_types,id',
         ];
     }
 
