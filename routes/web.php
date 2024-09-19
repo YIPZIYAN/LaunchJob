@@ -7,12 +7,9 @@ use App\Http\Controllers\JobPostController;
 use App\Http\Controllers\Management\CreateInterviewController;
 use App\Http\Controllers\Management\InterviewManagementController;
 use App\Http\Controllers\Management\JobPostManagementController;
-
 use App\Http\Controllers\Management\SendOfferLetterController;
 use App\Http\Controllers\ProfileController;
-use App\Livewire\Auth\ProfileEditForm;
 use App\Livewire\Interview\CreateInterview;
-
 use App\Models\JobPost;
 use Illuminate\Support\Facades\Route;
 
