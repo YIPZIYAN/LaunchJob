@@ -36,4 +36,4 @@
         </dl>
     </a>
 
-</x-auth-layout>>
+</x-auth-layout>

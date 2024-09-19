@@ -19,7 +19,7 @@ class InterviewController extends Controller
         $jobApplication = JobApplication::where('user_id', Auth::id())->pluck('id');
         $groupedInterviews = Interview::with('jobApplication.jobPost.company')
             ->whereIn('job_application_id', $jobApplication)
-            ->where('date', '>=', now())
+            ->whereDay('date', '>=', now())
             ->orderBy('date')
             ->get()
             ->groupBy(function ($item) {
@@ -28,12 +28,13 @@ class InterviewController extends Controller
 
         $groupedInterviewsHistory = Interview::with('jobApplication.jobPost.company')
             ->whereIn('job_application_id', $jobApplication)
-            ->where('date', '<', now())
+            ->whereDay('date', '<', now())
             ->orderByDesc('date')
             ->get()
             ->groupBy(function ($item) {
                 return Carbon::parse($item->date)->format('Y-m-d');
             });
+
 
         return view('interview.index', [
             'groupedInterviews' => $groupedInterviews,
