@@ -1,13 +1,13 @@
 <div class="max-w-[85rem] mx-auto">
     <x-tables.base-table
         header="Scheduled Interview ({{$jobApplication->interviews->count()}})"
-        :thead="['No.', 'Mode','Location / Link','Description','Date', 'Start At', 'End At']">
+        :thead="['Date','Mode','Location / Link','Description', 'Start At', 'End At']">
         @forelse($jobApplication->interviews->sortByDesc('date') as $key => $interview)
             <tr class="bg-white hover:bg-gray-50 dark:bg-slate-900 dark:hover:bg-slate-800 cursor-pointer">
-                <x-tables.table-data>
-                    {{ $key+1 }}
-                </x-tables.table-data>
 
+                <x-tables.table-data>
+                    {{ $interview->date }}
+                </x-tables.table-data>
                 <x-tables.table-data>
                     @if($interview->mode == 'physical')
                         <x-wireui-badge info flat label="{{$interview->mode}}" icon="building-office"/>
@@ -30,9 +30,7 @@
                     {{ $interview->description }}
                 </x-tables.table-data>
 
-                <x-tables.table-data>
-                    {{ $interview->date }}
-                </x-tables.table-data>
+
 
                 <x-tables.table-data>
                     {{ $interview->start_time }}
