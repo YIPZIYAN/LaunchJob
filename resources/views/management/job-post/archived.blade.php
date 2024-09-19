@@ -1,17 +1,4 @@
 <x-app-layout>
-    <div class="max-w-7xl mx-auto px-4 space-y-6">
-        <div class="max-w-xl">
-            <section>
-                <header>
-                    <h2 class="text-lg font-medium text-gray-900">
-                        {{ __('Archived Job') }}
-                    </h2>
-                </header>
-
-            </section>
-        </div>
-    </div>
-
     <!-- Table Section -->
     <div class="max-w-[85rem] p-4 mx-auto">
         <!-- Card -->

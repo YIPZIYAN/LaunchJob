@@ -2,10 +2,16 @@
 
 namespace App\Livewire\Table;
 
+use App\Models\Interview;
+use App\Models\JobApplication;
 use App\Models\JobPost;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Auth;
 use PowerComponents\LivewirePowerGrid\Button;
 use PowerComponents\LivewirePowerGrid\Column;
+use PowerComponents\LivewirePowerGrid\Exportable;
+use PowerComponents\LivewirePowerGrid\Facades\Filter;
 use PowerComponents\LivewirePowerGrid\Footer;
 use PowerComponents\LivewirePowerGrid\Header;
 use PowerComponents\LivewirePowerGrid\PowerGrid;
@@ -13,7 +19,7 @@ use PowerComponents\LivewirePowerGrid\PowerGridComponent;
 use PowerComponents\LivewirePowerGrid\PowerGridFields;
 use PowerComponents\LivewirePowerGrid\Traits\WithExport;
 
-final class JobPostTable extends PowerGridComponent
+final class InterviewTable extends PowerGridComponent
 {
     public bool $showFilters = true;
     public bool $multiSort = true;
@@ -23,7 +29,6 @@ final class JobPostTable extends PowerGridComponent
 
     public function setUp(): array
     {
-//        $this->showCheckBox();
 
         return [
             Header::make()
@@ -38,7 +43,12 @@ final class JobPostTable extends PowerGridComponent
 
     public function datasource(): Builder
     {
-        return JobPost::query()->where('company_id','=', auth()->user()->company_id);
+        $jobPosts = JobPost::where('company_id', Auth::user()->company_id)->pluck('id');
+        $jobApplication = JobApplication::whereIn('job_post_id', $jobPosts)->pluck('id');
+
+        return Interview::with('jobApplication.jobPost.company')
+            ->whereIn('job_application_id', $jobApplication)
+            ->orderByDesc('date');
     }
 
     public function relationSearch(): array
@@ -49,41 +59,54 @@ final class JobPostTable extends PowerGridComponent
     public function fields(): PowerGridFields
     {
         return PowerGrid::fields()
-            ->add('id')
-            ->add('name')
-            ->add('location')
-            ->add('period')
-            ->add('type')
+            ->add('start_time')
+            ->add('date')
+            ->add('description')
+            ->add('end_time')
+            ->add('link')
             ->add('mode')
-            ->add('created_at');
+            ->add('location')
+            ->add('created_at')
+            ->add('updated_at');
+
     }
 
     public function columns(): array
     {
         return [
-            Column::make('Id', 'id')
+
+            Column::make('Date', 'date')
                 ->sortable(),
-            Column::make('Name', 'name')
+
+            Column::make('Start time', 'start_time')
                 ->sortable()
                 ->searchable(),
-            Column::make('Location', 'location')
+
+            Column::make('End time', 'end_time')
                 ->sortable()
                 ->searchable(),
+
             Column::make('Mode', 'mode')
-                ->sortable(),
-            Column::make('Type', 'type')
-                ->sortable(),
-            Column::make('Period', 'period')
-                ->sortable(),
+                ->sortable()
+                ->searchable(),
+
             Column::make('Created at', 'created_at')
-                ->sortable(),
+                ->sortable()
+                ->searchable(),
+
+            Column::make('Updated at', 'updated_at')
+                ->sortable()
+                ->searchable(),
+
             Column::action('Action')
         ];
     }
 
     public function filters(): array
     {
-        return [];
+        return [
+            Filter::datepicker('date'),
+        ];
     }
 
     #[\Livewire\Attributes\On('edit')]
@@ -92,20 +115,14 @@ final class JobPostTable extends PowerGridComponent
         $this->js('alert(' . $rowId . ')');
     }
 
-    public function actions(JobPost $row): array
+    public function actions(Interview $row): array
     {
         return [
-            Button::add('view')
-                //->slot('Edit: ' . $row->id)
-                ->slot('View')
-                ->class('mr-2 pg-btn-white dark:ring-pg-primary-600 dark:border-pg-primary-600 dark:hover:bg-pg-primary-700 dark:ring-offset-pg-primary-800 dark:text-pg-primary-300 dark:bg-pg-primary-700')
-                ->route('management.job-post.show', ['job_post' => $row]),
             Button::add('edit')
-                //->slot('Edit: ' . $row->id)
-                ->slot('Edit')
-                ->class('mr-2 pg-btn-white dark:ring-pg-primary-600 dark:border-pg-primary-600 dark:hover:bg-pg-primary-700 dark:ring-offset-pg-primary-800 dark:text-pg-primary-300 dark:bg-pg-primary-700')
-                ->route('management.job-post.edit', ['job_post' => $row]),
-
+                ->slot('Edit: ' . $row->id)
+                ->id()
+                ->class('pg-btn-white dark:ring-pg-primary-600 dark:border-pg-primary-600 dark:hover:bg-pg-primary-700 dark:ring-offset-pg-primary-800 dark:text-pg-primary-300 dark:bg-pg-primary-700')
+                ->dispatch('edit', ['rowId' => $row->id])
         ];
     }
 

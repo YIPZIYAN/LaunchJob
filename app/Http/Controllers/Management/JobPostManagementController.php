@@ -3,18 +3,13 @@
 namespace App\Http\Controllers\Management;
 
 use App\Http\Controllers\Controller;
+use App\Models\JobApplication;
 use App\Models\JobPost;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class JobPostManagementController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
-    {
-        return view('management.job-post.index');
-    }
 
     /**
      * Show the form for creating a new resource.
@@ -25,45 +20,23 @@ class JobPostManagementController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(JobPost $jobPost)
     {
-        //
+        return view('management.job-post.show', [
+            'jobPost' => $jobPost->load(['users']),
+        ]);
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(JobPost $jobPost)
+    public function edit($jobPost)
     {
         return view('management.job-post.edit', [
             'jobPost' => $jobPost
         ]);
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
     }
 
     /**
@@ -73,6 +46,18 @@ class JobPostManagementController extends Controller
     {
         return view('management.job-post.archived', [
             'jobPosts' => JobPost::onlyTrashed()->get()
+        ]);
+    }
+
+    public function showApplicant(JobPost $jobPost, User $user)
+    {
+        $jobApplication = JobApplication::where('job_post_id', $jobPost->id)->where('user_id', $user->id)->first();
+        return view('management.job-application.show', [
+            'jobApplication' => $jobApplication->load([
+                'user.employee',
+                'interviews' => function ($query) {
+                    $query->orderBy('date');
+                }])
         ]);
     }
 }

@@ -2,6 +2,8 @@
 
 namespace App\StateMachine\JobApplication;
 
+use App\Models\Interview;
+
 interface JobApplicationStateInterface
 {
     function shortlist();

@@ -20,19 +20,17 @@ class JobApplication extends Model
     use HasFactory;
 
     protected $fillable = [
-        'status'
+        'status',
+        'offer_letter'
     ];
 
     public function state()
     {
-        return match ($this->status) {
+        return match (JobApplicationState::tryFrom($this->status)) {
             JobApplicationState::NEW => new NewState($this),
             JobApplicationState::SHORTLISTED => new ShortlistedState($this),
-            JobApplicationState::REJECTED => new RejectedState($this),
             JobApplicationState::INTERVIEWING => new InterviewingState($this),
             JobApplicationState::OFFERING => new OfferingState($this),
-            JobApplicationState::OFFER_ACCEPTED => new OfferAcceptedState($this),
-            JobApplicationState::OFFER_REJECTED => new OfferRejectedState($this),
         };
     }
 

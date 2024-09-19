@@ -6,5 +6,4 @@
             @include('job-application.partials.show-interview-details')
         @endif
     </div>
-
 </x-guest-layout>
