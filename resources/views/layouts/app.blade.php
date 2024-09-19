@@ -17,12 +17,6 @@
 </head>
 <body class="font-sans antialiased">
 
-    @session('success')
-    <x-wireui-alert class="z-50" title="Success Message!" positive/>
-    @endsession
-
-
-
 <div class="antialiased bg-gray-50 dark:bg-gray-900">
     <nav
         class="bg-white border-b border-gray-200 px-4 py-2.5 dark:bg-gray-800 dark:border-gray-700 fixed left-0 right-0 top-0 z-10">
@@ -422,23 +416,6 @@
 
 
                     <span class="ml-3">Dashboard</span>
-                    </a>
-                </li>
-                <li>
-                    <a
-                        href={{ route('management.job-post.archived') }}
-                        class="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg dark:text-white
-                        hover:bg-gray-100 dark:hover:bg-gray-700 group">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
-                        <path
-                            d="M3.375 3C2.339 3 1.5 3.84 1.5 4.875v.75c0 1.036.84 1.875 1.875 1.875h17.25c1.035 0 1.875-.84 1.875-1.875v-.75C22.5 3.839 21.66 3 20.625 3H3.375Z"/>
-                        <path fill-rule="evenodd"
-                              d="m3.087 9 .54 9.176A3 3 0 0 0 6.62 21h10.757a3 3 0 0 0 2.995-2.824L20.913 9H3.087Zm6.163 3.75A.75.75 0 0 1 10 12h4a.75.75 0 0 1 0 1.5h-4a.75.75 0 0 1-.75-.75Z"
-                              clip-rule="evenodd"/>
-                    </svg>
-
-
-                    <span class="ml-3">Archived Job</span>
                     </a>
                 </li>
             </ul>
