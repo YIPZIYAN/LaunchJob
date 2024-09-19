@@ -2,11 +2,13 @@
 
 namespace App\StateMachine\JobApplication;
 
+use App\Models\Interview;
+
 interface JobApplicationStateInterface
 {
     function shortlist();
 
-    function scheduleInterview();
+    function scheduleInterview(Interview $interview);
 
     function reject();
 

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Management;
 
 use App\Http\Controllers\Controller;
 use App\Models\Interview;
+use App\Models\JobApplication;
 use Illuminate\Http\Request;
 
 class InterviewManagementController extends Controller
@@ -14,14 +15,6 @@ class InterviewManagementController extends Controller
     public function index()
     {
         return view('management.interview.index');
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        return view('management.interview.create');
     }
 
     /**

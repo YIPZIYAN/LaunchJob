@@ -2,6 +2,7 @@
 
 namespace App\StateMachine\JobApplication;
 
+use App\Models\Interview;
 use App\Models\JobApplication;
 use Exception;
 
@@ -17,7 +18,7 @@ class BaseJobApplicationState implements JobApplicationStateInterface
         throw new Exception();
     }
 
-    public function scheduleInterview()
+    public function scheduleInterview(Interview $interview)
     {
         throw new Exception();
     }

@@ -34,7 +34,9 @@
             <!-- End About -->
         </x-wireui-card>
         <div class="flex justify-end">
-            <x-wireui-button label="Schedule Interview" right-icon="plus"/>
+            <x-wireui-button
+                href="{{route('management.job-application.interview.create', $jobApplication)}}"
+                label="Schedule Interview" right-icon="plus"/>
         </div>
         @if($jobApplication->interviews->isNotEmpty())
             <div class="max-w-[85rem] mx-auto">

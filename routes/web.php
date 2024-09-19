@@ -4,11 +4,12 @@ use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\InterviewController;
 use App\Http\Controllers\JobApplicationController;
 use App\Http\Controllers\JobPostController;
+use App\Http\Controllers\Management\CreateInterviewController;
 use App\Http\Controllers\Management\InterviewManagementController;
 use App\Http\Controllers\Management\JobPostManagementController;
-use App\Http\Controllers\ProfileController;
 use App\Livewire\Auth\CompanyProfileEditForm;
 use App\Livewire\Auth\ProfileEditForm;
+use App\Livewire\Interview\CreateInterview;
 use App\Models\JobPost;
 use Illuminate\Support\Facades\Route;
 
@@ -35,7 +36,11 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
             Route::get('job-post-archived', [JobPostManagementController::class, 'archived'])
                 ->name('job-post.archived');
+
+            Route::get('job-application/{jobApplication}/interview/create', CreateInterviewController::class)
+                ->name('job-application.interview.create');
             Route::resource('interview', InterviewManagementController::class);
+
             Route::get('profile', [CompanyProfileEditForm::class,'render'])->name('profile');
         });
     });
