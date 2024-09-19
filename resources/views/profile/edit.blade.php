@@ -1,3 +1,3 @@
 <x-guest-layout>
-    <livewire:auth.profile-edit-form :user="$user"/>
+    <livewire:auth.profile-edit-form/>
 </x-guest-layout>

@@ -30,15 +30,17 @@ class ProfileEditForm extends Component
     public function submit()
     {
         $validatedData = $this->validate();
-        $this->user->fill($validatedData);
 
-        if ($this->user->isDirty('email')) {
-            $this->user->email_verified_at = null;
-        }
+        $this->user->fill($validatedData);
 
         $this->user->save();
 
-        return redirect()->route('profile.edit')->with('status', 'profile-updated');
+        $message = $this->user->wasChanged()
+            ? ['success' => 'Profile information updated successfully.']
+            : ['info' => 'No changes were made to the profile information.'];
+
+        return redirect()->route('profile.edit')->with($message);
+
     }
 
     public function render()
