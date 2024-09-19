@@ -2,16 +2,22 @@
 
 namespace App\StateMachine\JobApplication\StateClass;
 
+use App\Mail\OfferLetterSent;
+use App\Models\User;
 use App\StateMachine\JobApplication\BaseJobApplicationState;
 use App\StateMachine\JobApplication\JobApplicationState;
+use Illuminate\Support\Facades\Mail;
 
 class InterviewingState extends BaseJobApplicationState
 {
     public function offer()
     {
-        $message = $this->jobApplication->update(['status' => JobApplicationState::OFFERING])
+        $message = $this->jobApplication->update(['status' => JobApplicationState::INTERVIEWING])
             ? ['success' => 'Offer letter sent successfully.']
             : ['error' => 'Failed to send offer letter.'];
+
+        Mail::to(User::findOrFail($this->jobApplication->user_id))
+            ->send(new OfferLetterSent($this->jobApplication));
         return redirect(route('management.job-post.show',$this->jobApplication->jobPost))->with($message);
     }
 

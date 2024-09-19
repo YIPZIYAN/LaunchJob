@@ -38,7 +38,7 @@ class CreateInterview extends Component
             'end_time' => ['date_format:H:i', 'required', 'after:start_time'],
             'link' => ['nullable', 'url', Rule::requiredIf($this->isOnline)],
             'location' => ['nullable', 'string', Rule::requiredIf(!$this->isOnline)],
-            'description' => ['nullable', 'string', 'max:255'],
+            'description' => ['required', 'string', 'max:255'],
         ];
     }
 

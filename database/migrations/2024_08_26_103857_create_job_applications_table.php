@@ -18,6 +18,7 @@ return new class extends Migration
             $table->foreignIdFor(User::class)->constrained();
             $table->foreignIdFor(JobPost::class)->constrained();
             $table->string('status');
+            $table->string('offer_letter')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });
