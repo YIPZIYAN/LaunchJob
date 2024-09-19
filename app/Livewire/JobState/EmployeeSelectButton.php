@@ -2,13 +2,12 @@
 
 namespace App\Livewire\JobState;
 
-use App\Models\Interview;
 use App\Models\JobApplication;
 use App\StateMachine\JobApplication\JobApplicationState;
 use App\StateMachine\JobApplication\JobApplicationStateInterface;
 use Livewire\Component;
 
-class StateButton extends Component implements JobApplicationStateInterface
+class EmployeeSelectButton extends Component implements JobApplicationStateInterface
 {
     public JobApplication $jobApplication;
     public JobApplicationState $applicationState;
@@ -19,36 +18,36 @@ class StateButton extends Component implements JobApplicationStateInterface
 
     public function render()
     {
-        return view('livewire.job-state.state-button');
+        return view('livewire.job-state.employee-select-button');
     }
-
 
     function shortlist()
     {
-        $this->jobApplication->state()->shortlist();
+        // TODO: Implement shortlist() method.
     }
 
     function scheduleInterview()
     {
+        // TODO: Implement scheduleInterview() method.
     }
 
     function reject()
     {
-        $this->jobApplication->state()->reject();
+        // TODO: Implement reject() method.
     }
 
     function offer()
     {
-        $this->jobApplication->state()->offer();
+        // TODO: Implement offer() method.
     }
 
     function acceptOffer()
     {
-        // TODO: Implement acceptOffer() method.
+        $this->jobApplication->state()->acceptOffer();
     }
 
     function rejectOffer()
     {
-        // TODO: Implement rejectOffer() method.
+        $this->jobApplication->state()->rejectOffer();
     }
 }
