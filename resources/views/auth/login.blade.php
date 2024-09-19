@@ -4,7 +4,7 @@
             <x-application-logo class=" mb-6"/>
             <!-- Session Status -->
             <x-auth-session-status class="mb-4" :status="session('status')"/>
-            <livewire:login-form/>
+            <livewire:auth.login-form/>
         </div>
     </section>
 </x-auth-layout>
