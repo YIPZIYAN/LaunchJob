@@ -17,12 +17,6 @@
 </head>
 <body class="font-sans antialiased">
 
-    @session('success')
-    <x-wireui-alert class="z-50" title="Success Message!" positive/>
-    @endsession
-
-
-
 <div class="antialiased bg-gray-50 dark:bg-gray-900">
     <nav
         class="bg-white border-b border-gray-200 px-4 py-2.5 dark:bg-gray-800 dark:border-gray-700 fixed left-0 right-0 top-0 z-10">
@@ -378,7 +372,7 @@
                     <ul class="py-1 text-gray-700 dark:text-gray-300"
                         aria-labelledby="dropdown">
                         <li>
-                            <x-dropdown-link :href="route('profile.edit')">
+                            <x-dropdown-link :href="route('profile')">
                                 {{ __('Profile') }}
                             </x-dropdown-link>
                         </li>
