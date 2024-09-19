@@ -20,6 +20,14 @@ class InterviewingState extends BaseJobApplicationState
         return redirect(route('management.job-post.show',$this->jobApplication->jobPost))->with($message);
     }
 
+    public function scheduleInterview()
+    {
+        $message = $this->jobApplication->update(['status' => JobApplicationState::INTERVIEWING])
+            ? ['success' => 'Schedule interview successfully.']
+            : ['error' => 'Failed to schedule an interview.'];
+        return redirect(route('management.job-post.show',$this->jobApplication->jobPost))->with($message);
+    }
+
     public function reject()
     {
         $message = $this->jobApplication->update(['status' => JobApplicationState::REJECTED])
