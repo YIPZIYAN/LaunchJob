@@ -30,8 +30,6 @@
                     {{ $interview->description }}
                 </x-tables.table-data>
 
-
-
                 <x-tables.table-data>
                     {{ $interview->start_time }}
                 </x-tables.table-data>

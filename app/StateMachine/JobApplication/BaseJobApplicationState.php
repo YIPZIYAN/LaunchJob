@@ -2,6 +2,7 @@
 
 namespace App\StateMachine\JobApplication;
 
+use App\Models\Interview;
 use App\Models\JobApplication;
 use Exception;
 
