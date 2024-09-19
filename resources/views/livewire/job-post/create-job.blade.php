@@ -1,11 +1,6 @@
 <div class="max-w-7xl mx-auto px-4 space-y-6">
     <div class="max-w-xl">
         <section>
-            <header>
-                <h2 class="text-lg font-medium text-gray-900">
-                    {{ __('Post a New Job') }}
-                </h2>
-            </header>
 
             <form class="mt-6 space-y-6" wire:submit.prevent="submit">
                 <x-wireui-input
