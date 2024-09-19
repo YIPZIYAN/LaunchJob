@@ -9,12 +9,18 @@ class OfferingState extends BaseJobApplicationState
 {
     public function acceptOffer()
     {
-        $this->jobApplication->update(['state' => JobApplicationState::OFFER_ACCEPTED]);
+        $message = $this->jobApplication->update(['status' => JobApplicationState::OFFER_ACCEPTED])
+            ? ['success' => 'Offer accepted successfully.']
+            : ['error' => 'Failed to accept this offer.'];
+        return redirect(route('job-application.show', $this->jobApplication))->with($message);
 
     }
 
     public function rejectOffer()
     {
-        $this->jobApplication->update(['state' => JobApplicationState::OFFER_REJECTED]);
+        $message = $this->jobApplication->update(['status' => JobApplicationState::OFFER_REJECTED])
+            ? ['success' => 'Offer rejected successfully.']
+            : ['error' => 'Failed to reject this offer.'];
+        return redirect(route('job-application.show', $this->jobApplication))->with($message);
     }
 }
