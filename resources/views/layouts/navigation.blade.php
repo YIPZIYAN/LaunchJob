@@ -32,7 +32,7 @@
                                         {{Auth::user()->email}}
                                     </span>
                                 </div>
-                                <x-dropdown-link :href="route('profile')">
+                                <x-dropdown-link :href="route('profile.edit')">
                                     {{ __('Profile') }}
                                 </x-dropdown-link>
 
