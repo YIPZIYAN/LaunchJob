@@ -378,7 +378,7 @@
                     <ul class="py-1 text-gray-700 dark:text-gray-300"
                         aria-labelledby="dropdown">
                         <li>
-                            <x-dropdown-link :href="route('profile.edit')">
+                            <x-dropdown-link :href="route('management.profile')">
                                 {{ __('Profile') }}
                             </x-dropdown-link>
                         </li>
