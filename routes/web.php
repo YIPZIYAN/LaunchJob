@@ -6,6 +6,8 @@ use App\Http\Controllers\JobApplicationController;
 use App\Http\Controllers\JobPostController;
 use App\Http\Controllers\Management\JobPostManagementController;
 use App\Http\Controllers\ProfileController;
+use App\Livewire\Auth\CompanyProfileEditForm;
+use App\Livewire\Auth\ProfileEditForm;
 use App\Models\JobPost;
 use Illuminate\Support\Facades\Route;
 
@@ -16,9 +18,9 @@ Route::get('/', function () {
 Route::get('/api/company', CompanyController::class)->name('api.company');
 
 Route::middleware(['auth', 'verified'])->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+//    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+//    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+//    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     Route::get('/job-post/{jobPost}', [JobPostController::class, 'show'])->name('job-post.show');
 
@@ -31,16 +33,17 @@ Route::middleware(['auth', 'verified'])->group(function () {
             Route::resource('job-post', JobPostManagementController::class);
             Route::get('job-post-archived', [JobPostManagementController::class, 'archived'])
                 ->name('job-post.archived');
+            Route::get('profile', [CompanyProfileEditForm::class,'render'])->name('profile');
         });
     });
 
     Route::middleware(['role:employee'])->group(function () {
         Route::resource('/job-application', JobApplicationController::class);
         Route::resource('/interview', InterviewController::class);
+        Route::get('profile', [ProfileEditForm::class,'render'])->name('profile');
+
     });
 });
-
-
 
 
 require __DIR__ . '/auth.php';

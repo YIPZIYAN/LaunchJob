@@ -53,7 +53,11 @@ class JobApplicationController extends Controller
     public function show(JobApplication $jobApplication)
     {
         return view('job-application.show', [
-            'jobApplication' => $jobApplication->load(['jobPost.company','interviews'])
+            'jobApplication' => $jobApplication->load([
+                'jobPost.company',
+                'interviews' => function ($query) {
+                    $query->orderBy('date');
+                }])
         ]);
     }
 

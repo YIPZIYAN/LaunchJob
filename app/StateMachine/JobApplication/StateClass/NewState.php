@@ -9,11 +9,11 @@ class NewState extends BaseJobApplicationState
 {
     public function shortlist()
     {
-        $this->jobApplication->update(['job-state' => JobApplicationState::SHORTLISTED]);
+        $this->jobApplication->update(['state' => JobApplicationState::SHORTLISTED]);
     }
 
     public function reject()
     {
-        $this->jobApplication->update(['job-state' => JobApplicationState::REJECTED]);
+        $this->jobApplication->update(['state' => JobApplicationState::REJECTED]);
     }
 }
