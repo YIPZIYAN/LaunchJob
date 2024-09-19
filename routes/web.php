@@ -29,6 +29,10 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
         Route::name('management.')->prefix('management/')->group(function () {
             Route::resource('job-post', JobPostManagementController::class);
+
+            Route::get('job-post/{jobPost}/applicant/{user}', [JobPostManagementController::class, 'showApplicant'])
+                ->name('job-application.show');
+
             Route::get('job-post-archived', [JobPostManagementController::class, 'archived'])
                 ->name('job-post.archived');
             Route::resource('interview', InterviewManagementController::class);

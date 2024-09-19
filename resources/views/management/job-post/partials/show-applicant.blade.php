@@ -23,9 +23,10 @@
                 <x-tables.table-data>
                     {{ $user->pivot->updated_at }}
                 </x-tables.table-data>
-
                 <x-tables.table-data>
-                    <x-wireui-button outline label="View"/>
+                    <x-wireui-button
+                        href="{{route('management.job-application.show', [$jobPost,$user])}}"
+                        outline label="View"/>
                 </x-tables.table-data>
             </tr>
         @empty

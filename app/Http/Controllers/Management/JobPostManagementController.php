@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Management;
 
 use App\Http\Controllers\Controller;
+use App\Models\JobApplication;
 use App\Models\JobPost;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class JobPostManagementController extends Controller
@@ -30,7 +32,7 @@ class JobPostManagementController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(JobPost $jobPost)
+    public function edit($jobPost)
     {
         return view('management.job-post.edit', [
             'jobPost' => $jobPost
@@ -44,6 +46,18 @@ class JobPostManagementController extends Controller
     {
         return view('management.job-post.archived', [
             'jobPosts' => JobPost::onlyTrashed()->get()
+        ]);
+    }
+
+    public function showApplicant(JobPost $jobPost, User $user)
+    {
+        $jobApplication = JobApplication::where('job_post_id', $jobPost->id)->where('user_id', $user->id)->first();
+        return view('management.job-application.show', [
+            'jobApplication' => $jobApplication->load([
+                'user.employee',
+                'interviews' => function ($query) {
+                    $query->orderBy('date');
+                }])
         ]);
     }
 }

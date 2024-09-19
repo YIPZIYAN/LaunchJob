@@ -28,6 +28,11 @@ Breadcrumbs::for('management.job-post.show', function (BreadcrumbTrail $trail, $
     $trail->push($jobPost->name, route('management.job-post.show', $jobPost));
 });
 
+Breadcrumbs::for('management.job-application.show', function (BreadcrumbTrail $trail, $jobPost,$user) {
+    $trail->parent('management.job-post.show',$jobPost);
+    $trail->push($user->name, route('management.job-application.show', [$jobPost,$user]));
+});
+
 Breadcrumbs::for('management.interview.index', function (BreadcrumbTrail $trail) {
     $trail->push('Interview', route('management.interview.index'));
 });
