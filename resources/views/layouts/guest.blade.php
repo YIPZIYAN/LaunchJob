@@ -19,9 +19,6 @@
 <div class="min-h-screen h-full bg-gray-100">
     @include('layouts.navigation')
     <!-- Page Heading -->
-    @session('success')
-        <x-wireui-alert title="Success Message!" positive/>
-    @endsession
 
     @isset($header)
         <header class="bg-white shadow">
