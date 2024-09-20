@@ -42,7 +42,6 @@
                         :thead="['Date','Mode','Location / Link','Description', 'Start At', 'End At','Action']">
                     @forelse($jobApplication->interviews->sortByDesc('date') as $key => $interview)
                         <tr class="bg-white hover:bg-gray-50 dark:bg-slate-900 dark:hover:bg-slate-800 cursor-pointer">
-
                             <x-tables.table-data>
                                 {{ $interview->date }}
                             </x-tables.table-data>
