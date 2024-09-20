@@ -3,6 +3,7 @@
 namespace App\Livewire\Interview;
 
 use App\Models\Interview;
+use Carbon\Carbon;
 use Illuminate\Validation\Rule;
 use Livewire\Component;
 
@@ -28,8 +29,9 @@ class EditInterview extends Component
         $this->inputLink = substr($this->interview->link, 12);
         $this->fill($this->interview->toArray());
 
-        $this->start_time = $this->interview->getAttributes()['start_time'];
-        $this->end_time = $this->interview->getAttributes()['end_time'];
+        $this->start_time = Carbon::parse($this->interview->start_time)->format('H:i');
+
+        $this->end_time = Carbon::parse($this->interview->end_time)->format('H:i');
 
     }
 
