@@ -46,3 +46,9 @@ Breadcrumbs::for('management.job-application.offer-letter.create', function (Bre
 Breadcrumbs::for('management.interview.index', function (BreadcrumbTrail $trail) {
     $trail->push('Interview', route('management.interview.index'));
 });
+
+Breadcrumbs::for('management.interview.edit', function (BreadcrumbTrail $trail,$interview) {
+    $trail->parent('management.interview.index');
+
+    $trail->push('Edit Interview', route('management.interview.edit',$interview));
+});
