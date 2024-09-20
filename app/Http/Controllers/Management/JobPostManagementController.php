@@ -57,11 +57,9 @@ class JobPostManagementController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit($jobPost)
+    public function edit(JobPost $jobPost)
     {
-        return view('management.job-post.edit', [
-            'jobPost' => $jobPost
-        ]);
+        return view('management.job-post.edit', compact('jobPost'));
     }
 
     /**
