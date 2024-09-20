@@ -32,5 +32,11 @@ class AppServiceProvider extends ServiceProvider
                 'Accept' => 'application/json',
             ])->baseUrl(BASE.'media/');
         });
+
+        Http::macro('event', function () {
+            return Http::withHeaders([
+                'Accept' => 'application/json',
+            ])->baseUrl(BASE.'events');
+        });
     }
 }
