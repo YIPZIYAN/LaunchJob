@@ -423,7 +423,7 @@
     </aside>
 
     <main class="p-4 md:ml-64 h-auto pt-20">
-{{--        <div class="mx-4">{{ Breadcrumbs::render() }}</div>--}}
+        <div class="mx-4">{{ Breadcrumbs::render() }}</div>
         {{$slot}}
     </main>
 </div>

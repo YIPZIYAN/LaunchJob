@@ -38,9 +38,14 @@ class JobPostCreated extends Notification implements ShouldQueue
     public function toMail(object $notifiable): MailMessage
     {
         return (new MailMessage)
-                    ->line('The introduction to the notification.'. $this->jobPost->name)
-                    ->action('Notification Action', url('/'))
-                    ->line('Thank you for using our application!');
+            ->subject('New Job for ' . $this->jobPost->jobType->name)
+            ->greeting('Hi there!')
+            ->line('Your interest job type has a new job post !')
+            ->line('Job Name: ' . $this->jobPost->name)
+            ->line('Company: ' . $this->jobPost->company->name)
+            ->line('Location: ' . $this->jobPost->location)
+            ->action('View Job Details', url('http://127.0.0.1:8000/job-post/' . $this->jobPost->id))
+            ->line('Apply the job NOW !');
     }
 
     /**
