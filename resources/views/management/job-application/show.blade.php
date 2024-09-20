@@ -38,8 +38,8 @@
         @if($jobApplication->interviews->isNotEmpty())
             <div class="max-w-[85rem] mx-auto">
                 <x-tables.base-table
-                    header="Scheduled Interview ({{$jobApplication->interviews->count()}})"
-                    :thead="['Date','Mode','Location / Link','Description', 'Start At', 'End At']">
+                        header="Scheduled Interview ({{$jobApplication->interviews->count()}})"
+                        :thead="['Date','Mode','Location / Link','Description', 'Start At', 'End At','Action']">
                     @forelse($jobApplication->interviews->sortByDesc('date') as $key => $interview)
                         <tr class="bg-white hover:bg-gray-50 dark:bg-slate-900 dark:hover:bg-slate-800 cursor-pointer">
 
@@ -74,6 +74,10 @@
 
                             <x-tables.table-data>
                                 {{ $interview->end_time }}
+                            </x-tables.table-data>
+                            <x-tables.table-data>
+                                <x-wireui-button outline label="Edit" href="{{route('management.interview.edit',$interview)}}"
+                                target="_blank"/>
                             </x-tables.table-data>
                         </tr>
                     @empty
