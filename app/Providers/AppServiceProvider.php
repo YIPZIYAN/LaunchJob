@@ -22,7 +22,15 @@ class AppServiceProvider extends ServiceProvider
     {
         define('BASE','127.0.0.1:8001/');
         Http::macro('room', function () {
-            return Http::baseUrl(BASE.'rooms');
+            return Http::withHeaders([
+                'Accept' => 'application/json',
+            ])->baseUrl(BASE.'rooms');
+        });
+
+        Http::macro('image', function () {
+            return Http::withHeaders([
+                'Accept' => 'application/json',
+            ])->baseUrl(BASE.'media/');
         });
     }
 }
