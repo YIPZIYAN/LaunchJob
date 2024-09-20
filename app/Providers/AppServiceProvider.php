@@ -20,7 +20,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        define('BASE','https://127.0.0.1:8001/');
+        define('BASE','127.0.0.1:8001/');
         Http::macro('room', function () {
             return Http::baseUrl(BASE.'rooms');
         });
