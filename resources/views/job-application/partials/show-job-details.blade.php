@@ -3,7 +3,7 @@
         <span class="mr-2">{{__('Job Details')}}</span>
         <x-wireui-badge flat icon="clock" sm label="{{$jobApplication->jobPost->period}}"/>
         <x-wireui-badge flat icon="computer-desktop" sm label="{{$jobApplication->jobPost->mode}}"/>
-        <x-wireui-badge flat icon="tag" sm label="{{$jobApplication->jobPost->type}}"/>
+        <x-wireui-badge flat icon="tag" sm label="{{$jobApplication->jobPost->jobType->name}}"/>
     </x-slot>
     <!-- List -->
     <div class="space-y-3">

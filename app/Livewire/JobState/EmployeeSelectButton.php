@@ -5,12 +5,14 @@ namespace App\Livewire\JobState;
 use App\Models\JobApplication;
 use App\StateMachine\JobApplication\JobApplicationState;
 use App\StateMachine\JobApplication\JobApplicationStateInterface;
+use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
 
 class EmployeeSelectButton extends Component implements JobApplicationStateInterface
 {
     public JobApplication $jobApplication;
     public JobApplicationState $applicationState;
+
     public function mount()
     {
         $this->applicationState = JobApplicationState::tryFrom($this->jobApplication->status);
@@ -19,6 +21,12 @@ class EmployeeSelectButton extends Component implements JobApplicationStateInter
     public function render()
     {
         return view('livewire.job-state.employee-select-button');
+    }
+
+    public function download()
+    {
+        return Storage::disk('public')->download($this->jobApplication->offer_letter, 'OfferLetter-'
+            . $this->jobApplication->jobPost->name);
     }
 
     function shortlist()

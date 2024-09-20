@@ -3,7 +3,11 @@
 @endphp
 
 <div class="flex justify-end space-x-2 px-12">
-   @if(JobApplicationState::OFFERING)
+   @if($applicationState == JobApplicationState::OFFERING)
+        <x-wireui-button
+            flat
+            wire:click="download"
+            label="Download Offer Leter" right-icon="document"/>
         <x-wireui-button
             wire:click="acceptOffer"
             wire:confirm="Are you sure you want to accept this offer?"
