@@ -35,6 +35,7 @@ class EditJob extends Component
 
     public function mount()
     {
+
         $this->type_list = JobType::select('id','name')
             ->get()
             ->map(function ($jobType) {
@@ -44,7 +45,6 @@ class EditJob extends Component
                 ];
             })
             ->toArray();
-
         $this->fill($this->jobPost->toArray());
     }
 
