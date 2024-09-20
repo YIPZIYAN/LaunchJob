@@ -9,7 +9,7 @@
         </p>
     </header>
 
-    <form wire:submit.prevent="submit" action="{{ route('password.update') }}" class="mt-6 space-y-6">
+    <form wire:submit.prevent="submit" class="mt-6 space-y-6">
 
         <div>
             <x-wireui-password
