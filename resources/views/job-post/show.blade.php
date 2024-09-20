@@ -1,7 +1,4 @@
 <x-guest-layout>
-
-{{ Http::event()->get('/') }}
-
     <div class="container mx-auto flex flex-wrap xl:px-24 mt-2">
 
         <!-- Posts Section -->
@@ -62,34 +59,7 @@
             </div>
         </aside>
     </div>
-    <div class="bg-white mt-8 pb-8">
-        <div class="container mx-auto flex flex-wrap mt-2 xl:px-24 px-4">
-            <p class="text-xl pt-8 pl-4 w-full font-semibold">Recommended Career Fair</p>
 
-            <div class="p-4 w-full lg:w-1/2">
-                <x-event-card/>
-            </div>
-
-            <div class="p-4 w-full lg:w-1/2">
-                <x-event-card/>
-            </div>
-
-            <!-- Additional cards will automatically wrap onto the next row -->
-            <div class="p-4 w-full lg:w-1/2">
-                <x-event-card/>
-            </div>
-
-            <div class="p-4 w-full lg:w-1/2">
-                <x-event-card/>
-            </div>
-
-            <div class="p-4 w-full lg:w-1/2">
-                <x-event-card/>
-            </div>
-
-        </div>
-
-    </div>
-
+    <livewire:event-recommendation />
 
 </x-guest-layout>
