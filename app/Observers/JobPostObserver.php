@@ -3,7 +3,10 @@
 namespace App\Observers;
 
 use App\Events\JobPostUpdated;
+use App\Models\Employee;
+use App\Models\InterestJobType;
 use App\Models\JobPost;
+use App\Models\JobType;
 use App\Models\User;
 use App\Notifications\JobPostCreated;
 use Illuminate\Contracts\Events\ShouldHandleEventsAfterCommit;
@@ -16,11 +19,11 @@ class JobPostObserver implements ShouldHandleEventsAfterCommit
      */
     public function created(JobPost $jobPost): void
     {
+        $users = User::whereHas('employee.interestJobType', function ($query) use ($jobPost) {
+            $query->where('job_type_id', $jobPost->job_type_id);
+        })->get();
 
-//        $users = User::find(3);
-//
-//        Notification::send($users, new JobPostCreated($jobPost));
-
+        Notification::send($users, new JobPostCreated($jobPost));
     }
 
     /**

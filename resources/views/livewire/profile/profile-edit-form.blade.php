@@ -66,13 +66,19 @@
 
         <div class="p-4 sm:p-8 bg-white shadow sm:rounded-lg">
             <div class="max-w-xl">
-                <livewire:auth.change-password-form/>
+                <livewire:profile.interest-job-type-form/>
             </div>
         </div>
 
         <div class="p-4 sm:p-8 bg-white shadow sm:rounded-lg">
             <div class="max-w-xl">
-                {{--                @include('profile.partials.delete-user-form')--}}
+                <livewire:profile.change-password-form/>
+            </div>
+        </div>
+
+        <div class="p-4 sm:p-8 bg-white shadow sm:rounded-lg">
+            <div class="max-w-xl">
+                <livewire:profile.delete-user-form/>
             </div>
         </div>
     </div>
