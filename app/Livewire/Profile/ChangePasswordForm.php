@@ -1,11 +1,9 @@
 <?php
 
-namespace App\Livewire\Auth;
+namespace App\Livewire\Profile;
 
-use App\Models\User;
 use Closure;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Validation\Rule;
 use Illuminate\Validation\Rules\Password;
 use Livewire\Component;
 
@@ -55,6 +53,6 @@ class ChangePasswordForm extends Component
 
     public function render()
     {
-        return view('livewire.auth.change-password-form');
+        return view('livewire.profile.change-password-form');
     }
 }

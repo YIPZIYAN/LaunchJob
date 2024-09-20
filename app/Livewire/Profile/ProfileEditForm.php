@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire\Auth;
+namespace App\Livewire\Profile;
 
 use App\Models\User;
 use Illuminate\Support\Facades\Storage;
@@ -62,6 +62,6 @@ class ProfileEditForm extends Component
 
     public function render()
     {
-        return view('livewire.auth.profile-edit-form');
+        return view('livewire.profile.profile-edit-form');
     }
 }
