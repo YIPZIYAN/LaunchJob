@@ -18,5 +18,4 @@
             wire:confirm="Are you sure you want to reject this offer?"
             label="Reject" right-icon="no-symbol"/>
    @endif
-
 </div>

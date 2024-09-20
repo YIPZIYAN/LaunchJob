@@ -123,4 +123,5 @@ return [
         'store' => env('APP_MAINTENANCE_STORE', 'database'),
     ],
 
+   'web_services_api'=> ['base_url' => 'http://127.0.0.1:8001/'],
 ];

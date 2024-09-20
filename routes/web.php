@@ -9,6 +9,7 @@ use App\Http\Controllers\Management\InterviewManagementController;
 use App\Http\Controllers\Management\JobPostManagementController;
 use App\Http\Controllers\Management\SendOfferLetterController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\WebService\RoomController;
 use App\Livewire\Interview\CreateInterview;
 use App\Models\JobPost;
 use Illuminate\Support\Facades\Route;
@@ -25,6 +26,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
+    Route::name('ws.')->prefix('launch-job-plus/')->group(function () {
+        Route::get('room',[RoomController::class,'index'])->name('room.index');
+    });
 
     Route::get('/job-post/{jobPost}', [JobPostController::class, 'show'])->name('job-post.show');
 
