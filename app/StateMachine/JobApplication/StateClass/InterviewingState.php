@@ -16,7 +16,7 @@ class InterviewingState extends BaseJobApplicationState
             ? ['success' => 'Offer letter sent successfully.']
             : ['error' => 'Failed to send offer letter.'];
         Mail::to(User::findOrFail($this->jobApplication->user_id))
-            ->send(new OfferLetterSent($this->jobApplication));
+            ->queue(new OfferLetterSent($this->jobApplication));
         return redirect(route('management.job-post.show',$this->jobApplication->jobPost))->with($message);
     }
 
