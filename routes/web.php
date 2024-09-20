@@ -40,6 +40,11 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::name('management.')->prefix('management/')->group(function () {
             Route::resource('job-post', JobPostManagementController::class);
 
+            Route::get('job-post.download',[JobPostManagementController::class, 'download'])->name('job-post.download');
+            Route::get('job-post.view-xml',[JobPostManagementController::class, 'viewXML'])->name('job-post.view-xml');
+            Route::get('job-post.download-transformedXML',[JobPostManagementController::class, 'downloadTransformedXML'])->name('job-post.download-transformedXML');
+
+
             Route::get('job-post/{jobPost}/applicant/{user}', [JobPostManagementController::class, 'showApplicant'])
                 ->name('job-application.show');
 

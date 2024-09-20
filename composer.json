@@ -14,7 +14,10 @@
         "power-components/livewire-powergrid": "^5.10",
         "spatie/laravel-permission": "^6.9",
         "wireui/wireui": "^2.0",
-        "yoeunes/toastr": "^3.0"
+        "yoeunes/toastr": "^3.0",
+        "ext-simplexml": "*",
+        "ext-dom": "*",
+        "ext-xsl": "*"
     },
     "require-dev": {
         "fakerphp/faker": "^1.23",
