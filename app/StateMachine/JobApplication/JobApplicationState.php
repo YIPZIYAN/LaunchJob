@@ -9,8 +9,8 @@ enum JobApplicationState: string
     case INTERVIEWING = "interviewing";
     case REJECTED = "rejected";
     case OFFERING = "offering";
-    case OFFER_ACCEPTED = "offer_accepted";
-    case OFFER_REJECTED = "offer_rejected";
+    case OFFER_ACCEPTED = "offer accepted";
+    case OFFER_REJECTED = "offer rejected";
 
     public function label(): string
     {
