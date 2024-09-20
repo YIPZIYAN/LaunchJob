@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 class ApplicantXMLController extends Controller
 {
     public JobPost $jobPost;
+
     public function download(JobPost $jobPost)
     {
         $this->jobPost = $jobPost;
@@ -35,7 +36,10 @@ class ApplicantXMLController extends Controller
 
         $transformedXml = $this->getTransformedXML();
 
-        return view('management.job-post.export-applicant', ['transformedXml' => $transformedXml]);
+        return view('management.job-post.export-applicant', [
+            'transformedXml' => $transformedXml,
+            'jobPost' => $jobPost
+        ]);
 
     }
 
@@ -66,7 +70,7 @@ class ApplicantXMLController extends Controller
 
         // Load XSLT stylesheet
         $xsl = new \DOMDocument();
-        $xsl->load(storage_path('xsl/applicant.xsl'));  // Place your XSLT file here
+        $xsl->load(storage_path('xsl/applicant-template.xsl'));  // Place your XSLT file here
 
         // Load XML
         $domXml = new \DOMDocument();
