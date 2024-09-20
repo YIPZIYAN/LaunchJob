@@ -6,8 +6,8 @@
 
         @include('job-application.partials.show-company-details')
 
-        <livewire:room-recommandation />
-        
+        @include('job-application.partials.room-ads')
+
         @if($jobApplication->interviews->isNotEmpty())
             @include('job-application.partials.show-interview-details')
         @endif
