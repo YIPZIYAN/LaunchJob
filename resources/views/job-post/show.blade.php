@@ -1,5 +1,7 @@
 <x-guest-layout>
-    {{ Http::event()->get('/') }}
+
+{{ Http::event()->get('/') }}
+
     <div class="container mx-auto flex flex-wrap xl:px-24 mt-2">
 
         <!-- Posts Section -->

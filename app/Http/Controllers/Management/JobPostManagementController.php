@@ -50,7 +50,7 @@ class JobPostManagementController extends Controller
     public function show(JobPost $jobPost)
     {
         return view('management.job-post.show', [
-            'jobPost' => $jobPost->load(['users']),
+            'jobPost' => $jobPost->load(['users.employee']),
         ]);
     }
 
