@@ -1,12 +1,10 @@
 <?php
 
-namespace App\Livewire\Auth;
+namespace App\Livewire\Profile;
 
 use Closure;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Redirect;
-use Illuminate\Validation\Rules\Password;
 use Livewire\Component;
 
 class DeleteUserForm extends Component
@@ -51,6 +49,6 @@ class DeleteUserForm extends Component
 
     public function render()
     {
-        return view('livewire.auth.delete-user-form');
+        return view('livewire.profile.delete-user-form');
     }
 }

@@ -1,3 +1,3 @@
 <x-guest-layout>
-    <livewire:auth.profile-edit-form/>
+    <livewire:profile.profile-edit-form/>
 </x-guest-layout>
