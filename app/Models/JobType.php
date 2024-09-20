@@ -27,7 +27,7 @@ class JobType extends Model
 
     public function employee(): BelongsToMany
     {
-        return $this->belongsToMany(Employee::class,'interest_job_type')
+        return $this->belongsToMany(Employee::class,'interest_job_types')
             ->withTimestamps();
     }
 }

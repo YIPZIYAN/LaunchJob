@@ -30,7 +30,7 @@ class Employee extends Model
 
     public function jobType(): BelongsToMany
     {
-        return $this->belongsToMany(JobType::class,'interest_job_type')
+        return $this->belongsToMany(JobType::class,'interest_job_types')
             ->withTimestamps();
     }
 }

@@ -372,7 +372,7 @@
                     <ul class="py-1 text-gray-700 dark:text-gray-300"
                         aria-labelledby="dropdown">
                         <li>
-                            <x-dropdown-link :href="route('profile')">
+                            <x-dropdown-link :href="route('profile.edit')">
                                 {{ __('Profile') }}
                             </x-dropdown-link>
                         </li>
@@ -423,7 +423,7 @@
     </aside>
 
     <main class="p-4 md:ml-64 h-auto pt-20">
-        <div class="mx-4">{{ Breadcrumbs::render() }}</div>
+{{--        <div class="mx-4">{{ Breadcrumbs::render() }}</div>--}}
         {{$slot}}
     </main>
 </div>

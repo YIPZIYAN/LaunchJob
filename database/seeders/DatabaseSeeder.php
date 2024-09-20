@@ -22,6 +22,7 @@ class DatabaseSeeder extends Seeder
         $this->call([
             CompanySeeder::class,
             UserSeeder::class,
+            EmployeeSeeder::class,
             JobTypeSeeder::class,
             JobPostSeeder::class,
             JobApplicationSeeder::class,
