@@ -24,6 +24,7 @@ class AppServiceProvider extends ServiceProvider
         Http::macro('room', function () {
             return Http::withHeaders([
                 'Accept' => 'application/json',
+                'content-type' => 'application/json',
             ])->baseUrl(BASE.'rooms');
         });
 

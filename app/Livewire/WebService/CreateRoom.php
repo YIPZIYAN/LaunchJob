@@ -30,21 +30,21 @@ class CreateRoom extends Component
         }
     }
 
-    protected function rules()
-    {
-        return [
-            'owner' => ['required', 'string', 'max:100'],
-            'email' => ['required', 'string', 'email', 'max:100'],
-            'phone' => ['required', 'string', 'max:100'],
-            'name' => ['required', 'string', 'max:100'],
-            'price' => ['required', 'integer', 'min:1', 'max:999999'],
-            'type' => ['required', 'string', 'max:100'],
-            'prefer' => ['required', 'string', 'max:100'],
-            'location' => ['required', 'string', 'max:100'],
-            'description' => ['required', 'string', 'max:1000'],
-            'thumbnail' => ['nullable', 'image', 'mimes:jpeg,png,jpg', 'max:2048'],
-        ];
-    }
+//    protected function rules()
+//    {
+//        return [
+//            'owner' => ['required', 'string', 'max:100'],
+//            'email' => ['required', 'string', 'email', 'max:100'],
+//            'phone' => ['required', 'string', 'max:100'],
+//            'name' => ['required', 'string', 'max:100'],
+//            'price' => ['required', 'integer', 'min:1', 'max:999999'],
+//            'type' => ['required', 'string', 'max:100'],
+//            'prefer' => ['required', 'string', 'max:100'],
+//            'location' => ['required', 'string', 'max:100'],
+//            'description' => ['required', 'string', 'max:1000'],
+//            'thumbnail' => ['nullable', 'image', 'mimes:jpeg,png,jpg', 'max:2048'],
+//        ];
+//    }
 
     public function render()
     {
@@ -53,20 +53,26 @@ class CreateRoom extends Component
 
     public function submit()
     {
-        $this->validate();
+// Store the file and get its path
+        $this->thumbnail->store('thumbnail');
 
-        Http::room()->attach('thumbnail', $this->thumbnail)->post('create', [
+// Provide the full URL of your endpoint (replace with the actual URL)
+        $response = Http::asMultipart()->attach(
+            'thumbnail', fopen(storage_path('app/thumbnail/' . $this->thumbnail->hashName()), 'r'),
+            $this->thumbnail->hashName()
+        )->post('127.0.0.1:8001/rooms/create', [  // Replace 'http://your-api-domain.com/create' with the actual full URL
             'email' => $this->email,
-            'phone' => $this->phone,
+            'contact' => $this->phone,
             'name' => $this->name,
             'price' => $this->price,
             'type' => $this->type,
-            'prefer' => $this->prefer,
+            'tags' => $this->prefer,
             'location' => $this->location,
             'description' => $this->description,
-
             'owner' => $this->owner,
         ]);
 
+
+        dd($response->body());
     }
 }
