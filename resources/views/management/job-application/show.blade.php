@@ -30,6 +30,10 @@
                 <p class="text-sm text-gray-600 dark:text-neutral-400">
                     {{$jobApplication->user->employee->about}}
                 </p>
+                <x-wireui-button
+                    target="_blank"
+                    href="{{asset('storage/'.$jobApplication->user->employee->resume)}}"
+                    class="mt-4" icon="document" outline label="View Resume" />
             </div>
             <!-- End About -->
         </x-wireui-card>
