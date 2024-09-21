@@ -10,6 +10,7 @@ use App\Http\Controllers\Management\InterviewManagementController;
 use App\Http\Controllers\Management\JobPostManagementController;
 use App\Http\Controllers\Management\SendOfferLetterController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\SkillTestController;
 use App\Http\Controllers\WebService\EventController;
 use App\Http\Controllers\WebService\RoomController;
 use App\Livewire\Interview\CreateInterview;
@@ -76,6 +77,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::resource('/job-application', JobApplicationController::class);
         Route::resource('/interview', InterviewController::class);
         Route::get('/events', [EventController::class, 'index'])->name('events.index');
+        Route::get('/skilltests', [SkillTestController::class, 'index'])->name('skilltests.index');
     });
 });
 

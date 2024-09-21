@@ -97,5 +97,15 @@
                 <livewire:profile.delete-user-form/>
             </div>
         </div>
+
+        @role('employee')
+        <div class="p-4 sm:p-8 bg-white shadow sm:rounded-lg">
+            <div class="max-w-xl">
+                <livewire:skill-test-list/>
+            </div>
+        </div>
+        @endrole
+
     </div>
+
 </div>

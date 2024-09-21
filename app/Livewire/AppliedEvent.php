@@ -17,7 +17,7 @@ class AppliedEvent extends Component
             'email' => auth()->user()->email
         ]);
 
-        $event_list = $response->successful() ? $response->json() : null;
+        $this->event_list = $response->successful() ? json_decode($response) : null;
     }
 
     public function render()
