@@ -2,6 +2,7 @@
 
 namespace App\Livewire\WebService;
 
+use Exception;
 use Illuminate\Support\Facades\Http;
 use Livewire\Component;
 use Livewire\WithFileUploads;
@@ -61,39 +62,47 @@ class CreateRoom extends Component
         $this->thumbnail->store('thumbnail');
 
 
-
-        $response = Http::asMultipart()->attach(
-            'thumbnail', fopen(storage_path('app/thumbnail/' . $this->thumbnail->hashName()), 'r'),
-            $this->thumbnail->hashName()
-        )->post('127.0.0.1:8001/rooms/create', [
-            'email' => $this->email,
-            'contact' => $this->phone,
-            'name' => $this->name,
-            'price' => $this->price,
-            'type' => $this->type,
-            'tags' => $this->prefer,
-            'location' => $this->location,
-            'description' => $this->description,
-            'owner' => $this->owner,
-        ]);
-
-
-        $galleryResponse = Http::asMultipart();
-        if ($this->gallery != null) {
-            foreach ($this->gallery as $image) {
-                $image->store('gallery');
-                $galleryResponse->attach('image', fopen(storage_path('app/gallery/') . $image->hashName(), 'r'),
-                    $image->hashName());
-            }
-            $galleryResponse->post('127.0.0.1:8001/rooms/gallery/create', [
-                'room' => json_decode($response->body())->id
+        try {
+            $response = Http::asMultipart()->attach(
+                'thumbnail',
+                fopen(storage_path('app/thumbnail/' . $this->thumbnail->hashName()), 'r'),
+                $this->thumbnail->hashName()
+            )->post('127.0.0.1:8001/rooms/create', [
+                'email' => $this->email,
+                'contact' => $this->phone,
+                'name' => $this->name,
+                'price' => $this->price,
+                'type' => $this->type,
+                'tags' => $this->prefer,
+                'location' => $this->location,
+                'description' => $this->description,
+                'owner' => $this->owner,
             ]);
 
+
+            $galleryResponse = Http::asMultipart();
+            if ($this->gallery != null) {
+                foreach ($this->gallery as $image) {
+                    $image->store('gallery');
+                    $galleryResponse->attach(
+                        'image',
+                        fopen(storage_path('app/gallery/') . $image->hashName(), 'r'),
+                        $image->hashName()
+                    );
+                }
+                $galleryResponse->post('127.0.0.1:8001/rooms/gallery/create', [
+                    'room' => json_decode($response->body())->id
+                ]);
+            }
+        } catch (Exception $e) {
+            return redirect()->route('home')->with([
+                'error'=> 'Service unavailable'
+            ]);
         }
 
         $message = $response->successful() ?
-            ['success', 'Room information posted successfully.'] :
-            ['error', 'Unable to post room information.'];
+            ['success'=> 'Room information posted successfully.'] :
+            ['error'=> 'Unable to post room information.'];
 
         return redirect()->route('home')->with($message);
     }
