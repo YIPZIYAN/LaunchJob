@@ -74,17 +74,20 @@
 
             <!-- Card -->
             <a class="group relative flex flex-col w-full min-h-60 bg-[url('https://images.unsplash.com/photo-1634017839464-5c339ebe3cb4?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=560&q=80')] bg-center bg-cover rounded-xl hover:shadow-lg focus:outline-none focus:shadow-lg transition"
-               href="#">
+               href="{{route('ws.room.create')}}">
                 <div class="flex-auto p-4 md:p-6">
-                    <h3 class="text-xl text-white/90 group-hover:text-white"><span class="font-bold">Need Assistance? We’re Here to Help</span>
-                        Contact us for guidance, technical support, or any
-                        questions you may have.
+                    <h3 class="text-xl text-white/90 group-hover:text-white">
+                        Unable to rent your space?
+                    </h3>
+                    <h3 class="text-xl text-white/90 group-hover:text-white">
+                        <span class="font-bold">LaunchJob+</span>
+                         has the solution! Our user-friendly room rental system makes it easy to post your room and connect with potential renters.
                     </h3>
                 </div>
                 <div class="pt-0 p-4 md:p-6">
                     <div
                         class="inline-flex items-center gap-2 text-sm font-medium text-white group-hover:text-white/70 group-focus:text-white/70">
-                        Ask For Help
+                        Get started now!
                         <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                              viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                              stroke-linecap="round" stroke-linejoin="round">

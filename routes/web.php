@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ApplicantXMLController;
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\InterviewController;
 use App\Http\Controllers\JobApplicationController;
@@ -30,6 +31,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     Route::name('ws.')->prefix('launch-job-plus/')->group(function () {
         Route::get('room',[RoomController::class,'index'])->name('room.index');
+        Route::get('room/create',[RoomController::class,'create'])->name('room.create');
+        Route::get('room/{id}',[RoomController::class,'show'])->name('room.show');
     });
 
     Route::get('/job-post/{jobPost}', [JobPostController::class, 'show'])->name('job-post.show');
@@ -41,6 +44,13 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
         Route::name('management.')->prefix('management/')->group(function () {
             Route::resource('job-post', JobPostManagementController::class);
+
+            Route::get('job-post/{jobPost}/applicant/download',[ApplicantXMLController::class,'download'])
+            ->name('applicant.download');
+            Route::get('job-post/{jobPost}/applicant/view-xml',[ApplicantXMLController::class,'viewXML'])
+                ->name('applicant.view-xml');
+            Route::get('job-post/{jobPost}/applicant/download-xslt',[ApplicantXMLController::class,'downloadTransformedXML'])
+                ->name('applicant.download-transformed-xml');
 
             Route::get('job-post.download',[JobPostManagementController::class, 'download'])->name('job-post.download');
             Route::get('job-post.view-xml',[JobPostManagementController::class, 'viewXML'])->name('job-post.view-xml');

@@ -1,4 +1,5 @@
 import Swal from 'sweetalert2';
+import {Jodit} from "jodit";
 function sweetalert2($image) {
     Swal.fire({
         title: "Congratulations!",
@@ -11,4 +12,5 @@ function sweetalert2($image) {
         backdrop: `rgba(0,0,0,0.5)`
     });
 }
+
 
