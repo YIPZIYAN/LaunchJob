@@ -12,9 +12,12 @@ class AppliedEvent extends Component
 
     public function mount()
     {
-        $this->event_list = json_decode(Http::event()->get('/event-attendee', [
+
+        $response = Http::event()->get('/event-attendee', [
             'email' => auth()->user()->email
-        ]));
+        ]);
+
+        $event_list = $response->successful() ? $response->json() : null;
     }
 
     public function render()

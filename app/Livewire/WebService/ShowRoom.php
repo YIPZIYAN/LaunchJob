@@ -15,7 +15,7 @@ class ShowRoom extends Component
         try {
            $this->room = json_decode(Http::room()->get($this->id));
         }catch (\Exception $exception){
-            return redirect()->back()->with(['error', 'Service unavailable']);
+            return redirect()->route('home')->with(['error', 'Service unavailable']);
         }
     }
 

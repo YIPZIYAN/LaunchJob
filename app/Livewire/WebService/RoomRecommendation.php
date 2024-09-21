@@ -15,7 +15,7 @@ class RoomRecommendation extends Component
         try {
             $this->rooms = json_decode(Http::room()->get(''));
         } catch (\Exception $exception) {
-            return redirect()->back()->with(['error', 'Service unavailable']);
+            return redirect()->route('home')->with(['error', 'Service unavailable']);
         }
 
     }
