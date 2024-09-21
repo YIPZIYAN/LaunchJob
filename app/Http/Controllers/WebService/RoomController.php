@@ -16,4 +16,9 @@ class RoomController extends Controller
     {
         return view('webservice.room.show', ['id' => $id]);
     }
+
+    public function create()
+    {
+        return view('webservice.room.create');
+    }
 }

@@ -29,6 +29,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     Route::name('ws.')->prefix('launch-job-plus/')->group(function () {
         Route::get('room',[RoomController::class,'index'])->name('room.index');
+        Route::get('room/create',[RoomController::class,'create'])->name('room.create');
         Route::get('room/{id}',[RoomController::class,'show'])->name('room.show');
     });
 
