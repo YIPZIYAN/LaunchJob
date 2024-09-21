@@ -1,7 +1,7 @@
 <div class="bg-white mt-8 pb-8">
     <div class="container mx-auto flex flex-wrap mt-2 xl:px-24 px-4">
         <p class="text-xl pt-8 pl-4 w-full font-semibold">Recommended Career Fair</p>
-
+        <x-wireui-alert class="mt-4" title="No event found."/>
         @foreach($events as $event)
             <div class="p-4 w-full 2xl:w-1/2">
                 <div
@@ -33,7 +33,8 @@
                             </p>
                             <div class="pt-5 sm:mt-auto">
                                 <x-wireui-button class="text-xs text-blue-500 dark:text-neutral-500"
-                                                 wire:click="submit({{ $event->id }})" wire:confirm="Are you sure to join this event?"
+                                                 wire:click="submit({{ $event->id }})"
+                                                 wire:confirm="Are you sure to join this event?"
                                                  label="Apply Now"/>
                             </div>
                         </div>
