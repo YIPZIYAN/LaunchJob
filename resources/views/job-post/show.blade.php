@@ -41,13 +41,15 @@
         <aside class="w-full md:w-1/3 flex flex-col items-center px-3">
 
             <div class="w-full bg-white shadow justify-center flex flex-col my-4 p-6">
+                <div class="flex space-x-2 mt-2">
+                    <x-wireui-avatar
+                        xl
+                        icon="building-office-2"
+                        :src="$jobPost->company->avatar == null ? '': asset('storage/'.$jobPost->company->avatar)"
+                    />
+                </div>
 
 
-                <x-wireui-avatar
-                    xl
-                    icon="building-office-2"
-                    :src="$jobPost->company->avatar == null ? '': asset('storage/'.$jobPost->company->avatar)"
-                />
 
                 <p class="text-xl font-semibold mt-4">{{$jobPost->company->name}}</p>
                 <p class="text-sm pb-4 text-justify">{{$jobPost->company->address}}</p>
