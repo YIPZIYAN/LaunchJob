@@ -48,30 +48,33 @@
                         </div>
                     </x-wireui-card>
                 </div>
-                <div
-                    class="w-[20rem] flex-none h-fit bg-white relative block overflow-hidden rounded-lg border border-gray-100 p-4 sm:p-6 lg:p-8">
+                <div>
+                    <div
+                        class="w-[20rem] flex-none h-fit bg-white relative block overflow-hidden rounded-lg border border-gray-100 p-4 sm:p-6 lg:p-8">
                     <span
                         class="absolute inset-x-0 bottom-0 h-2 bg-gradient-to-r from-green-300 via-blue-500 to-purple-600"></span>
 
-                    <div class="sm:flex sm:justify-between sm:gap-4">
-                        <div>
-                            <h3 class="text-lg font-bold text-gray-900 sm:text-xl">
-                                Contact Person
-                            </h3>
+                        <div class="sm:flex sm:justify-between sm:gap-4">
+                            <div>
+                                <h3 class="text-lg font-bold text-gray-900 sm:text-xl">
+                                    Contact Person
+                                </h3>
+                            </div>
+                        </div>
+
+                        <div class="mt-4">
+                            <p class="text-pretty text-sm text-gray-500">
+                                Name: {{$room->owner}}
+                            </p>
+                            <p class="text-pretty text-sm text-gray-500">
+                                Phone No: {{$room->contact}}
+                            </p>
+                            <p class="text-pretty text-sm text-gray-500">
+                                Email: {{$room->email}}
+                            </p>
                         </div>
                     </div>
-
-                    <div class="mt-4">
-                        <p class="text-pretty text-sm text-gray-500">
-                            Name: {{$room->owner}}
-                        </p>
-                        <p class="text-pretty text-sm text-gray-500">
-                            Phone No: {{$room->contact}}
-                        </p>
-                        <p class="text-pretty text-sm text-gray-500">
-                            Email: {{$room->email}}
-                        </p>
-                    </div>
+                    <x-wireui-button href="{{route('ws.room.create')}}" full class="mt-4 capitalize" icon="fire" label="I want to post room!"/>
                 </div>
             </div>
 

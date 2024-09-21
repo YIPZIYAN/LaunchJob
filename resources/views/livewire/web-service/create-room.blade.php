@@ -78,9 +78,21 @@
                 <div class="text-sm text-red-500">{{ $message }}</div>
                 @enderror
             </div>
+            <div>
+                <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="file_input">
+                    Gallery
+                </label>
+                <input
+                    wire:model="gallery"
+                    class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
+                    id="file_input" type="file" multiple>
+                @error('gallery')
+                <div class="text-sm text-red-500">{{ $message }}</div>
+                @enderror
+            </div>
         </div>
 
-        <x-wireui-button type="submit" class="w-full" right-icon="rocket-launch" label="Launch For Jobs!"/>
+        <x-wireui-button type="submit" class="w-full" right-icon="rocket-launch" label="Launch For Rooms!"/>
     </form>
 
     <script>

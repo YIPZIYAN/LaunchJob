@@ -21,6 +21,7 @@ class CreateRoom extends Component
     public $location;
     public $description;
     public $thumbnail;
+    public $gallery;
 
     public function mount()
     {
@@ -42,7 +43,8 @@ class CreateRoom extends Component
             'prefer' => ['required', 'string', 'max:100'],
             'location' => ['required', 'string', 'max:100'],
             'description' => ['required', 'string', 'max:1000'],
-            'thumbnail' => ['nullable', 'image', 'mimes:jpeg,png,jpg', 'max:2048'],
+            'thumbnail' => ['required', 'image', 'mimes:jpeg,png,jpg', 'max:2048'],
+            'gallery' => ['nullable', 'max:2048'],
         ];
     }
 
@@ -53,12 +55,17 @@ class CreateRoom extends Component
 
     public function submit()
     {
+
+
         $this->validate();
         $this->thumbnail->store('thumbnail');
+
+
+
         $response = Http::asMultipart()->attach(
             'thumbnail', fopen(storage_path('app/thumbnail/' . $this->thumbnail->hashName()), 'r'),
             $this->thumbnail->hashName()
-        )->post('127.0.0.1:8001/rooms/create', [  // Replace 'http://your-api-domain.com/create' with the actual full URL
+        )->post('127.0.0.1:8001/rooms/create', [
             'email' => $this->email,
             'contact' => $this->phone,
             'name' => $this->name,
@@ -69,6 +76,20 @@ class CreateRoom extends Component
             'description' => $this->description,
             'owner' => $this->owner,
         ]);
+
+
+        $galleryResponse = Http::asMultipart();
+        if ($this->gallery != null) {
+            foreach ($this->gallery as $image) {
+                $image->store('gallery');
+                $galleryResponse->attach('image', fopen(storage_path('app/gallery/') . $image->hashName(), 'r'),
+                    $image->hashName());
+            }
+            $galleryResponse->post('127.0.0.1:8001/rooms/gallery/create', [
+                'room' => json_decode($response->body())->id
+            ]);
+
+        }
 
         $message = $response->successful() ?
             ['success', 'Room information posted successfully.'] :
