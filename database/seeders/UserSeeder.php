@@ -22,7 +22,7 @@ class UserSeeder extends Seeder
 
         User::factory()->create([
             'name' => 'Employee 1',
-            'email' => 'chunyengoh030503@gmail.com',
+            'email' => 'test@gmail.com',
             'password' => 'password',
         ])->assignRole('employee');
 

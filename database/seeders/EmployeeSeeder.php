@@ -27,7 +27,6 @@ class EmployeeSeeder extends Seeder
         Employee::factory()->create([
             'user_id' => '4',
             'profession' => 'test',
-
         ]);
     }
 }

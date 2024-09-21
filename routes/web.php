@@ -10,10 +10,12 @@ use App\Http\Controllers\Management\InterviewManagementController;
 use App\Http\Controllers\Management\JobPostManagementController;
 use App\Http\Controllers\Management\SendOfferLetterController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\WebService\EventController;
 use App\Http\Controllers\WebService\RoomController;
 use App\Livewire\Interview\CreateInterview;
 use App\Models\JobPost;
 use Illuminate\Support\Facades\Route;
+use Laravel\Telescope\Http\Controllers\EventsController;
 
 Route::get('/', function () {
     return view('welcome', ['jobPosts' => JobPost::with('company')->get()]);
@@ -73,8 +75,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::middleware(['role:employee'])->group(function () {
         Route::resource('/job-application', JobApplicationController::class);
         Route::resource('/interview', InterviewController::class);
-//        Route::get('/profile', [ProfileController::class)->name('profile');
-
+        Route::get('/events', [EventController::class, 'index'])->name('events.index');
     });
 });
 

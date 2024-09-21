@@ -1,5 +1,4 @@
 <x-guest-layout>
-{{ Http::event()->get('/') }}
     <div class="container mx-auto flex flex-wrap xl:px-24 mt-2">
 
         <!-- Posts Section -->
@@ -35,7 +34,7 @@
                         </div>
                     </div>
                     <p class="text-blue-700 text-sm font-bold uppercase pb-2">Type</p>
-                    <p class="pb-6 text-justify">{{$jobPost->type}}</p>
+                    <p class="pb-6 text-justify">{{$jobPost->jobType->name}}</p>
                 </div>
             </article>
         </section>
@@ -55,9 +54,12 @@
                 <p class="text-justify ">{{$jobPost->company->description}}</p>
 
 
-                <livewire:job-state.apply-button  :job-post="$jobPost" />
+                <livewire:job-state.apply-button :job-post="$jobPost"/>
 
             </div>
         </aside>
     </div>
+
+    <livewire:event-recommendation :job-post="$jobPost"/>
+
 </x-guest-layout>
