@@ -1,8 +1,8 @@
-<div class="bg-white mt-8 pb-8">
+<div class="pb-8">
     <div class="container mx-auto flex flex-wrap mt-2 xl:px-24 px-4">
-        <p class="text-xl pt-8 pl-4 w-full font-semibold">Recommended Career Fair</p>
+        <p class="text-xl pt-8 pl-4 w-full font-semibold">Your Events</p>
 
-        @foreach($events as $event)
+        @foreach($event_list as $event)
             <div class="p-4 w-full 2xl:w-1/2">
                 <div
                     class="bg-white border rounded-xl shadow-sm sm:flex dark:bg-neutral-900 dark:border-neutral-700 dark:shadow-neutral-700/70">
@@ -31,11 +31,6 @@
                             <p class="mt-2 text-gray-500 dark:text-neutral-400 text-justify">
                                 Capacity: {{$event->capacity}}
                             </p>
-                            <div class="pt-5 sm:mt-auto">
-                                <x-wireui-button class="text-xs text-blue-500 dark:text-neutral-500"
-                                                 wire:click="submit({{ $event->id }})" wire:confirm="Are you sure to join this event?"
-                                                 label="Apply Now"/>
-                            </div>
                         </div>
                     </div>
                 </div>

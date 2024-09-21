@@ -60,6 +60,6 @@
         </aside>
     </div>
 
-    <livewire:event-recommendation />
+    <livewire:event-recommendation :job-post="$jobPost"/>
 
 </x-guest-layout>
