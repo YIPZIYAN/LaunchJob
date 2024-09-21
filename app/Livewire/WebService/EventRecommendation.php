@@ -18,7 +18,7 @@ class EventRecommendation extends Component
     {
         try {
             $this->events = json_decode(Http::event()->get('/'));
-        } catch (ConnectException $e) {
+        } catch (\Exception $e) {
             $this->events = [];
             session()->flash('error', 'Failed to retrieve events. Please try again later.');
         }
