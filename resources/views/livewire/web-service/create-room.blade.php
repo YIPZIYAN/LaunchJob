@@ -90,16 +90,43 @@
                 <div class="text-sm text-red-500">{{ $message }}</div>
                 @enderror
             </div>
-        </div>
+            @if($thumbnail)
+                <div class="py-4 sm:px-6 mx-auto sm:col-span-2">
+                    Preview Room Images
+                    <div class="grid gap-4 justify-items-center">
+                        <div>
+                            <img class="h-72 max-w-full rounded-lg"
+                                 src="{{$thumbnail->temporaryUrl()}}"
+                                 alt="">
+                        </div>
+                        <div class="flex flex-nowrap gap-4 overflow-x-auto">
+                            @if($gallery)
+                                @foreach($gallery as $image)
+                                    <div class="flex-none ">
+                                        <img class=" h-36 max-w-full rounded-lg"
+                                             src="{{$image->temporaryUrl()}}"
+                                             alt="">
+                                    </div>
+                                @endforeach
+                            @endif
 
+                        </div>
+                    </div>
+                </div>
+            @endif
+
+
+        </div>
         <x-wireui-button type="submit" class="w-full" right-icon="rocket-launch" label="Launch For Rooms!"/>
+
     </form>
 
     <script>
         var trixEditor = document.getElementById("x")
 
-        addEventListener("trix-blur", function(event) {
-            @this.set('description', trixEditor.getAttribute('value'))
+        addEventListener("trix-blur", function (event) {
+            @this.
+            set('description', trixEditor.getAttribute('value'))
         })
     </script>
 </x-wireui-card>
