@@ -44,7 +44,7 @@
                             <span class="mr-2">{{__('Description')}}</span>
                         </x-slot>
                         <div class="space-y-2">
-                            {{$room->description}}
+                            {!!$room->description!!}
                         </div>
                     </x-wireui-card>
                 </div>

@@ -30,21 +30,21 @@ class CreateRoom extends Component
         }
     }
 
-//    protected function rules()
-//    {
-//        return [
-//            'owner' => ['required', 'string', 'max:100'],
-//            'email' => ['required', 'string', 'email', 'max:100'],
-//            'phone' => ['required', 'string', 'max:100'],
-//            'name' => ['required', 'string', 'max:100'],
-//            'price' => ['required', 'integer', 'min:1', 'max:999999'],
-//            'type' => ['required', 'string', 'max:100'],
-//            'prefer' => ['required', 'string', 'max:100'],
-//            'location' => ['required', 'string', 'max:100'],
-//            'description' => ['required', 'string', 'max:1000'],
-//            'thumbnail' => ['nullable', 'image', 'mimes:jpeg,png,jpg', 'max:2048'],
-//        ];
-//    }
+    protected function rules()
+    {
+        return [
+            'owner' => ['required', 'string', 'max:100'],
+            'email' => ['required', 'string', 'email', 'max:100'],
+            'phone' => ['required', 'string', 'max:100'],
+            'name' => ['required', 'string', 'max:100'],
+            'price' => ['required', 'integer', 'min:1', 'max:999999'],
+            'type' => ['required', 'string', 'max:100'],
+            'prefer' => ['required', 'string', 'max:100'],
+            'location' => ['required', 'string', 'max:100'],
+            'description' => ['required', 'string', 'max:1000'],
+            'thumbnail' => ['nullable', 'image', 'mimes:jpeg,png,jpg', 'max:2048'],
+        ];
+    }
 
     public function render()
     {
@@ -53,10 +53,8 @@ class CreateRoom extends Component
 
     public function submit()
     {
-// Store the file and get its path
+        $this->validate();
         $this->thumbnail->store('thumbnail');
-
-// Provide the full URL of your endpoint (replace with the actual URL)
         $response = Http::asMultipart()->attach(
             'thumbnail', fopen(storage_path('app/thumbnail/' . $this->thumbnail->hashName()), 'r'),
             $this->thumbnail->hashName()
@@ -72,7 +70,10 @@ class CreateRoom extends Component
             'owner' => $this->owner,
         ]);
 
+        $message = $response->successful() ?
+            ['success', 'Room information posted successfully.'] :
+            ['error', 'Unable to post room information.'];
 
-        dd($response->body());
+        return redirect()->route('home')->with($message);
     }
 }
