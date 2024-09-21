@@ -29,6 +29,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     Route::name('ws.')->prefix('launch-job-plus/')->group(function () {
         Route::get('room',[RoomController::class,'index'])->name('room.index');
+        Route::get('room/{id}',[RoomController::class,'show'])->name('room.show');
     });
 
     Route::get('/job-post/{jobPost}', [JobPostController::class, 'show'])->name('job-post.show');

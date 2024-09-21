@@ -1,3 +1,3 @@
 <x-guest-layout>
-    <livewire:room-recommandation />
+    <livewire:web-service.room-recommendation />
 </x-guest-layout>
