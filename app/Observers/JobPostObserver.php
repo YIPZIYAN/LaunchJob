@@ -3,10 +3,7 @@
 namespace App\Observers;
 
 use App\Events\JobPostUpdated;
-use App\Models\Employee;
-use App\Models\InterestJobType;
 use App\Models\JobPost;
-use App\Models\JobType;
 use App\Models\User;
 use App\Notifications\JobPostCreated;
 use Illuminate\Contracts\Events\ShouldHandleEventsAfterCommit;
@@ -48,6 +45,16 @@ class JobPostObserver implements ShouldHandleEventsAfterCommit
     public function restored(JobPost $jobPost): void
     {
         //
+    }
+
+    public function deleting(JobPost $jobPost): void
+    {
+        $jobPost->jobApplications()->delete();
+    }
+
+    public function restoring(JobPost $jobPost): void
+    {
+        $jobPost->jobApplications()->withTrashed()->restore();
     }
 
     /**

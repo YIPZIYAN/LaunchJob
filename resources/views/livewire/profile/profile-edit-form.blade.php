@@ -67,13 +67,21 @@
         @role('employee')
         <div class="p-4 sm:p-8 bg-white shadow sm:rounded-lg">
             <div class="max-w-xl">
-                <livewire:profile.interest-job-type-form/>
+                <livewire:profile.employee-profile-form/>
             </div>
         </div>
 
         <div class="p-4 sm:p-8 bg-white shadow sm:rounded-lg">
             <div class="max-w-xl">
-                <livewire:profile.employee-profile-form/>
+                <livewire:profile.interest-job-type-form/>
+            </div>
+        </div>
+        @endrole
+
+        @role('company')
+        <div class="p-4 sm:p-8 bg-white shadow sm:rounded-lg">
+            <div class="max-w-xl">
+                <livewire:profile.company-profile-form/>
             </div>
         </div>
         @endrole
