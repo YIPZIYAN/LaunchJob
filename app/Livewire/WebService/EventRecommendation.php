@@ -1,11 +1,10 @@
 <?php
 
-namespace App\Livewire;
+namespace App\Livewire\WebService;
 
 use GuzzleHttp\Exception\ConnectException;
 use Illuminate\Support\Facades\Http;
 use Livewire\Component;
-use PHPUnit\Exception;
 
 class EventRecommendation extends Component
 {
@@ -48,6 +47,6 @@ class EventRecommendation extends Component
 
     public function render()
     {
-        return view('livewire.event-recommendation');
+        return view('livewire.web-service.event-recommendation');
     }
 }

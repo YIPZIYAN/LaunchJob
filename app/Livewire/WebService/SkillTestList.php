@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire;
+namespace App\Livewire\WebService;
 
 use GuzzleHttp\Exception\ConnectException;
 use Illuminate\Support\Facades\Http;
@@ -23,6 +23,6 @@ class SkillTestList extends Component
 
     public function render()
     {
-        return view('livewire.skill-test-list');
+        return view('livewire.web-service.skill-test-list');
     }
 }

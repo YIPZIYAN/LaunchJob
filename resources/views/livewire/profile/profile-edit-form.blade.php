@@ -101,7 +101,7 @@
         @role('employee')
         <div class="p-4 sm:p-8 bg-white shadow sm:rounded-lg">
             <div class="max-w-xl">
-                <livewire:skill-test-list/>
+                <livewire:web-service.skill-test-list/>
             </div>
         </div>
         @endrole

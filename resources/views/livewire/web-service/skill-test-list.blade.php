@@ -27,7 +27,7 @@
             <tr>
                 <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800 dark:text-neutral-200">{{ $skill_test->name }}</td>
                 <td class="px-6 py-4 whitespace-nowrap text-end text-sm font-medium">
-                    <a href="{{route('dashboard')}}"
+                    <a href="{{route('skills.index', $skill_test->id)}}"
                        target="_blank"
                        class="hover:underline inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent text-blue-600 hover:text-blue-800 focus:outline-none focus:text-blue-800 disabled:opacity-50 disabled:pointer-events-none dark:text-blue-500 dark:hover:text-blue-400 dark:focus:text-blue-400">JOIN</a>
                 </td>

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire;
+namespace App\Livewire\WebService;
 
 use Illuminate\Support\Facades\Http;
 use Livewire\Component;
@@ -22,6 +22,6 @@ class AppliedEvent extends Component
 
     public function render()
     {
-        return view('livewire.applied-event');
+        return view('livewire.web-service.applied-event');
     }
 }

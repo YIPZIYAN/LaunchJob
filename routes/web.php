@@ -77,7 +77,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::resource('/job-application', JobApplicationController::class);
         Route::resource('/interview', InterviewController::class);
         Route::get('/events', [EventController::class, 'index'])->name('events.index');
-        Route::get('/skilltests', [SkillTestController::class, 'index'])->name('skilltests.index');
+        Route::get('/skills', [SkillTestController::class, 'index'])->name('skills.index');
     });
 });
 
