@@ -6,7 +6,8 @@ use Illuminate\Http\Request;
 
 class SkillTestController extends Controller
 {
-    public function index(){
-        return view('webservice.skills');
+    public function index(string $id)
+    {
+        return view('webservice.skills', ['id' => $id]);
     }
 }
