@@ -4,6 +4,7 @@ namespace App\Livewire\WebService;
 
 use GuzzleHttp\Exception\ConnectException;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Log;
 use Livewire\Component;
 
 class SkillTestList extends Component
@@ -16,6 +17,7 @@ class SkillTestList extends Component
         try {
             $this->skill_tests = json_decode(Http::skill_test()->get('/'));
         } catch (\Exception $e) {
+            Log::error($e->getMessage());
             $this->skill_tests = [];
             session()->flash('error', 'Failed to retrieve skill test. Please try again later.');
         }

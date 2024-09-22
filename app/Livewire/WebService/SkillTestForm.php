@@ -4,6 +4,7 @@ namespace App\Livewire\WebService;
 
 use GuzzleHttp\Exception\ConnectException;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Log;
 use Livewire\Component;
 
 class SkillTestForm extends Component
@@ -20,7 +21,8 @@ class SkillTestForm extends Component
             $this->skill_test = json_decode(Http::skill_test()->get('/get', [
                 'id' => $this->id,
             ]));
-        } catch (ConnectException $e) {
+        } catch (\Exception $e) {
+            Log::error($e->getMessage());
             $this->skill_test = [];
             session()->flash('error', 'Failed to retrieve events. Please try again later.');
         }
@@ -57,7 +59,8 @@ class SkillTestForm extends Component
                 ? ['success' => 'Congratulations! Skill test submitted and graded.']
                 : ['error' => json_decode($response->body(), true)];
 
-        } catch (ConnectException $e) {
+        } catch (\Exception $e) {
+            Log::error($e->getMessage());
             $message = ['error' => 'Could not submit the test. Please try again later.'];
         }
 

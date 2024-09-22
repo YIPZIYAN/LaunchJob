@@ -4,6 +4,7 @@ namespace App\Livewire\WebService;
 
 use Exception;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Log;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
@@ -95,6 +96,7 @@ class CreateRoom extends Component
                 ]);
             }
         } catch (Exception $e) {
+            Log::error($e->getMessage());
             return redirect()->route('home')->with([
                 'error'=> 'Service unavailable'
             ]);

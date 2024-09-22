@@ -4,6 +4,7 @@ namespace App\Livewire\WebService;
 
 use GuzzleHttp\Exception\ConnectException;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Log;
 use Livewire\Component;
 
 class EventRecommendation extends Component
@@ -38,7 +39,8 @@ class EventRecommendation extends Component
             $message = $response->successful()
                 ? ['success' => 'Applied the event successfully.']
                 : ['error' => json_decode($response->body(), true)];
-        } catch (ConnectException $e) {
+        } catch (\Exception $e) {
+            Log::error($e->getMessage());
             $message = ['error' => 'Could not apply the event. Please try again later.'];
         }
 
