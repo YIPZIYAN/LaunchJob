@@ -8,7 +8,7 @@
             <!-- Profile -->
             <div class="flex items-center gap-x-3">
                 <div class="shrink-0">
-                    <x-wireui-avatar xl icon="building-office-2" :src="$jobApplication->user->avatar == null
+                    <x-wireui-avatar xl icon="user" :src="$jobApplication->user->avatar == null
                         ? ''
                         : asset('storage/' . $jobApplication->user->avatar)" />
                 </div>
