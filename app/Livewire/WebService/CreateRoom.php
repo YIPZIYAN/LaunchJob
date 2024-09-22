@@ -26,15 +26,16 @@ class CreateRoom extends Component
 
     #[Validate('required|image|max:2048')]
     public $thumbnail;
-    #[Validate(['gallery.*' => 'image|max:2048'])]
-    public $gallery=[];
+    #[Validate(['gallery.*' => 'image|max:2048'],
+        message: ['gallery.*' => 'Only images are allowed.'])]
+    public $gallery = [];
 
     public function getUrl($image)
     {
         $url = '';
         try {
             $url = $image->temporaryUrl();
-        }catch (Exception $exception){
+        } catch (Exception $exception) {
             Log::error($exception->getMessage());
         }
 
@@ -112,13 +113,13 @@ class CreateRoom extends Component
         } catch (Exception $e) {
             Log::error($e->getMessage());
             return redirect()->route('home')->with([
-                'error'=> 'Service unavailable'
+                'error' => 'Service unavailable'
             ]);
         }
 
         $message = $response->successful() ?
-            ['success'=> 'Room information posted successfully.'] :
-            ['error'=> 'Unable to post room information.'];
+            ['success' => 'Room information posted successfully.'] :
+            ['error' => 'Unable to post room information.'];
 
         return redirect()->route('home')->with($message);
     }
