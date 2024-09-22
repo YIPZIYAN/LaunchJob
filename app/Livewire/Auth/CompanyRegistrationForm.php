@@ -41,13 +41,17 @@ class CompanyRegistrationForm extends Component
         return [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:' . User::class],
-            'password' => ['required', 'confirmed', Password::defaults()],
+            'password' => ['required', 'confirmed', Password::min(8)
+                ->letters()
+                ->mixedCase()
+                ->numbers(),
+            ],
 
             'company_id' => [Rule::requiredIf(!$this->is_new), 'nullable', 'exists:App\Models\Company,id', 'max:255'],
 
             'company_name' => [Rule::requiredIf($this->is_new), 'nullable', 'string', 'max:255'],
             'address' => [Rule::requiredIf($this->is_new), 'nullable', 'string', 'max:255'],
-            'description' => [Rule::requiredIf($this->is_new),'nullable', 'max:255'],
+            'description' => [Rule::requiredIf($this->is_new), 'nullable', 'max:255'],
         ];
     }
 

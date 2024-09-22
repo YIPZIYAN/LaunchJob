@@ -49,7 +49,11 @@ class EmployeeRegistrationForm extends Component
         return [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:' . User::class],
-            'password' => ['required', 'confirmed', Password::defaults()],
+            'password' => ['required', 'confirmed', Password::min(8)
+                ->letters()
+                ->mixedCase()
+                ->numbers(),
+            ],
             'profession' => ['required', 'string', 'in:' . implode(',', $this->profession_list)],
             'about' => ['nullable', 'string', 'max:255'],
         ];
