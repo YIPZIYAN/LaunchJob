@@ -57,6 +57,7 @@ class ApplicantXMLController extends Controller
             $root->addChild('email', $user->email);
             $root->addChild('profession', $user->employee->profession);
             $root->addChild('about', $user->employee->about);
+            $root->addChild('status', $user->pivot->status);
         }
         return $applicantXML;
     }

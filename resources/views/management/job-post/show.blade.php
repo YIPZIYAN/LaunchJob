@@ -8,7 +8,7 @@
                 </x-slot>
                 <x-wireui-dropdown.item label="Download XML"
                                         href="{{route('management.applicant.download',$jobPost)}}"/>
-                <x-wireui-dropdown.item label="View"
+                <x-wireui-dropdown.item label="View" target="_blank"
                                         href="{{route('management.applicant.view-xml',$jobPost)}}"/>
             </x-wireui-dropdown>
         </div>

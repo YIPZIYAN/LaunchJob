@@ -52,6 +52,7 @@
                         <th>Email</th>
                         <th>Profession</th>
                         <th>About</th>
+                        <th>Status</th>
                     </tr>
                     <xsl:for-each select="//applicant">
                         <tr>
@@ -60,6 +61,7 @@
                             <td><xsl:value-of select="email"/></td>
                             <td><xsl:value-of select="profession"/></td>
                             <td><xsl:value-of select="about"/></td>
+                            <td><xsl:value-of select="status"/></td>
                         </tr>
                     </xsl:for-each>
                 </table>
