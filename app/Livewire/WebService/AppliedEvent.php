@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire;
+namespace App\Livewire\WebService;
 
 use Illuminate\Support\Facades\Http;
 use Livewire\Component;
@@ -17,11 +17,13 @@ class AppliedEvent extends Component
             'email' => auth()->user()->email
         ]);
 
-        $this->event_list = $response->successful() ? $response->json() : null;
+
+        $this->event_list = $response->successful() ? json_decode($response) : null;
+
     }
 
     public function render()
     {
-        return view('livewire.applied-event');
+        return view('livewire.web-service.applied-event');
     }
 }

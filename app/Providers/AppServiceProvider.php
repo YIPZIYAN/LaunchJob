@@ -39,5 +39,11 @@ class AppServiceProvider extends ServiceProvider
                 'Accept' => 'application/json',
             ])->baseUrl(BASE.'events');
         });
+
+        Http::macro('skill_test', function () {
+            return Http::withHeaders([
+                'Accept' => 'application/json',
+            ])->baseUrl(BASE.'skilltests');
+        });
     }
 }

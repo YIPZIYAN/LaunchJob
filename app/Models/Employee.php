@@ -28,6 +28,11 @@ class Employee extends Model
         return $this->hasMany(InterestJobType::class, 'employee_id');
     }
 
+    public function employeeSkillTest(): HasMany
+    {
+        return $this->hasMany(EmployeeSkillTest::class, 'employee_id');
+    }
+
     public function jobType(): BelongsToMany
     {
         return $this->belongsToMany(JobType::class,'interest_job_types')

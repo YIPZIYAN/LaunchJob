@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Profile;
 
+use App\Factory\ProfileFactory;
 use Illuminate\Support\Facades\Storage;
 use Livewire\Attributes\Validate;
 use Livewire\Component;
@@ -11,49 +12,46 @@ class CompanyProfileForm extends Component
 {
     use WithFileUploads;
 
-    public $company;
-    public $name;
-    public $address;
-    public $description;
-
     #[Validate('nullable|image|max:1024')] // 1MB Max
     public $avatar;
 
+    public $profileData = [];
+
     public function mount()
     {
-        $this->company = auth()->user()->company;
-        $this->name = $this->company->name;
-        $this->address = $this->company->address;
-        $this->description = $this->company->description;
+        $profile = ProfileFactory::create(auth()->user());
+        $this->profileData = $profile->getProfileDetails();
     }
 
     protected function rules()
     {
         return [
-            'name' => ['required', 'string', 'max:255'],
-            'address' => ['required', 'string', 'max:255'],
-            'description' => ['nullable', 'string', 'max:255'],
+            'profileData.name' => ['required', 'string', 'max:255'],
+            'profileData.address' => ['required', 'string', 'max:255'],
+            'profileData.description' => ['nullable', 'string', 'max:255'],
         ];
     }
 
     public function submit()
     {
         $validatedData = $this->validate();
+        $company = auth()->user()->company;
 
         if ($this->avatar) {
-            if ($this->company->avatar) {
-                Storage::disk('public')->delete($this->company->avatar);
+            if ($company->avatar) {
+                Storage::disk('public')->delete($company->avatar);
             }
-            $validatedData['avatar'] = $this->avatar->store('avatars', 'public');;
+            $validatedData['profileData']['avatar'] = $this->avatar->store('avatars', 'public');;
         } else {
-            $validatedData['avatar'] = $this->company->avatar;
+            $validatedData['profileData']['avatar'] = $company->avatar;
         }
 
-        $this->company->update($validatedData);
+        $profile = ProfileFactory::create(auth()->user());
+        $profile->saveProfileDetails($validatedData['profileData']);
 
-        $message = $this->company->wasChanged()
-            ? ['success' => 'Profile information updated successfully.']
-            : ['info' => 'No changes were made to the profile information.'];
+        $message = $company->wasChanged()
+            ? ['success' => 'Company information updated successfully.']
+            : ['info' => 'No changes were made to the company information.'];
 
         return redirect()->route('profile.edit')->with($message);
     }

@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Profile;
 
+use App\Factory\ProfileFactory;
 use Illuminate\Support\Facades\Storage;
 use Livewire\Attributes\Validate;
 use Livewire\Component;
@@ -12,10 +13,7 @@ class EmployeeProfileForm extends Component
 
     use WithFileUploads;
 
-    public $employee;
-    public $profession;
-    public $about;
-
+    public $profileData = [];
     #[Validate('nullable|mimes:pdf')] // 1MB Max
     public $resume;
     public $profession_list = [
@@ -49,38 +47,39 @@ class EmployeeProfileForm extends Component
 
     public function mount()
     {
-        $this->employee = auth()->user()->employee;
-        $this->profession = $this->employee->profession;
-        $this->about = $this->employee->about;
+        $profile = ProfileFactory::create(auth()->user());
+        $this->profileData = $profile->getProfileDetails();
     }
 
     protected function rules()
     {
         return [
-            'profession' => ['required', 'string', 'in:' . implode(',', $this->profession_list)],
-            'about' => ['nullable', 'string', 'max:255'],
+            'profileData.profession' => ['required', 'string', 'in:' . implode(',', $this->profession_list)],
+            'profileData.about' => ['nullable', 'string', 'max:255'],
         ];
     }
 
     public function submit()
     {
         $validatedData = $this->validate();
+        $employee = auth()->user()->employee;
 
         if ($this->resume) {
-            if ($this->employee->resume) {
-                Storage::disk('public')->delete($this->employee->resume);
+            if ($employee->resume) {
+                Storage::disk('public')->delete($employee->resume);
             }
 
             $filename = 'resume_' . auth()->user()->name . '.' . $this->resume->getClientOriginalExtension();
 
-            $validatedData['resume'] = $this->resume->storeAs('resumes', $filename, 'public');;
+            $validatedData['profileData']['resume'] = $this->resume->storeAs('resumes', $filename, 'public');;
         } else {
-            $validatedData['resume'] = $this->employee->resume;
+            $validatedData['profileData']['resume'] = $employee->resume;
         }
 
-        $this->employee->update($validatedData);
+        $profile = ProfileFactory::create(auth()->user());
+        $profile->saveProfileDetails($validatedData['profileData']);
 
-        $message = $this->employee->wasChanged()
+        $message = $employee->wasChanged()
             ? ['success' => 'Employee information updated successfully.']
             : ['info' => 'No changes were made to the employee information.'];
 

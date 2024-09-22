@@ -1,3 +1,3 @@
 <x-guest-layout>
-    <livewire:applied-event/>
+    <livewire:web-service.applied-event/>
 </x-guest-layout>

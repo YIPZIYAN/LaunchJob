@@ -13,7 +13,7 @@
 
         <div>
             <x-wireui-select
-                wire:model="profession"
+                wire:model="profileData.profession"
                 label="Profession"
                 placeholder="Select a profession"
                 :options="$profession_list"
@@ -45,7 +45,7 @@
         </div>
 
         <x-wireui-textarea
-            wire:model="about"
+            wire:model="profileData.about"
             label="About"
             placeholder="Enter about"
         />
