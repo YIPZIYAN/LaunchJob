@@ -30,7 +30,7 @@
                 <p class="text-sm text-gray-600 dark:text-neutral-400">
                     {{ $jobApplication->user->employee->about }}
                 </p>
-                @if ($jobApplication->user->employee->about)
+                @if ($jobApplication->user->employee->resume)
                     <x-wireui-button target="_blank"
                         href="{{ asset('storage/' . $jobApplication->user->employee->resume) }}" class="mt-4"
                         icon="document" outline label="View Resume" />
