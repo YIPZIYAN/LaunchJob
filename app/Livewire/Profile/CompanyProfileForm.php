@@ -3,7 +3,6 @@
 namespace App\Livewire\Profile;
 
 use App\Factory\ProfileFactory;
-use Auth;
 use Illuminate\Support\Facades\Storage;
 use Livewire\Attributes\Validate;
 use Livewire\Component;

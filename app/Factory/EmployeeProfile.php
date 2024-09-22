@@ -16,13 +16,15 @@ class EmployeeProfile implements ProfileInterface
     public function getProfileDetails()
     {
         return [
-            'name' => $this->user->company->name,
-            'email' => $this->user->company->address,
+            'profession' => $this->user->employee->profession,
+            'resume' => $this->user->employee->resume,
+            'about'=> $this->user->employee->about,
             // Additional fields specific to employee profile
-        ];    }
+        ];
+    }
 
     public function saveProfileDetails(array $data)
     {
-        $this->user->company->update($data);
+        $this->user->employee->update($data);
     }
 }
