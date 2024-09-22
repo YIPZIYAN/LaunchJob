@@ -13,6 +13,7 @@ class SkillTestForm extends Component
     public string $id;
     public $answers = [];
 
+
     public function mount()
     {
         try {
@@ -37,21 +38,22 @@ class SkillTestForm extends Component
 
         foreach ($this->answers as $question_id => $selected_option_id) {
             $submitted_answers[] = [
-                'question_id' => (int)$question_id,            // Add question_id
-                'selected_option_id' => (int)$selected_option_id // Add selected_option_id
+                'question_id' => $question_id,            // Add question_id
+                'selected_option_id' => $selected_option_id // Add selected_option_id
             ];
         }
+
         try {
             $response = Http::skill_test()->post('/submit', [
                 'skill_test_id' => $this->id,
                 'submitted_answers' => $submitted_answers,
             ]);
-            
+
             $message = $response->successful()
                 ? ['success' => 'Congratulations! Skill test submitted and graded.']
                 : ['error' => json_decode($response->body(), true)];
         } catch (ConnectException $e) {
-            $message = ['error' => 'Could not apply the event. Please try again later.'];
+            $message = ['error' => 'Could not submit the test. Please try again later.'];
         }
 
         return redirect()->route('skills.index', $this->id)->with($message);

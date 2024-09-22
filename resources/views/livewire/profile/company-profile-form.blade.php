@@ -13,24 +13,27 @@
 
         <div>
             <x-input-label for="avatar" value="Company Avatar"/>
-            <div class="flex space-x-2 mt-2">
+            <div class="flex flex-row space-x-2 mt-2">
                 <x-wireui-avatar lg
                                  icon="user"
                                  :src="Auth::user()->company->avatar == null ? '': asset('storage/'.Auth::user()->company->avatar)"/>
-                <div>
+                <div class="flex flex-col">
                     <input
                         wire:model="avatar"
                         class="block m-1 w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
                         id="file_input" type="file">
-                    @error('avatar')
-                    <div class="text-sm text-red-500">{{ $message }}</div> @enderror
+
                 </div>
             </div>
+            @error('avatar')
+            <div class="text-sm text-red-500">{{ $message }}</div>
+            @enderror
+
         </div>
 
         <div>
             <x-wireui-input
-                wire:model="name"
+                wire:model="profileData.name"
                 label="Company Name"
                 placeholder="Enter company name"
             />
@@ -38,14 +41,14 @@
 
         <div>
             <x-wireui-input
-                wire:model="address"
+                wire:model="profileData.address"
                 label="Address"
                 placeholder="Enter address"
             />
         </div>
 
         <x-wireui-textarea
-            wire:model="description"
+            wire:model="profileData.description"
             label="Description"
             placeholder="Enter description"
         />

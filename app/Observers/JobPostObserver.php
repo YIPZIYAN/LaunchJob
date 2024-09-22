@@ -2,14 +2,12 @@
 
 namespace App\Observers;
 
-use App\Events\JobPostUpdated;
 use App\Models\JobPost;
 use App\Models\User;
 use App\Notifications\JobPostCreated;
-use Illuminate\Contracts\Events\ShouldHandleEventsAfterCommit;
 use Illuminate\Support\Facades\Notification;
 
-class JobPostObserver implements ShouldHandleEventsAfterCommit
+class JobPostObserver
 {
     /**
      * Handle the JobPost "created" event.
