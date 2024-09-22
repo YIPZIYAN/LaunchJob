@@ -29,6 +29,10 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::get('profile.download',[ProfileController::class, 'download'])->name('profile.download');
+    Route::get('profile.download-transformedXML',[ProfileController::class, 'downloadTransformedXML'])->name('profile.download-transformedXML');
+
+
 
     Route::name('ws.')->prefix('launch-job-plus/')->group(function () {
         Route::get('room',[RoomController::class,'index'])->name('room.index');
@@ -78,6 +82,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::resource('/interview', InterviewController::class);
         Route::get('/events', [EventController::class, 'index'])->name('events.index');
         Route::get('/skills/{id}', [SkillTestController::class, 'index'])->name('skills.index');
+
     });
 });
 

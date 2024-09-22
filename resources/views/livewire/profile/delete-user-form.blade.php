@@ -24,6 +24,15 @@
             <x-wireui-button data-modal-target="popup-modal" data-modal-toggle="popup-modal"
                              type="button" label="DELETE ACCOUNT"
                              class="text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm inline-flex items-center text-center"/>
+            <x-wireui-dropdown>
+
+                <x-slot name="trigger">
+                    <x-wireui-button label="Export" />
+                </x-slot>
+
+                <x-wireui-dropdown.item label="Download XML" href="{{ route('profile.download') }}"/>
+                <x-wireui-dropdown.item label="Download HTML" href="{{ route('profile.download-transformedXML') }}" />
+            </x-wireui-dropdown>
 
         </div>
 
