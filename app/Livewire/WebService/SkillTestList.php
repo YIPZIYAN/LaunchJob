@@ -15,7 +15,7 @@ class SkillTestList extends Component
     {
         try {
             $this->skill_tests = json_decode(Http::skill_test()->get('/'));
-        } catch (ConnectException $e) {
+        } catch (\Exception $e) {
             $this->skill_tests = [];
             session()->flash('error', 'Failed to retrieve skill test. Please try again later.');
         }
