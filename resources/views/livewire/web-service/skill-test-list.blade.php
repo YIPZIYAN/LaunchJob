@@ -17,6 +17,9 @@
                 class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase dark:text-neutral-500">Name
             </th>
             <th scope="col"
+                class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase dark:text-neutral-500">Percentage (%)
+            </th>
+            <th scope="col"
                 class="px-6 py-3 text-end text-xs font-medium text-gray-500 uppercase dark:text-neutral-500">Action
             </th>
         </tr>
@@ -26,6 +29,13 @@
         @foreach($skill_tests as $skill_test)
             <tr>
                 <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800 dark:text-neutral-200">{{ $skill_test->name }}</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800 dark:text-neutral-200">
+                    @foreach($employee_skill_tests as $est)
+                        @if ($est->skill_test_id == $skill_test->id)
+                            {{ $est->percentage }}
+                        @endif
+                    @endforeach
+                </td>
                 <td class="px-6 py-4 whitespace-nowrap text-end text-sm font-medium">
                     <a href="{{route('skills.index', $skill_test->id)}}"
                        target="_blank"

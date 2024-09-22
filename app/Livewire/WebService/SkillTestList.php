@@ -10,6 +10,7 @@ class SkillTestList extends Component
 {
 
     public $skill_tests;
+    public $employee_skill_tests;
     public function mount()
     {
         try {
@@ -18,6 +19,9 @@ class SkillTestList extends Component
             $this->skill_tests = [];
             session()->flash('error', 'Failed to retrieve skill test. Please try again later.');
         }
+
+
+        $this->employee_skill_tests = auth()->user()->employee->employeeSkillTest()->get();
 
     }
 
