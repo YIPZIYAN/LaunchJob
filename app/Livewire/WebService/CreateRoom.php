@@ -5,6 +5,7 @@ namespace App\Livewire\WebService;
 use Exception;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
+use Livewire\Attributes\Validate;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
@@ -22,8 +23,23 @@ class CreateRoom extends Component
     public $prefer;
     public $location;
     public $description;
+
+    #[Validate('required|image|max:2048')]
     public $thumbnail;
-    public $gallery;
+    #[Validate(['gallery.*' => 'image|max:2048'])]
+    public $gallery=[];
+
+    public function getUrl($image)
+    {
+        $url = '';
+        try {
+            $url = $image->temporaryUrl();
+        }catch (Exception $exception){
+            Log::error($exception->getMessage());
+        }
+
+        return $url;
+    }
 
     public function mount()
     {
@@ -45,8 +61,6 @@ class CreateRoom extends Component
             'prefer' => ['required', 'string', 'max:100'],
             'location' => ['required', 'string', 'max:100'],
             'description' => ['required', 'string', 'max:1000'],
-            'thumbnail' => ['required', 'image', 'mimes:jpeg,png,jpg', 'max:2048'],
-            'gallery' => ['nullable', 'max:2048'],
         ];
     }
 

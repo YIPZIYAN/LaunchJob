@@ -79,14 +79,14 @@
                 @enderror
             </div>
             <div>
-                <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="file_input">
+                <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="gallery_input">
                     Gallery
                 </label>
                 <input
                     wire:model="gallery"
                     class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
-                    id="file_input" type="file" multiple>
-                @error('gallery')
+                    id="gallery_input" type="file" multiple>
+                @error('gallery.*')
                 <div class="text-sm text-red-500">{{ $message }}</div>
                 @enderror
             </div>
@@ -96,7 +96,7 @@
                     <div class="grid gap-4 justify-items-center">
                         <div>
                             <img class="h-72 max-w-full rounded-lg"
-                                 src="{{$thumbnail->temporaryUrl()}}"
+                                 src="{{$this->getUrl($thumbnail)}}"
                                  alt="">
                         </div>
                         <div class="flex flex-nowrap gap-4 overflow-x-auto">
@@ -104,7 +104,7 @@
                                 @foreach($gallery as $image)
                                     <div class="flex-none ">
                                         <img class=" h-36 max-w-full rounded-lg"
-                                             src="{{$image->temporaryUrl()}}"
+                                             src="{{$this->getUrl($image)}}"
                                              alt="">
                                     </div>
                                 @endforeach
