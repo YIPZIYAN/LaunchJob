@@ -10,32 +10,6 @@ use Illuminate\Http\Request;
 
 class JobPostManagementController extends Controller
 {
-    public function download()
-    {
-        $xml = $this->getXMLElement();
-
-        return response($xml->asXML())
-            ->header('Content-Type', 'application/xml')
-            ->header('Content-Disposition', 'attachment; filename="job-posts.xml"');
-    }
-
-    public function downloadTransformedXML()
-    {
-        $transformedXml = $this->getTransformedXML();
-
-        return response($transformedXml)
-            ->header('Content-Type', 'application/xml')
-            ->header('Content-Disposition', 'attachment; filename="job-posts.html"');
-    }
-
-    public function viewXML()
-    {
-        $transformedXml = $this->getTransformedXML();
-
-        return view('management.job-post.export', ['transformedXml' => $transformedXml]);
-
-    }
-
     /**
      * Show the form for creating a new resource.
      */
@@ -84,9 +58,57 @@ class JobPostManagementController extends Controller
         ]);
     }
 
-    /**
-     * @return \SimpleXMLElement
-     */
+    public function download()
+    {
+        $xml = $this->getXMLElement();
+
+        return response($xml->asXML())
+            ->header('Content-Type', 'application/xml')
+            ->header('Content-Disposition', 'attachment; filename="job-posts.xml"');
+    }
+
+    public function viewXML()
+    {
+        $transformedXml = $this->getTransformedXML();
+
+        return view('management.job-post.export', ['transformedXml' => $transformedXml]);
+    }
+
+    public function downloadTransformedXML()
+    {
+        $transformedXml = $this->getTransformedXML();
+
+        return response($transformedXml)
+            ->header('Content-Type', 'application/xml')
+            ->header('Content-Disposition', 'attachment; filename="job-posts.html"');
+    }
+
+    public function downloadJobXML(JobPost $jobPost)
+    {
+        $xml = new \SimpleXMLElement('<job/>');
+
+        $job = $xml->addChild('jobDetail');
+        $job->addChild('name', $jobPost->name);
+        $job->addChild('description', $jobPost->description);
+        $job->addChild('location', $jobPost->location);
+        $job->addChild('min_salary', $jobPost->min_salary);
+        $job->addChild('max_salary', $jobPost->max_salary);
+        $job->addChild('period', $jobPost->period);
+        $job->addChild('mode', $jobPost->mode);
+        $job->addChild('type', $jobPost->jobType->name);
+        $company = $job->addChild('company');
+        $company->addChild('avatar', $jobPost->company->avatar);
+        $company->addChild('name', $jobPost->company->name);
+        $company->addChild('address', $jobPost->company->address);
+        $company->addChild('description', $jobPost->company->description);
+
+        $transformedXml = $this->transformXML($xml->asXML(), storage_path('xsl/job-template.xsl'));
+
+        return response($transformedXml)
+            ->header('Content-Type', 'application/xml')
+            ->header('Content-Disposition', 'attachment; filename="' . $jobPost->name . ".html" . '"');
+    }
+
     public function getXMLElement(): \SimpleXMLElement
     {
         $jobPosts = auth()->user()->company->jobPosts()->get();
@@ -107,22 +129,24 @@ class JobPostManagementController extends Controller
         return $xml;
     }
 
-    /**
-     * @return false|string|null
-     */
     public function getTransformedXML(): string|null|false
     {
         $xml = $this->getXMLElement();
 
-        // Load XSLT stylesheet
+        return $this->transformXML($xml->asXML(), storage_path('xsl/job-post-template.xsl'));
+    }
+
+    /**
+     * Transform an XML string using an XSLT file.
+     */
+    protected function transformXML(string $xmlString, string $xslPath): string|false|null
+    {
         $xsl = new \DOMDocument();
-        $xsl->load(storage_path('xsl/job-post-template.xsl'));  // Place your XSLT file here
+        $xsl->load($xslPath);
 
-        // Load XML
         $domXml = new \DOMDocument();
-        $domXml->loadXML($xml->asXML());
+        $domXml->loadXML($xmlString);
 
-        // Apply XSLT transformation
         $proc = new \XSLTProcessor();
         $proc->importStyleSheet($xsl);
 
