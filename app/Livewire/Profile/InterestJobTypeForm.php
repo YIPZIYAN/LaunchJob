@@ -33,7 +33,7 @@ class InterestJobTypeForm extends Component
     protected function rules()
     {
         return [
-            'job_type_id' => 'required|array|exists:job_types,id|max:3',
+            'job_type_id' => 'array|exists:job_types,id|max:3',
         ];
     }
 

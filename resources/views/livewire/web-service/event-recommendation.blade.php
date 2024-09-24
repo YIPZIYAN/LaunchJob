@@ -25,7 +25,7 @@
                                     Location: {{$event->location}}
                                 </p>
                                 <p class="mt-2 text-gray-500 dark:text-neutral-400 text-justify">
-                                    Date: {{$event->start_date}} to {{$event->end_date}}
+                                    Date: {{$event->start_date}}
                                 </p>
                                 <p class="mt-2 text-gray-500 dark:text-neutral-400 text-justify">
                                     Time: {{$event->time}}
@@ -36,7 +36,7 @@
                                 <div class="pt-5 sm:mt-auto">
                                     <x-wireui-button class="text-xs text-blue-500 dark:text-neutral-500"
                                                      wire:click="submit({{ $event->id }})"
-                                                     wire:confirm="Are you sure to join this event?"
+                                                     wire:confirm="Are you sure to join this event? You cannot unjoin and your email will be recorded."
                                                      label="Apply Now"/>
                                 </div>
                             </div>

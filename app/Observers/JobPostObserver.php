@@ -5,6 +5,7 @@ namespace App\Observers;
 use App\Models\JobPost;
 use App\Models\User;
 use App\Notifications\JobPostCreated;
+use App\Notifications\JobPostUpdated;
 use Illuminate\Support\Facades\Notification;
 
 class JobPostObserver
@@ -26,7 +27,13 @@ class JobPostObserver
      */
     public function updated(JobPost $jobPost): void
     {
-        //
+        $users = User::whereHas('jobPosts', function ($query) use ($jobPost) {
+            $query->where('job_post_id', $jobPost->id)
+                ->where('job_applications.status', 'new');
+        })->get();
+
+        Notification::send($users, new JobPostUpdated($jobPost));
+
     }
 
     /**
