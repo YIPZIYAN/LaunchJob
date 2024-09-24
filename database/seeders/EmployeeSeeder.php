@@ -15,18 +15,9 @@ class EmployeeSeeder extends Seeder
     {
         Employee::factory()->create([
             'user_id' => '2',
-            'profession' => 'test',
+            'profession' => 'Software Developer',
         ]);
 
-        Employee::factory()->create([
-            'user_id' => '3',
-            'profession' => 'test',
 
-        ]);
-
-        Employee::factory()->create([
-            'user_id' => '4',
-            'profession' => 'test',
-        ]);
     }
 }

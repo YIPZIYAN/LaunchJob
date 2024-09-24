@@ -116,19 +116,12 @@ final class JobPostTable extends PowerGridComponent
                 ->slot('Edit')
                 ->class('mr-2 pg-btn-white dark:ring-pg-primary-600 dark:border-pg-primary-600 dark:hover:bg-pg-primary-700 dark:ring-offset-pg-primary-800 dark:text-pg-primary-300 dark:bg-pg-primary-700')
                 ->route('management.job-post.edit', ['job_post' => $row]),
+            Button::add('export')
+                //->slot('Edit: ' . $row->id)
+                ->slot('Export')
+                ->class('mr-2 pg-btn-white dark:ring-pg-primary-600 dark:border-pg-primary-600 dark:hover:bg-pg-primary-700 dark:ring-offset-pg-primary-800 dark:text-pg-primary-300 dark:bg-pg-primary-700')
+                ->route('management.download-job-xml', ['job_post' => $row]),
 
         ];
     }
-
-    /*
-    public function actionRules($row): array
-    {
-       return [
-            // Hide button edit for ID 1
-            Rule::button('edit')
-                ->when(fn($row) => $row->id === 1)
-                ->hide(),
-        ];
-    }
-    */
 }

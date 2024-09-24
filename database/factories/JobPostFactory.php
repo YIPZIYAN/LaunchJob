@@ -18,7 +18,7 @@ class JobPostFactory extends Factory
             'location' => $this->faker->city(),
             'min_salary' => $this->faker->numberBetween(1,6000),
             'max_salary' => $this->faker->numberBetween(6000,20000),
-            'period' => $this->faker->randomElement(['Internship','Part-time','Full-time']),
+            'period' => $this->faker->randomElement(['Internship','Part-time','Full-time', 'Contract', 'Freelance']),
             'mode' => $this->faker->randomElement(['Hybrid','On-site','Remote']),
             'job_type_id' => $this->faker->randomNumber(1, 21),
             'company_id' => $this->faker->randomNumber(1,10),

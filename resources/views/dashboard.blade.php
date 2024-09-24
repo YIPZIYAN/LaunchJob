@@ -20,9 +20,6 @@
                 <x-wireui-dropdown.item label="View" href="{{ route('management.job-post.view-xml') }}" />
             </x-wireui-dropdown>
 
-{{--            <x-wireui-button class="mb-4" label="Export"--}}
-{{--                             right-icon="arrow-right"--}}
-{{--                             href="{{ route('management.job-post.export') }}"/>--}}
         </div>
 
 

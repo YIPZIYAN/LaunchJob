@@ -61,6 +61,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
             Route::get('job-post.view-xml',[JobPostManagementController::class, 'viewXML'])->name('job-post.view-xml');
             Route::get('job-post.download-transformedXML',[JobPostManagementController::class, 'downloadTransformedXML'])->name('job-post.download-transformedXML');
 
+            Route::get('download-job-xml/{job_post}',[JobPostManagementController::class, 'downloadJobXML'])->name('download-job-xml');
+
+
             Route::get('job-post/{jobPost}/applicant/{user}', [JobPostManagementController::class, 'showApplicant'])
                 ->name('job-application.show');
 
