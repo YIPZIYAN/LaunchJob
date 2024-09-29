@@ -13,6 +13,9 @@ class CreateInterviewController extends Controller
      */
     public function __invoke(JobApplication $jobApplication)
     {
+        if (auth()->user()->company_id !== $jobApplication->jobPost->company_id) {
+            abort(403);
+        }
         return view('management.interview.create',['jobApplication'=>$jobApplication]);
     }
 }
