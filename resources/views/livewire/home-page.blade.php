@@ -67,7 +67,12 @@
             </x-filter>
         </div>
         <div class="flex-1 overflow-y-auto h-[860px]">
-            @foreach($jobPosts as $jobPost)
+            @foreach($jobPosts as $key => $jobPost)
+                @if(rand(0, count($jobPosts) - 1) == $key)
+                    <div class="mb-4">
+                        @include('job-application.partials.room-ads')
+                    </div>
+                @endif
                 <x-job-card>
                     <x-wireui-avatar xl
                                      icon="building-office-2"
