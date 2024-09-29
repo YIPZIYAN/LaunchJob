@@ -35,13 +35,6 @@ class EditInterview extends Component
 
     }
 
-    public function enterCompanyAddress()
-    {
-        $this->isCompanyAddress ?
-            $this->location = auth()->user()->company->address :
-            $this->location = '';
-    }
-
     protected function rules()
     {
         return [
