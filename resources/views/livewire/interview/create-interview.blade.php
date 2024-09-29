@@ -42,11 +42,6 @@
                     label="Location"
                     placeholder="Enter location"
                 />
-                <x-wireui-checkbox
-                    label="Use Company Address"
-                    wire:model="isCompanyAddress"
-                    wire:click="enterCompanyAddress"
-                    value="label"/>
             @endif
 
             <x-wireui-textarea

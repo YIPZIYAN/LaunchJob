@@ -23,11 +23,9 @@ class CreateInterview extends Component
     public $description;
 
 
-    public function enterCompanyAddress()
+    public function mount()
     {
-        $this->isCompanyAddress ?
-            $this->location = auth()->user()->company->address :
-            $this->location = '';
+        $this->location = auth()->user()->company->address;
     }
 
     protected function rules()
@@ -54,7 +52,6 @@ class CreateInterview extends Component
 
         $this->jobApplication->interviews()->create($validatedData);
         $this->jobApplication->state()->scheduleInterview();
-
 
 
     }
