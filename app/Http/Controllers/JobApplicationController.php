@@ -8,6 +8,7 @@ use App\Http\Requests\UpdateJobApplicationRequest;
 use App\Models\JobPost;
 use App\StateMachine\JobApplication\JobApplicationState;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 use WireUi\Traits\WireUiActions;
 
 class JobApplicationController extends Controller
@@ -47,6 +48,7 @@ class JobApplicationController extends Controller
      */
     public function show(JobApplication $jobApplication)
     {
+        Gate::authorize('view', $jobApplication);
         return view('job-application.show', [
             'jobApplication' => $jobApplication->load([
                 'jobPost.company',

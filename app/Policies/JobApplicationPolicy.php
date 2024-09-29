@@ -21,7 +21,7 @@ class JobApplicationPolicy
      */
     public function view(User $user, JobApplication $jobApplication): bool
     {
-        //
+        return $user->id === $jobApplication->user_id;
     }
 
     /**

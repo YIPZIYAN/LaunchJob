@@ -21,7 +21,7 @@ class JobPostPolicy
      */
     public function view(User $user, JobPost $jobPost): bool
     {
-        //
+        return $user->company_id === $jobPost->company_id;
     }
 
     /**
