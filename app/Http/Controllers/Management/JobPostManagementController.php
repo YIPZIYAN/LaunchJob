@@ -52,7 +52,7 @@ class JobPostManagementController extends Controller
     public function showApplicant(JobPost $jobPost, User $user)
     {
         Gate::authorize('view', $jobPost);
-        $jobApplication = JobApplication::where('job_post_id', $jobPost->id)->where('user_id', $user->id)->first();
+        $jobApplication = JobApplication::where('job_post_id', $jobPost->id)->where('user_id', $user->id)->firstOrFail();
         return view('management.job-application.show', [
             'jobApplication' => $jobApplication->load([
                 'user.employee',
