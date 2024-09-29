@@ -21,7 +21,7 @@ class InterviewPolicy
      */
     public function view(User $user, Interview $interview): bool
     {
-        //
+        return $user->company_id === $interview->jobApplication->jobPost->company_id;
     }
 
     /**
