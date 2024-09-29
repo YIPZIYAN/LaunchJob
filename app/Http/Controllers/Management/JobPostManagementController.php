@@ -35,6 +35,7 @@ class JobPostManagementController extends Controller
      */
     public function edit(JobPost $jobPost)
     {
+        Gate::authorize('view', $jobPost);
         return view('management.job-post.edit', compact('jobPost'));
     }
 
