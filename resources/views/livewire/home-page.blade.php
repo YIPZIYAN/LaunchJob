@@ -67,8 +67,15 @@
             </x-filter>
         </div>
         <div class="flex-1 overflow-y-auto h-[860px]">
+            @php
+                $hasRun = false;
+                $rand = rand(0, count($jobPosts) - 1);
+            @endphp
             @foreach($jobPosts as $key => $jobPost)
-                @if(rand(0, count($jobPosts) - 1) == $key)
+                @if(!$hasRun &&  $rand == $key)
+                    @php
+                        $hasRun = true;
+                    @endphp
                     <div class="mb-4">
                         @include('job-application.partials.room-ads')
                     </div>
