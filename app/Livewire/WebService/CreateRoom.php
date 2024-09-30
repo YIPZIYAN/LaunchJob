@@ -55,7 +55,7 @@ class CreateRoom extends Component
         return [
             'owner' => ['required', 'string', 'max:100'],
             'email' => ['required', 'string', 'email', 'max:100'],
-            'phone' => ['required', 'string', 'max:100'],
+            'phone' => ['required', 'string', 'max:100','min:10','max:11'],
             'name' => ['required', 'string', 'max:100'],
             'price' => ['required', 'integer', 'min:1', 'max:999999'],
             'type' => ['required', 'string', 'max:100'],
