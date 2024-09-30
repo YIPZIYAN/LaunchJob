@@ -35,7 +35,6 @@
                             label="Address" placeholder="Enter company address"/>
                     <x-wireui-textarea
                             class="col-span-2"
-                            corner="Optional"
                             wire:model="description"
                             label="Description" placeholder="Write about your company"/>
                 @else
