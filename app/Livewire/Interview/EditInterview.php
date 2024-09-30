@@ -39,7 +39,7 @@ class EditInterview extends Component
     {
         return [
             'date' => ['date', 'required', 'after_or_equal:' . now()->format('Y-m-d')],
-            'start_time' => ['date_format:H:i', 'required'],
+            'start_time' => ['date_format:H:i', 'required','after_or_equal:' . now()->format('H:i')],
             'end_time' => ['date_format:H:i', 'required', 'after:start_time'],
             'link' => ['nullable', 'url', Rule::requiredIf($this->isOnline)],
             'location' => ['nullable', 'string', Rule::requiredIf(!$this->isOnline)],
